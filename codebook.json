@@ -1,0 +1,37 @@
+{
+    "fnr": {
+        "data-name": "Fødselsnummer"
+    },
+    "utdannelse":{
+        "data-name": "Utdannelse",
+        "responses":{
+            "ikke-grunnskole": "Ikke fullført grunnskole",
+            "grunnskole": "Grunnskole",
+            "vgs": "Videregående skole",
+            "fagbrev": "Videregående med fagbrev",
+            "hoyere-under-4ar": "Høyskole eller universitet, mindre enn 4 år",
+            "hoyere-4ar-og-over": "Høyskole eller universitet, 4 år eller mer"           
+        }
+    },
+    "tid-i-arbeidslivet":{
+        "data-name": "År i arbeidslivet",
+        "responses":{
+            "1": "1 år eller mindre",
+            "2-5": "2-5 år",
+            "6-10": "6-10 år",
+            "11-20": "11-20 år",
+            "mer-enn-20": "Mer enn 20 år"
+        }
+    },
+    "":{
+        "data-name": "",
+        "responses":{
+            "": "",
+            "": "",
+            "6-10": "6-10 år",
+            "11-20": "11-20 år",
+            "mer-enn-20": "Mer enn 20 år"
+        }
+    }
+}
+

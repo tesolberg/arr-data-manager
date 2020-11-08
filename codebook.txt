@@ -1,0 +1,348 @@
+* SSHF ARR T0 (id 164602) - 29.10.2020 22:38
+
+* Variabel	Etikett
+
+
+fnr	Hva er ditt fødselsnummer (11 siffer)?
+
+
+utdannelse	Hva er den høyeste utdannelsen du har fullført?
+
+ikke-grunnskole	Ikke fullført 7 - 10-årig grunnskole/folkeskole
+grunnskole	7 - 10-årig grunnskole/folkeskole
+vgs	Videregående skole
+fagbrev	Videregående skole med fagbrev
+hoyere-under-4ar	Høyskole eller universitet, mindre enn 4 år
+hoyere-4ar-og-over	Høyskole eller universitet, 4 år eller mer
+
+
+tid-i-arbeidslivet	Hvor mange år har du vært i arbeidslivet tilsammen?
+
+1	1 år eller mindre
+2-5	2 - 5 år
+6-10	6 - 10 år
+11-20	11 - 20 år
+mer-enn-20	Mer enn 20 år
+
+
+yrke	Hva er nåværende yrke, eller hva var ditt siste hovedyrke? Har du ikke arbeid nå, svarer du ut fra det yrket du hadde sist. Hvis du har flere yrker velger du det yrkesfeltet hvor hoveddelen av arbeidstiden foregår
+
+student	Student eller skoleelev
+laerling	Lærling eller på arbeidsopplæring
+ufaglaert	Yrke uten krav til utdanning
+operator-transport	Prosess-/maskinoperatør eller transportarbeider
+handtverker	Håndtverker
+jord-skog-fisk	Yrke innen jorbruk, skogbruk eller fiske
+salg-service-omsorg	Salgs-, service- eller omsorgsyrke
+kontor	Kontor- eller kundeserviceyrke
+bachelor	Yrke med kortere (3 årig) høyskole- eller universitetsutdanning
+akademisk	Akademisk yrke
+ledelse-politikk	Yrke innen administrativ ledelse eller politikk
+militaert	Militært yrke
+annet	Annet yrke
+
+
+arbeidsforhold	Har du for tiden et arbeidsforhold?
+
+ja	Ja
+nei	Nei
+
+
+stillingsprosent	Hvor stor stillingsprosent har du i jobben din?
+
+1-25	1 - 25%
+26-50	26 - 50%
+51-75	51-75%
+76-99	76 - 99%
+100	100%
+mer-enn-100	Mer enn 100%
+usikker	Vet ikke/usikker
+
+
+i-jobb-na	Hvor mye jobber du i den stillingsprosenten du har?
+
+fullt	Jeg jobber fullt eller mer enn stillingsprosenten jeg har
+redusert	Jeg jobber en redusert del av den stillingsprosenten jeg har
+nei	Jeg jobber ikke
+
+
+sektor	Hvilken type virksomhet(er) arbeider du i?
+
+privat	Privat sektor
+offentlig	Offentlig sektor
+selvstendig	Selvstendig næringsdrivende
+usikker	Vet ikke/usikker
+
+
+sm-aap	Er du sykemeldt eller mottar du arbeidsavklaringspenger?
+
+nei	Nei, jeg er ikke sykemeldt og mottar ikke arbeidsavklaringspenger
+delvis-sm	Ja, delvis sykemeldt
+fullt-sm	Ja, fullt sykemeldt
+aap	Mottar arbeidsavklaringspenger
+
+
+ytelser	Mottar du noen av disse ytelsene? (kan velge flere)
+
+sykepenger	Sykepenger (fra arbeidsgiver eller NAV)
+aap	Arbeidsavklaringspenger (AAP)
+ufor	Uføretrygd
+dagpenger	Dagpenger ved arbeidsledighet
+sosialhjelp	Sosialstønad/sosialhjelp
+tult	Tidsubegrenset lønnstilskudd (TULT)
+nei	Nei, jeg mottar ingen av disse ytelsene
+usikker	Vet ikke/usikker
+
+
+varighet-sm-siste-ar	Hvor lenge har du tilsammen vært helt eller delvis sykemeldt de siste 12 månedene?
+
+0	Jeg har ikke vært sykemeldt siste år
+mindre-to-uker	Mindre enn 2 uker
+2-8-uker	Mellom 2 og 8 uker
+9-uker-6-mnd	Mellom 9 uker og 6 måneder
+7-12-mnd	Mellom 7 og 12 måneder
+usikker	Vet ikke/usikker
+
+
+sokt-ufor	Har du søkt om uføretrygd?
+
+ja	Ja
+nei	Nei
+
+
+arbeidsevne-generelt	Du skal nå forsøke å vurdere din nåværende arbeidsevne sammenliknet med da den var på sitt beste. Vi går ut i fra at din arbeidsevne på sitt beste verdsettes med 10 poeng. Hvor mange poeng vil du gi til din nåværende arbeidsevne?
+
+0	0
+1	1
+2	2
+3	3
+4	4
+5	5
+6	6
+7	7
+8	8
+9	9
+10	10
+
+
+arbeidsevne-fysiske-krav	Hvordan vurderer du din egen arbeidsevne sett opp mot fysisk krav i jobben (gå, stå, løfte etc)?
+
+meget-darlig	Meget dårlig
+ganske-darlig	Ganske dårlig
+middels	Middels
+ganske-god	Ganske god
+meget-god	Meget god
+
+
+arbeidsevne-mentale-krav	Hvordan vurderer du din egen arbeidsevne sett opp mot mentale krav i jobben (konsentrasjon, planlegging etc)?
+
+meget-darlig	Meget dårlig
+ganske-darlig	Ganske dårlig
+middels	Middels
+ganske-god	Ganske god
+meget-god	Meget god
+
+
+estimat-rtw	Hvor lang tid tror du at det tar før du er tilbake i arbeid?
+
+under-2-uker	Umiddelbart eller i løpet av 2 uker
+innen-1-mnd	Innen 1 måned
+innen-2-mnd	Innen 2 måneder
+innen-3-mnd	Innen 3 måneder
+innen-6-mnd	Innen 6 måneder
+innen-1-ar	Innen 1 år
+mer-enn-1-ar	Mer enn 1 år
+aldri	Aldri
+usikker	Vet ikke/usikker
+er-i-jobb	Jeg er i jobb
+
+
+fysakt-timer	Timer
+
+
+fysakt-min	Minutter
+
+
+sm-arsak-fysakt	Smertene mine ble forårsaket av fysisk aktivitet
+
+fysakt-forverrer-sm	Fysisk aktivitet forverrer smertene mine
+
+fysakt-skadelig	Fysisk aktivitet kan være skadelig for kroppen min
+
+fysakt-utilradelig	Jeg burde ikke gjøre fysisk aktivitet som kan øke smertene mine
+
+uenig	Uenig
+usikker	Usikker
+enig	Enig
+
+
+sm-arsak-jobb	Smertene mine ble forårsaket av jobben min eller et uhell på jobben
+
+jobb-gjort-sm-verre	Jobben min har gjort smertene verre
+
+erstatningskrav	Jeg har framsatt erstatningskrav for smertene mine
+
+arbeid-for-tungt	Arbeidet mitt er for tungt for kroppen min
+
+jobb-forverrer-sm	Å gå på jobb forverrer smertene mine
+
+jobb-kan-skade	Arbeidet mitt kan skade kroppen min
+
+burde-ikke-jobbe	Jeg burde ikke utføre det vanlige arbeidet mitt med mine nåværende smerter
+
+klarer-ikke-jobbe	Jeg klarer ikke utføre det vanlige arbeidet mitt med mine nåværende smerter
+
+ikke-rtw-innen-3mnd	Jeg tror ikke jeg vil være tilbake på det vanlige arbeidet mitt innen 3 måneder
+
+aldri-rtw	Jeg tror ikke jeg noen gang vil være i stand til å komme tilbake til det vanlige arbeidet mitt
+
+uenig	Uenig
+usikker	Usikker
+enig	Enig
+
+
+hads-tidlig-oppvakning	Jeg våkner tidlig for så å sove dårlig resten av natten
+
+hads-panikk	Jeg blir veldig redd eller får panikkfølelse uten noen åpenbar grunn
+
+hads-trist	Jeg føler meg trist og nedfor
+
+hads-nervos	Jeg føler meg nervøs når jeg går ut av boligen min på egenhånd
+
+hads-interessetap	Jeg har mistet interesse for ting
+
+hads-hjertebank	Jeg får hjertebank eller følelse av &#34;sommerfugler&#34; i brystet eller magen
+
+hads-svak-apetitt	Jeg har dårlig apetitt
+
+hads-redd	Jeg føler meg redd
+
+hads-ikke-verd-leve	Jeg føler at livet ikke er verd å leve
+
+hads-anhedoni	Jeg setter ikke lenger pris på ting jeg likte før
+
+hads-rastlos	Jeg er rastløs og har problemer med å holde meg i ro
+
+hads-irritabel	Jeg er mer irritabel enn jeg pleier
+
+hads-langsomt	Det føles som jeg beveger meg eller tenker seinere enn vanlig
+
+hads-bekymringer	Bekymringer er alltid tilstede i tankene mine
+
+ja-definitivt	Ja, definitivt
+ja-noen-ganger	Ja, noen ganger
+nei-ikke-mye	Nei, ikke så mye
+nei-ikke-hele-tatt	Nei, ikke i det hele tatt
+
+
+eq5d-gange	Gange
+
+ingen-prob	Jeg har ingen problemer med å gå omkring
+litt-prob	Jeg har litt problemer med å gå omkring
+middels-prob	Jeg har middels store problemer med å gå omkring
+store-prob	Jeg har store problemer med å gå omkring
+ute-av-stand	Jeg er ute av stand til å gå omkring
+
+
+eq5d-stell	Personlig stell
+
+ingen-prob	Jeg har ingen problemer med å vaske meg eller kle meg
+litt-prob	Jeg har litt problemer med å vaske meg eller kle meg
+middels-prob	Jeg har middels store problemer med å vaske meg eller kle meg
+store-prob	Jeg har store problemer med å vaske meg eller kle meg
+ute-av-stand	Jeg er ute av stand til å vaske meg eller kle meg
+
+
+eq5d-gjoremal	Vanlige gjøremål
+
+ingen-prob	Jeg har ingen problemer med å utføre mine vanlige gjøremål
+litt-prob	Jeg har litt problemer med å utføre mine vanlige gjøremål
+middels-prob	Jeg har middels store problemer med å utføre mine vanlige gjøremål
+store-prob	Jeg har store problemer med å utføre mine vanlige gjøremål
+ute-av-stand	Jeg er ute av stand til å utføre mine vanlige gjøremål
+
+
+eq5d-smerter	Smerter/ubehag
+
+nei	Jeg har verken smerter eller ubehag
+litt	Jeg har litt smerter eller ubehag
+middels	Jeg har middels sterke smerter eller ubehag
+sterke	Jeg har sterke smerter eller ubehag
+svaert-sterke	Jeg har svært sterke smerter eller ubehag
+
+
+eq5d-angst-dep	Angst/depresjon
+
+nei	Jeg er verken engstelig eller deprimert
+litt	Jeg er litt engstelig eller deprimert
+middels	Jeg er middels engstelig eller deprimert
+svaert	Jeg er svært engstelig eller deprimert
+ekstremt	Jeg er ekstremt engstelig eller deprimert
+
+
+gsaq-innsovning	... har du hatt vansker med å sovne inn?
+
+gsaq-oppvakning	... hatt vansker med å sove gjennom natta?
+
+gsaq-utvilt-dagtid	... har du følt deg lite uthvilt på dagtid?
+
+gsaq-vansker-holde-vaken	... har du sovet uten at du ville det, eller måtte kjempe med å holde deg våken på dagtid?
+
+gsaq-dagtidfunksjon	... har søvnvansker eller søvnighet på dagtid forstyrret dine daglige aktiviteter?
+
+gsaq-jobb-akt-hinder-sovn	... har arbeid eller andre aktiviteter hindret deg fra å få nok søvn?
+
+gsaq-snorking	... har du snorket høyt?
+
+gsaq-apne	... har du hatt pustepauser eller stoppet å puste i søvne?
+
+gsaq-restless-legs	... har du hatt urolige eller maurende følelser i bena om kvelden eller natta, og som ble bedre av bevegelse?
+
+gsaq-rykninger	... har du hatt gjentatte rykninger eller bevegelser i bena i søvne?
+
+gsaq-parasomnier	... har du hatt mareritt eller ropt, gått, slått eller sparket i søvne?
+
+gsaq-trist-engstelig	... har du vært trist eller engstelig?
+
+aldri	Aldri
+noen-ganger	Noen ganger
+vanligvis	Vanligvis
+alltid	Alltid
+
+
+gsaq-smerter	Smerter
+
+gsaq-kroppslige-plager	Andre kroppslige plager
+
+gsaq-bekymringer	Bekymringer
+
+gsaq-medikamenter	Medikamenter
+
+aldri	Aldri
+noen-ganger	Noen ganger
+vanligvis	Vanligvis
+alltid	Alltid
+
+
+helse-samlet	Prøv å angi hvor god eller dårlig din samlede helse er i dag.
+
+0	0
+1	1
+2	2
+3	3
+4	4
+5	5
+6	6
+7	7
+8	8
+9	9
+10	10
+
+
+godt-nok-utredet	Opplever du deg godt nok medisinsk utredet for dine muskel-/skjelettplager?
+
+ja	Ja
+nei	Nei
+
+
+tilbakemeldinger	Mine tilbakemeldinger
