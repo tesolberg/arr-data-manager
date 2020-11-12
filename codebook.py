@@ -1,10 +1,14 @@
 import json
 
-
-
-def GenerateCodebook(codebook_path, var_labes_report_format=""):
+def GenerateCodebook(codebook_path, report_labels_path=""):
     # empty dict
     data = {}
+    report_labels = {}
+
+    # Decode report labels
+    if(report_labels_path != ""):
+        with open(report_labels_path, encoding="utf-8") as f:
+            report_labels = json.load(f)
 
     # åpne sps-fil fra nettskjema
     with open(codebook_path, encoding="utf-8") as f:
@@ -38,13 +42,14 @@ def GenerateCodebook(codebook_path, var_labes_report_format=""):
                         break
                     else:
                         new_var += char
-                if(var_labes_report_format != ""):
-                    active_var = {new_var: {"var_label": "1", "responses": {}}}
+                if(report_labels_path != ""):
+                    active_var = {new_var: {"var_label": report_labels[new_var], "responses": {}}}
                 else:
-                    active_var = {new_var: {"var_label": "", "responses": {}}}
+                    active_var = {new_var: {"var_label": "empty", "responses": {}}}
 
                 active_var_label = new_var
             
+            # skips lines starting with VALUE and VARIABLE LABELS
             elif(line[0:12] == "VALUE LABELS" or line[0:15] == "VARIABLE LABELS"):
                 continue
 
@@ -68,11 +73,11 @@ def GenerateCodebook(codebook_path, var_labes_report_format=""):
                 active_var_responses[value_short] = value_long
 
     # write codebook to file
-    with open('codebook.json', 'w', encoding="utf8") as json_file:
+    with open('data/codebook.json', 'w', encoding="utf8") as json_file:
         json.dump(data, json_file, indent=2,  ensure_ascii=False)
 
     # write codebook with only varialbe labels to file
-    with open('codebook_var_labels_clean.json', 'w', encoding="utf8") as f:
+    with open('data/codebook_var_labels_clean.json', 'w', encoding="utf8") as f:
         f.write("{\n")
         
         dict_len = len(data)
@@ -90,7 +95,8 @@ def GenerateCodebook(codebook_path, var_labes_report_format=""):
 
 
 def main():
-    GenerateCodebook("codebook.sps", "report_labels.txt")
+    GenerateCodebook("data/codebook.sps", "data/report_labels.json")
+
 
 if __name__ == "__main__":
     main()

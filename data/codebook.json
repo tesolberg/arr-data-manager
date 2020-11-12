@@ -1,36 +1,36 @@
 {
   "fnr": {
-    "var_label": "1",
+    "var_label": "Fødselsnummer",
     "responses": {}
   },
   "morsmal": {
-    "var_label": "1",
+    "var_label": "Morsmål",
     "responses": {}
   },
   "sprakvansker": {
-    "var_label": "1",
+    "var_label": "Språkvansker",
     "responses": {
       "ja": "Ja",
       "nei": "Nei."
     }
   },
   "sivilstatus": {
-    "var_label": "1",
+    "var_label": "Sivilstatus",
     "responses": {
       "gift-partner": "Gift/samboer/registrert partner",
       "enslig": "Enslig."
     }
   },
   "barn": {
-    "var_label": "1",
+    "var_label": "Antall barn",
     "responses": {}
   },
   "antall-i-husholdning": {
-    "var_label": "1",
+    "var_label": "Personer i husholdningen i tilegg til pasienten",
     "responses": {}
   },
   "utdannelse": {
-    "var_label": "1",
+    "var_label": "Utdannelse",
     "responses": {
       "ikke-grunnskole": "Ikke fullført 7 - 10-årig grunnskole/folkeskole",
       "grunnskole": "7 - 10-årig grunnskole/folkeskole",
@@ -41,7 +41,7 @@
     }
   },
   "tid-i-arbeidslivet": {
-    "var_label": "1",
+    "var_label": "Antall år i arbeidslivet",
     "responses": {
       "1": "1 år eller mindre",
       "2-5": "2 - 5 år",
@@ -51,7 +51,7 @@
     }
   },
   "yrke": {
-    "var_label": "1",
+    "var_label": "Nåværende eller siste yrke",
     "responses": {
       "student": "Student eller skoleelev",
       "laerling": "Lærling eller på arbeidsopplæring",
@@ -69,14 +69,14 @@
     }
   },
   "arbeidsforhold": {
-    "var_label": "1",
+    "var_label": "Eksisterende arbeidsforhold",
     "responses": {
       "ja": "Ja",
       "nei": "Nei."
     }
   },
   "stillingsprosent": {
-    "var_label": "1",
+    "var_label": "Stillingsprosent",
     "responses": {
       "1-25": "1 - 25%",
       "26-50": "26 - 50%",
@@ -88,7 +88,7 @@
     }
   },
   "i-jobb-na": {
-    "var_label": "1",
+    "var_label": "I jobb i dag?",
     "responses": {
       "fullt": "Jeg jobber fullt eller mer enn stillingsprosenten jeg har",
       "redusert": "Jeg jobber en redusert del av den stillingsprosenten jeg har",
@@ -96,7 +96,7 @@
     }
   },
   "sektor_1": {
-    "var_label": "1",
+    "var_label": "Privat sektor",
     "responses": {
       "privat": "Privat sektor",
       "offentlig": "Offentlig sektor",
@@ -105,7 +105,7 @@
     }
   },
   "sektor_2": {
-    "var_label": "1",
+    "var_label": "Offentlig sektor",
     "responses": {
       "privat": "Privat sektor",
       "offentlig": "Offentlig sektor",
@@ -114,7 +114,7 @@
     }
   },
   "sektor_3": {
-    "var_label": "1",
+    "var_label": "Selvstendig næringsdrivende",
     "responses": {
       "privat": "Privat sektor",
       "offentlig": "Offentlig sektor",
@@ -123,7 +123,7 @@
     }
   },
   "sektor_4": {
-    "var_label": "1",
+    "var_label": "Vet ikke/usikker",
     "responses": {
       "privat": "Privat sektor",
       "offentlig": "Offentlig sektor",
@@ -132,7 +132,7 @@
     }
   },
   "sm-aap": {
-    "var_label": "1",
+    "var_label": "Sykemeldt?",
     "responses": {
       "nei": "Nei, jeg er ikke sykemeldt og mottar ikke arbeidsavklaringspenger",
       "delvis-sm": "Ja, delvis sykemeldt",
@@ -141,7 +141,7 @@
     }
   },
   "ytelser_1": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -154,7 +154,7 @@
     }
   },
   "ytelser_2": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -167,7 +167,7 @@
     }
   },
   "ytelser_3": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -180,7 +180,7 @@
     }
   },
   "ytelser_4": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -193,7 +193,7 @@
     }
   },
   "ytelser_5": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -206,7 +206,7 @@
     }
   },
   "ytelser_6": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -219,7 +219,7 @@
     }
   },
   "ytelser_7": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -232,7 +232,7 @@
     }
   },
   "ytelser_8": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -245,7 +245,7 @@
     }
   },
   "varighet-sm-siste-ar": {
-    "var_label": "1",
+    "var_label": "Tid sykemeldt siste år",
     "responses": {
       "0": "Jeg har ikke vært sykemeldt siste år",
       "mindre-to-uker": "Mindre enn 2 uker",
@@ -256,21 +256,21 @@
     }
   },
   "sokt-ufor": {
-    "var_label": "1",
+    "var_label": "Har søkt eller planlegger å søke ufør",
     "responses": {
       "ja": "Ja",
       "nei": "Nei."
     }
   },
   "erstatningssak": {
-    "var_label": "1",
+    "var_label": "Pågående erstatningssak",
     "responses": {
       "ja": "Ja",
       "nei": "Nei."
     }
   },
   "arbeidsevne-generelt": {
-    "var_label": "1",
+    "var_label": "Vurdering av generell arbeidsevne",
     "responses": {
       "0": "0",
       "1": "1",
@@ -286,7 +286,7 @@
     }
   },
   "arbeidsevne-fysiske-krav": {
-    "var_label": "1",
+    "var_label": "Vurdering av arbeidsevne - fysiske krav",
     "responses": {
       "meget-darlig": "Meget dårlig",
       "ganske-darlig": "Ganske dårlig",
@@ -296,7 +296,7 @@
     }
   },
   "arbeidsevne-mentale-krav": {
-    "var_label": "1",
+    "var_label": "Vurdering av arbeidsevne - mentale krav",
     "responses": {
       "meget-darlig": "Meget dårlig",
       "ganske-darlig": "Ganske dårlig",
@@ -306,7 +306,7 @@
     }
   },
   "estimat-rtw": {
-    "var_label": "1",
+    "var_label": "Estimert tid før tilbake i arbeid",
     "responses": {
       "under-2-uker": "Umiddelbart eller i løpet av 2 uker",
       "innen-1-mnd": "Innen 1 måned",
@@ -321,23 +321,24 @@
     }
   },
   "onsket-jobb": {
-    "var_label": "1",
+    "var_label": "Ønsker å komme tilbake til",
     "responses": {
       "sist-jobb": "Jobben jeg har i dag/jobben jeg hadde sist",
       "ny-jobb-samme-yrke": "Ny jobb innen samme yrke",
-      "ny-jobb-annet-yrke": "Ny jobb innen annet yrke."
+      "ny-jobb-annet-yrke": "Ny jobb innen annet yrke",
+      "vil-ikke-tilbake": "Jeg ønsker ikke å komme tilbake i jobb."
     }
   },
   "fysakt-timer": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {}
   },
   "fysakt-min": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {}
   },
   "sm-arsak-fysakt": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "uenig": "Uenig",
       "usikker": "Usikker",
@@ -345,7 +346,7 @@
     }
   },
   "fysakt-forverrer-sm": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "uenig": "Uenig",
       "usikker": "Usikker",
@@ -353,7 +354,7 @@
     }
   },
   "fysakt-skadelig": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "uenig": "Uenig",
       "usikker": "Usikker",
@@ -361,7 +362,7 @@
     }
   },
   "fysakt-utilradelig": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "uenig": "Uenig",
       "usikker": "Usikker",
@@ -369,7 +370,7 @@
     }
   },
   "sm-arsak-jobb": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "uenig": "Uenig",
       "usikker": "Usikker",
@@ -377,7 +378,7 @@
     }
   },
   "jobb-gjort-sm-verre": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "uenig": "Uenig",
       "usikker": "Usikker",
@@ -385,7 +386,7 @@
     }
   },
   "erstatningskrav": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "uenig": "Uenig",
       "usikker": "Usikker",
@@ -393,7 +394,7 @@
     }
   },
   "arbeid-for-tungt": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "uenig": "Uenig",
       "usikker": "Usikker",
@@ -401,7 +402,7 @@
     }
   },
   "jobb-forverrer-sm": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "uenig": "Uenig",
       "usikker": "Usikker",
@@ -409,7 +410,7 @@
     }
   },
   "jobb-kan-skade": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "uenig": "Uenig",
       "usikker": "Usikker",
@@ -417,7 +418,7 @@
     }
   },
   "burde-ikke-jobbe": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "uenig": "Uenig",
       "usikker": "Usikker",
@@ -425,7 +426,7 @@
     }
   },
   "klarer-ikke-jobbe": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "uenig": "Uenig",
       "usikker": "Usikker",
@@ -433,7 +434,7 @@
     }
   },
   "ikke-rtw-innen-3mnd": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "uenig": "Uenig",
       "usikker": "Usikker",
@@ -441,7 +442,7 @@
     }
   },
   "aldri-rtw": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "uenig": "Uenig",
       "usikker": "Usikker",
@@ -449,7 +450,7 @@
     }
   },
   "hads-tidlig-oppvakning": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ja-definitivt": "Ja, definitivt",
       "ja-noen-ganger": "Ja, noen ganger",
@@ -458,7 +459,7 @@
     }
   },
   "hads-panikk": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ja-definitivt": "Ja, definitivt",
       "ja-noen-ganger": "Ja, noen ganger",
@@ -467,7 +468,7 @@
     }
   },
   "hads-trist": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ja-definitivt": "Ja, definitivt",
       "ja-noen-ganger": "Ja, noen ganger",
@@ -476,7 +477,7 @@
     }
   },
   "hads-nervos": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ja-definitivt": "Ja, definitivt",
       "ja-noen-ganger": "Ja, noen ganger",
@@ -485,7 +486,7 @@
     }
   },
   "hads-interessetap": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ja-definitivt": "Ja, definitivt",
       "ja-noen-ganger": "Ja, noen ganger",
@@ -494,7 +495,7 @@
     }
   },
   "hads-hjertebank": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ja-definitivt": "Ja, definitivt",
       "ja-noen-ganger": "Ja, noen ganger",
@@ -503,7 +504,7 @@
     }
   },
   "hads-svak-apetitt": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ja-definitivt": "Ja, definitivt",
       "ja-noen-ganger": "Ja, noen ganger",
@@ -512,7 +513,7 @@
     }
   },
   "hads-redd": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ja-definitivt": "Ja, definitivt",
       "ja-noen-ganger": "Ja, noen ganger",
@@ -521,7 +522,7 @@
     }
   },
   "hads-ikke-verd-leve": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ja-definitivt": "Ja, definitivt",
       "ja-noen-ganger": "Ja, noen ganger",
@@ -530,7 +531,7 @@
     }
   },
   "hads-anhedoni": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ja-definitivt": "Ja, definitivt",
       "ja-noen-ganger": "Ja, noen ganger",
@@ -539,7 +540,7 @@
     }
   },
   "hads-rastlos": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ja-definitivt": "Ja, definitivt",
       "ja-noen-ganger": "Ja, noen ganger",
@@ -548,7 +549,7 @@
     }
   },
   "hads-irritabel": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ja-definitivt": "Ja, definitivt",
       "ja-noen-ganger": "Ja, noen ganger",
@@ -557,7 +558,7 @@
     }
   },
   "hads-langsomt": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ja-definitivt": "Ja, definitivt",
       "ja-noen-ganger": "Ja, noen ganger",
@@ -566,7 +567,7 @@
     }
   },
   "hads-bekymringer": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ja-definitivt": "Ja, definitivt",
       "ja-noen-ganger": "Ja, noen ganger",
@@ -575,7 +576,7 @@
     }
   },
   "eq5d-gange": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ingen-prob": "Jeg har ingen problemer med å gå omkring",
       "litt-prob": "Jeg har litt problemer med å gå omkring",
@@ -585,7 +586,7 @@
     }
   },
   "eq5d-stell": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ingen-prob": "Jeg har ingen problemer med å vaske meg eller kle meg",
       "litt-prob": "Jeg har litt problemer med å vaske meg eller kle meg",
@@ -595,7 +596,7 @@
     }
   },
   "eq5d-gjoremal": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ingen-prob": "Jeg har ingen problemer med å utføre mine vanlige gjøremål",
       "litt-prob": "Jeg har litt problemer med å utføre mine vanlige gjøremål",
@@ -605,7 +606,7 @@
     }
   },
   "eq5d-smerter": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "nei": "Jeg har verken smerter eller ubehag",
       "litt": "Jeg har litt smerter eller ubehag",
@@ -615,7 +616,7 @@
     }
   },
   "eq5d-angst-dep": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "nei": "Jeg er verken engstelig eller deprimert",
       "litt": "Jeg er litt engstelig eller deprimert",
@@ -625,7 +626,7 @@
     }
   },
   "gsaq-innsovning": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "aldri": "Aldri",
       "noen-ganger": "Noen ganger",
@@ -634,7 +635,7 @@
     }
   },
   "gsaq-oppvakning": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "aldri": "Aldri",
       "noen-ganger": "Noen ganger",
@@ -643,7 +644,7 @@
     }
   },
   "gsaq-utvilt-dagtid": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "aldri": "Aldri",
       "noen-ganger": "Noen ganger",
@@ -652,7 +653,7 @@
     }
   },
   "gsaq-vansker-holde-vaken": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "aldri": "Aldri",
       "noen-ganger": "Noen ganger",
@@ -661,7 +662,7 @@
     }
   },
   "gsaq-dagtidfunksjon": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "aldri": "Aldri",
       "noen-ganger": "Noen ganger",
@@ -670,7 +671,7 @@
     }
   },
   "gsaq-jobb-akt-hinder-sovn": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "aldri": "Aldri",
       "noen-ganger": "Noen ganger",
@@ -679,7 +680,7 @@
     }
   },
   "gsaq-snorking": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "aldri": "Aldri",
       "noen-ganger": "Noen ganger",
@@ -688,7 +689,7 @@
     }
   },
   "gsaq-apne": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "aldri": "Aldri",
       "noen-ganger": "Noen ganger",
@@ -697,7 +698,7 @@
     }
   },
   "gsaq-restless-legs": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "aldri": "Aldri",
       "noen-ganger": "Noen ganger",
@@ -706,7 +707,7 @@
     }
   },
   "gsaq-rykninger": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "aldri": "Aldri",
       "noen-ganger": "Noen ganger",
@@ -715,7 +716,7 @@
     }
   },
   "gsaq-parasomnier": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "aldri": "Aldri",
       "noen-ganger": "Noen ganger",
@@ -724,7 +725,7 @@
     }
   },
   "gsaq-trist-engstelig": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "aldri": "Aldri",
       "noen-ganger": "Noen ganger",
@@ -733,7 +734,7 @@
     }
   },
   "gsaq-smerter": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "aldri": "Aldri",
       "noen-ganger": "Noen ganger",
@@ -742,7 +743,7 @@
     }
   },
   "gsaq-kroppslige-plager": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "aldri": "Aldri",
       "noen-ganger": "Noen ganger",
@@ -751,7 +752,7 @@
     }
   },
   "gsaq-bekymringer": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "aldri": "Aldri",
       "noen-ganger": "Noen ganger",
@@ -760,7 +761,7 @@
     }
   },
   "gsaq-medikamenter": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "aldri": "Aldri",
       "noen-ganger": "Noen ganger",
@@ -769,7 +770,7 @@
     }
   },
   "helse-samlet": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "0": "0",
       "1": "1",
@@ -785,14 +786,14 @@
     }
   },
   "godt-nok-utredet": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {
       "ja": "Ja",
       "nei": "Nei."
     }
   },
   "tilbakemeldinger": {
-    "var_label": "1",
+    "var_label": "",
     "responses": {}
   }
 }

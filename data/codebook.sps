@@ -1,5 +1,5 @@
 * Encoding: UTF-8.
-* SSHF ARR T0 (id 164602) - 08.11.2020 20:48
+* SSHF ARR T0 (id 164602) - 10.11.2020 14:29
 
 * Define Variable Properties.
 
@@ -297,7 +297,8 @@ VARIABLE LABELS onsket-jobb 'Hvilken jobb håper du å komme tilbake til?'.
 VALUE LABELS onsket-jobb
   sist-jobb 'Jobben jeg har i dag/jobben jeg hadde sist'
   ny-jobb-samme-yrke 'Ny jobb innen samme yrke'
-  ny-jobb-annet-yrke 'Ny jobb innen annet yrke'.
+  ny-jobb-annet-yrke 'Ny jobb innen annet yrke'
+  vil-ikke-tilbake 'Jeg ønsker ikke å komme tilbake i jobb'.
 
 *fysakt-timer.
 VARIABLE LABELS fysakt-timer 'Timer'.

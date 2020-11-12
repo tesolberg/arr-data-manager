@@ -1,20 +1,15 @@
 from docx import Document
 from docx.shared import Inches
 import csv
-from codebook import codebook
 import locale
 
 def main():
-    #print(locale.locale_alias)
-    locale.setlocale(locale.LC_ALL, 'norwegian')
     row =  get_first_row("data.csv")
-
-    cb = codebook("codebook.json")
     generate_report(row, cb)
 
 
 # dict av enkeltbesvarelse -> void + rapport i word med filnavn = checksum
-def generate_report(prom_data, codebook):
+def generate_report(data, codebook):
     document = Document()
 
     document.add_heading('Rapport fra nettbasert kartlegging - Arbeidsrettet rehabilitering', 0)
@@ -26,7 +21,7 @@ def generate_report(prom_data, codebook):
             continue
         print(variable)
         var_report_format = codebook.data[variable]["data-name"]
-        document.add_paragraph (var_report_format + ": " + codebook.data[variable]["responses"][prom_data[variable]])
+        document.add_paragraph (var_report_format + ": " + codebook.data[variable]["responses"][data[variable]])
  
 
 
