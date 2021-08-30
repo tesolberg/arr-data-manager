@@ -25,16 +25,21 @@ def GenerateCodebook(codebook_path, report_labels_path=""):
 
             # if blank line, add active_var to data
             elif(len(line) == 1):
-                if(active_var_label == ""):
+                if(active_var_label == ""):     # skips if no variable have been created
                     continue
                 else:
+                    # add response lables to active var dict
                     active_var[active_var_label]["responses"] = active_var_responses
+                    
+                    # merge active var dict to data
                     data.update(active_var)
+
+                    # resets variables
                     active_var = {}
                     active_var_label = ""
                     active_var_responses = {}
           
-            # catches new variables and sets them to active_var
+            # if new variable, catches new variable and sets active_var
             elif(line[0] == "*" and line[1] != " "):     # new variable
                 new_var = ""
                 for char in line[1:-2]:
@@ -42,16 +47,34 @@ def GenerateCodebook(codebook_path, report_labels_path=""):
                         break
                     else:
                         new_var += char
+                # if report label path was given, add report labels
                 if(report_labels_path != ""):
-                    active_var = {new_var: {"var_label": report_labels[new_var], "responses": {}}}
+                    active_var = {new_var: {"var_text_report": report_labels[new_var], "responses": {}}}
                 else:
-                    active_var = {new_var: {"var_label": "empty", "responses": {}}}
+                    active_var = {new_var: {"var_text_report": "empty", "responses": {}}}
 
+                # sets name of the active variable
                 active_var_label = new_var
             
-            # skips lines starting with VALUE and VARIABLE LABELS
-            elif(line[0:12] == "VALUE LABELS" or line[0:15] == "VARIABLE LABELS"):
+            # skips lines starting with VALUE LABELS
+            elif(line[0:12] == "VALUE LABELS"):
                 continue
+
+            # sets variable text
+            elif(line[0:15] == "VARIABLE LABELS"):
+                write = False
+                var_text = ""
+                for c in line:
+                    if(write):
+                        if(c == "'"):
+                            break
+                        else:
+                            var_text += c
+                    elif(c == "'"):
+                        write = True
+
+                active_var[active_var_label]["var_text"] = var_text
+
 
             # adds responses to active var
             else:
@@ -67,7 +90,7 @@ def GenerateCodebook(codebook_path, report_labels_path=""):
                         continue
                     if(not short_found):
                         value_short += c
-                    else:
+                    elif(c != "."):
                         value_long += c
                 
                 active_var_responses[value_short] = value_long
@@ -76,7 +99,7 @@ def GenerateCodebook(codebook_path, report_labels_path=""):
     with open('data/codebook.json', 'w', encoding="utf8") as json_file:
         json.dump(data, json_file, indent=2,  ensure_ascii=False)
 
-    # write codebook with only varialbe labels to file
+    # write codebook with only variable labels to file
     with open('data/codebook_var_labels_clean.json', 'w', encoding="utf8") as f:
         f.write("{\n")
         

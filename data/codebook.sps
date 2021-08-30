@@ -1,5 +1,5 @@
 * Encoding: UTF-8.
-* SSHF ARR T0 (id 164602) - 10.11.2020 14:29
+* SSHF ARR T0 (id 164602) - 19.11.2020 12:50
 
 * Define Variable Properties.
 
@@ -407,114 +407,114 @@ VALUE LABELS aldri-rtw
 *hads-tidlig-oppvakning.
 VARIABLE LABELS hads-tidlig-oppvakning 'Jeg våkner tidlig for så å sove dårlig resten av natten'.
 VALUE LABELS hads-tidlig-oppvakning
-  ja-definitivt 'Ja, definitivt'
-  ja-noen-ganger 'Ja, noen ganger'
-  nei-ikke-mye 'Nei, ikke så mye'
-  nei-ikke-hele-tatt 'Nei, ikke i det hele tatt'.
+  3 'Ja, definitivt'
+  2 'Ja, noen ganger'
+  1 'Nei, ikke så mye'
+  0 'Nei, ikke i det hele tatt'.
 
 *hads-panikk.
 VARIABLE LABELS hads-panikk 'Jeg blir veldig redd eller får panikkfølelse uten noen åpenbar grunn'.
 VALUE LABELS hads-panikk
-  ja-definitivt 'Ja, definitivt'
-  ja-noen-ganger 'Ja, noen ganger'
-  nei-ikke-mye 'Nei, ikke så mye'
-  nei-ikke-hele-tatt 'Nei, ikke i det hele tatt'.
+  3 'Ja, definitivt'
+  2 'Ja, noen ganger'
+  1 'Nei, ikke så mye'
+  0 'Nei, ikke i det hele tatt'.
 
 *hads-trist.
 VARIABLE LABELS hads-trist 'Jeg føler meg trist og nedfor'.
 VALUE LABELS hads-trist
-  ja-definitivt 'Ja, definitivt'
-  ja-noen-ganger 'Ja, noen ganger'
-  nei-ikke-mye 'Nei, ikke så mye'
-  nei-ikke-hele-tatt 'Nei, ikke i det hele tatt'.
+  3 'Ja, definitivt'
+  2 'Ja, noen ganger'
+  1 'Nei, ikke så mye'
+  0 'Nei, ikke i det hele tatt'.
 
 *hads-nervos.
 VARIABLE LABELS hads-nervos 'Jeg føler meg nervøs når jeg går ut av boligen min på egenhånd'.
 VALUE LABELS hads-nervos
-  ja-definitivt 'Ja, definitivt'
-  ja-noen-ganger 'Ja, noen ganger'
-  nei-ikke-mye 'Nei, ikke så mye'
-  nei-ikke-hele-tatt 'Nei, ikke i det hele tatt'.
+  3 'Ja, definitivt'
+  2 'Ja, noen ganger'
+  1 'Nei, ikke så mye'
+  0 'Nei, ikke i det hele tatt'.
 
 *hads-interessetap.
 VARIABLE LABELS hads-interessetap 'Jeg har mistet interesse for ting'.
 VALUE LABELS hads-interessetap
-  ja-definitivt 'Ja, definitivt'
-  ja-noen-ganger 'Ja, noen ganger'
-  nei-ikke-mye 'Nei, ikke så mye'
-  nei-ikke-hele-tatt 'Nei, ikke i det hele tatt'.
+  3 'Ja, definitivt'
+  2 'Ja, noen ganger'
+  1 'Nei, ikke så mye'
+  0 'Nei, ikke i det hele tatt'.
 
 *hads-hjertebank.
 VARIABLE LABELS hads-hjertebank 'Jeg får hjertebank eller følelse av &#34;sommerfugler&#34; i brystet eller magen'.
 VALUE LABELS hads-hjertebank
-  ja-definitivt 'Ja, definitivt'
-  ja-noen-ganger 'Ja, noen ganger'
-  nei-ikke-mye 'Nei, ikke så mye'
-  nei-ikke-hele-tatt 'Nei, ikke i det hele tatt'.
+  3 'Ja, definitivt'
+  2 'Ja, noen ganger'
+  1 'Nei, ikke så mye'
+  0 'Nei, ikke i det hele tatt'.
 
 *hads-svak-apetitt.
 VARIABLE LABELS hads-svak-apetitt 'Jeg har dårlig apetitt'.
 VALUE LABELS hads-svak-apetitt
-  ja-definitivt 'Ja, definitivt'
-  ja-noen-ganger 'Ja, noen ganger'
-  nei-ikke-mye 'Nei, ikke så mye'
-  nei-ikke-hele-tatt 'Nei, ikke i det hele tatt'.
+  3 'Ja, definitivt'
+  2 'Ja, noen ganger'
+  1 'Nei, ikke så mye'
+  0 'Nei, ikke i det hele tatt'.
 
 *hads-redd.
 VARIABLE LABELS hads-redd 'Jeg føler meg redd'.
 VALUE LABELS hads-redd
-  ja-definitivt 'Ja, definitivt'
-  ja-noen-ganger 'Ja, noen ganger'
-  nei-ikke-mye 'Nei, ikke så mye'
-  nei-ikke-hele-tatt 'Nei, ikke i det hele tatt'.
+  3 'Ja, definitivt'
+  2 'Ja, noen ganger'
+  1 'Nei, ikke så mye'
+  0 'Nei, ikke i det hele tatt'.
 
 *hads-ikke-verd-leve.
 VARIABLE LABELS hads-ikke-verd-leve 'Jeg føler at livet ikke er verd å leve'.
 VALUE LABELS hads-ikke-verd-leve
-  ja-definitivt 'Ja, definitivt'
-  ja-noen-ganger 'Ja, noen ganger'
-  nei-ikke-mye 'Nei, ikke så mye'
-  nei-ikke-hele-tatt 'Nei, ikke i det hele tatt'.
+  3 'Ja, definitivt'
+  2 'Ja, noen ganger'
+  1 'Nei, ikke så mye'
+  0 'Nei, ikke i det hele tatt'.
 
 *hads-anhedoni.
 VARIABLE LABELS hads-anhedoni 'Jeg setter ikke lenger pris på ting jeg likte før'.
 VALUE LABELS hads-anhedoni
-  ja-definitivt 'Ja, definitivt'
-  ja-noen-ganger 'Ja, noen ganger'
-  nei-ikke-mye 'Nei, ikke så mye'
-  nei-ikke-hele-tatt 'Nei, ikke i det hele tatt'.
+  3 'Ja, definitivt'
+  2 'Ja, noen ganger'
+  1 'Nei, ikke så mye'
+  0 'Nei, ikke i det hele tatt'.
 
 *hads-rastlos.
 VARIABLE LABELS hads-rastlos 'Jeg er rastløs og har problemer med å holde meg i ro'.
 VALUE LABELS hads-rastlos
-  ja-definitivt 'Ja, definitivt'
-  ja-noen-ganger 'Ja, noen ganger'
-  nei-ikke-mye 'Nei, ikke så mye'
-  nei-ikke-hele-tatt 'Nei, ikke i det hele tatt'.
+  3 'Ja, definitivt'
+  2 'Ja, noen ganger'
+  1 'Nei, ikke så mye'
+  0 'Nei, ikke i det hele tatt'.
 
 *hads-irritabel.
 VARIABLE LABELS hads-irritabel 'Jeg er mer irritabel enn jeg pleier'.
 VALUE LABELS hads-irritabel
-  ja-definitivt 'Ja, definitivt'
-  ja-noen-ganger 'Ja, noen ganger'
-  nei-ikke-mye 'Nei, ikke så mye'
-  nei-ikke-hele-tatt 'Nei, ikke i det hele tatt'.
+  3 'Ja, definitivt'
+  2 'Ja, noen ganger'
+  1 'Nei, ikke så mye'
+  0 'Nei, ikke i det hele tatt'.
 
 *hads-langsomt.
 VARIABLE LABELS hads-langsomt 'Det føles som jeg beveger meg eller tenker seinere enn vanlig'.
 VALUE LABELS hads-langsomt
-  ja-definitivt 'Ja, definitivt'
-  ja-noen-ganger 'Ja, noen ganger'
-  nei-ikke-mye 'Nei, ikke så mye'
-  nei-ikke-hele-tatt 'Nei, ikke i det hele tatt'.
+  3 'Ja, definitivt'
+  2 'Ja, noen ganger'
+  1 'Nei, ikke så mye'
+  0 'Nei, ikke i det hele tatt'.
 
 *hads-bekymringer.
 VARIABLE LABELS hads-bekymringer 'Bekymringer er alltid tilstede i tankene mine'.
 VALUE LABELS hads-bekymringer
-  ja-definitivt 'Ja, definitivt'
-  ja-noen-ganger 'Ja, noen ganger'
-  nei-ikke-mye 'Nei, ikke så mye'
-  nei-ikke-hele-tatt 'Nei, ikke i det hele tatt'.
+  3 'Ja, definitivt'
+  2 'Ja, noen ganger'
+  1 'Nei, ikke så mye'
+  0 'Nei, ikke i det hele tatt'.
 
 *eq5d-gange.
 VARIABLE LABELS eq5d-gange 'Gange'.
@@ -564,130 +564,130 @@ VALUE LABELS eq5d-angst-dep
 *gsaq-innsovning.
 VARIABLE LABELS gsaq-innsovning '... har du hatt vansker med å sovne inn?'.
 VALUE LABELS gsaq-innsovning
-  aldri 'Aldri'
-  noen-ganger 'Noen ganger'
-  vanligvis 'Vanligvis'
-  alltid 'Alltid'.
+  0 'Aldri'
+  1 'Noen ganger'
+  2 'Vanligvis'
+  3 'Alltid'.
 
 *gsaq-oppvakning.
 VARIABLE LABELS gsaq-oppvakning '... hatt vansker med å sove gjennom natta?'.
 VALUE LABELS gsaq-oppvakning
-  aldri 'Aldri'
-  noen-ganger 'Noen ganger'
-  vanligvis 'Vanligvis'
-  alltid 'Alltid'.
+  0 'Aldri'
+  1 'Noen ganger'
+  2 'Vanligvis'
+  3 'Alltid'.
 
 *gsaq-utvilt-dagtid.
 VARIABLE LABELS gsaq-utvilt-dagtid '... har du følt deg lite uthvilt på dagtid?'.
 VALUE LABELS gsaq-utvilt-dagtid
-  aldri 'Aldri'
-  noen-ganger 'Noen ganger'
-  vanligvis 'Vanligvis'
-  alltid 'Alltid'.
+  0 'Aldri'
+  1 'Noen ganger'
+  2 'Vanligvis'
+  3 'Alltid'.
 
 *gsaq-vansker-holde-vaken.
 VARIABLE LABELS gsaq-vansker-holde-vaken '... har du sovet uten at du ville det, eller måtte kjempe med å holde deg våken på dagtid?'.
 VALUE LABELS gsaq-vansker-holde-vaken
-  aldri 'Aldri'
-  noen-ganger 'Noen ganger'
-  vanligvis 'Vanligvis'
-  alltid 'Alltid'.
+  0 'Aldri'
+  1 'Noen ganger'
+  2 'Vanligvis'
+  3 'Alltid'.
 
 *gsaq-dagtidfunksjon.
 VARIABLE LABELS gsaq-dagtidfunksjon '... har søvnvansker eller søvnighet på dagtid forstyrret dine daglige aktiviteter?'.
 VALUE LABELS gsaq-dagtidfunksjon
-  aldri 'Aldri'
-  noen-ganger 'Noen ganger'
-  vanligvis 'Vanligvis'
-  alltid 'Alltid'.
+  0 'Aldri'
+  1 'Noen ganger'
+  2 'Vanligvis'
+  3 'Alltid'.
 
 *gsaq-jobb-akt-hinder-sovn.
 VARIABLE LABELS gsaq-jobb-akt-hinder-sovn '... har arbeid eller andre aktiviteter hindret deg fra å få nok søvn?'.
 VALUE LABELS gsaq-jobb-akt-hinder-sovn
-  aldri 'Aldri'
-  noen-ganger 'Noen ganger'
-  vanligvis 'Vanligvis'
-  alltid 'Alltid'.
+  0 'Aldri'
+  1 'Noen ganger'
+  2 'Vanligvis'
+  3 'Alltid'.
 
 *gsaq-snorking.
 VARIABLE LABELS gsaq-snorking '... har du snorket høyt?'.
 VALUE LABELS gsaq-snorking
-  aldri 'Aldri'
-  noen-ganger 'Noen ganger'
-  vanligvis 'Vanligvis'
-  alltid 'Alltid'.
+  0 'Aldri'
+  1 'Noen ganger'
+  2 'Vanligvis'
+  3 'Alltid'.
 
 *gsaq-apne.
 VARIABLE LABELS gsaq-apne '... har du hatt pustepauser eller stoppet å puste i søvne?'.
 VALUE LABELS gsaq-apne
-  aldri 'Aldri'
-  noen-ganger 'Noen ganger'
-  vanligvis 'Vanligvis'
-  alltid 'Alltid'.
+  0 'Aldri'
+  1 'Noen ganger'
+  2 'Vanligvis'
+  3 'Alltid'.
 
 *gsaq-restless-legs.
 VARIABLE LABELS gsaq-restless-legs '... har du hatt urolige eller maurende følelser i bena om kvelden eller natta, og som ble bedre av bevegelse?'.
 VALUE LABELS gsaq-restless-legs
-  aldri 'Aldri'
-  noen-ganger 'Noen ganger'
-  vanligvis 'Vanligvis'
-  alltid 'Alltid'.
+  0 'Aldri'
+  1 'Noen ganger'
+  2 'Vanligvis'
+  3 'Alltid'.
 
 *gsaq-rykninger.
 VARIABLE LABELS gsaq-rykninger '... har du hatt gjentatte rykninger eller bevegelser i bena i søvne?'.
 VALUE LABELS gsaq-rykninger
-  aldri 'Aldri'
-  noen-ganger 'Noen ganger'
-  vanligvis 'Vanligvis'
-  alltid 'Alltid'.
+  0 'Aldri'
+  1 'Noen ganger'
+  2 'Vanligvis'
+  3 'Alltid'.
 
 *gsaq-parasomnier.
 VARIABLE LABELS gsaq-parasomnier '... har du hatt mareritt eller ropt, gått, slått eller sparket i søvne?'.
 VALUE LABELS gsaq-parasomnier
-  aldri 'Aldri'
-  noen-ganger 'Noen ganger'
-  vanligvis 'Vanligvis'
-  alltid 'Alltid'.
+  0 'Aldri'
+  1 'Noen ganger'
+  2 'Vanligvis'
+  3 'Alltid'.
 
 *gsaq-trist-engstelig.
 VARIABLE LABELS gsaq-trist-engstelig '... har du vært trist eller engstelig?'.
 VALUE LABELS gsaq-trist-engstelig
-  aldri 'Aldri'
-  noen-ganger 'Noen ganger'
-  vanligvis 'Vanligvis'
-  alltid 'Alltid'.
+  0 'Aldri'
+  1 'Noen ganger'
+  2 'Vanligvis'
+  3 'Alltid'.
 
 *gsaq-smerter.
 VARIABLE LABELS gsaq-smerter 'Smerter'.
 VALUE LABELS gsaq-smerter
-  aldri 'Aldri'
-  noen-ganger 'Noen ganger'
-  vanligvis 'Vanligvis'
-  alltid 'Alltid'.
+  0 'Aldri'
+  1 'Noen ganger'
+  2 'Vanligvis'
+  3 'Alltid'.
 
 *gsaq-kroppslige-plager.
 VARIABLE LABELS gsaq-kroppslige-plager 'Andre kroppslige plager'.
 VALUE LABELS gsaq-kroppslige-plager
-  aldri 'Aldri'
-  noen-ganger 'Noen ganger'
-  vanligvis 'Vanligvis'
-  alltid 'Alltid'.
+  0 'Aldri'
+  1 'Noen ganger'
+  2 'Vanligvis'
+  3 'Alltid'.
 
 *gsaq-bekymringer.
 VARIABLE LABELS gsaq-bekymringer 'Bekymringer'.
 VALUE LABELS gsaq-bekymringer
-  aldri 'Aldri'
-  noen-ganger 'Noen ganger'
-  vanligvis 'Vanligvis'
-  alltid 'Alltid'.
+  0 'Aldri'
+  1 'Noen ganger'
+  2 'Vanligvis'
+  3 'Alltid'.
 
 *gsaq-medikamenter.
 VARIABLE LABELS gsaq-medikamenter 'Medikamenter'.
 VALUE LABELS gsaq-medikamenter
-  aldri 'Aldri'
-  noen-ganger 'Noen ganger'
-  vanligvis 'Vanligvis'
-  alltid 'Alltid'.
+  0 'Aldri'
+  1 'Noen ganger'
+  2 'Vanligvis'
+  3 'Alltid'.
 
 *helse-samlet.
 VARIABLE LABELS helse-samlet 'Prøv å angi hvor god eller dårlig din samlede helse er i dag.'.
