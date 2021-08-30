@@ -99,7 +99,7 @@ def GenerateCodebook(codebook_path, report_labels_path=""):
     with open('data/codebook.json', 'w', encoding="utf8") as json_file:
         json.dump(data, json_file, indent=2,  ensure_ascii=False)
 
-    # write codebook with only varialbe labels to file
+    # write codebook with only variable labels to file
     with open('data/codebook_var_labels_clean.json', 'w', encoding="utf8") as f:
         f.write("{\n")
         
