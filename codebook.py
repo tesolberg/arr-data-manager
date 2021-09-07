@@ -1,31 +1,38 @@
 import json
 
 def GenerateCodebook(codebook_path, report_labels_path=""):
-    # empty dict
+    # lager en tom dict der kodeboken kan genereres
     data = {}
-    report_labels = {}
 
-    # Decode report labels
+    # Henter inn en dict med variabelkoder og korresponderende rapporttekst hvis det er angitt en fil for dette
+    report_labels = {}
     if(report_labels_path != ""):
         with open(report_labels_path, encoding="utf-8") as f:
             report_labels = json.load(f)
 
-    # åpne sps-fil fra nettskjema
+    # åpne spss-kodebok fra nettskjema
     with open(codebook_path, encoding="utf-8") as f:
 
-        # holds variable that recieves responses
+        # en tom dict som  til enhver tid skal holde én entry, 
+        # der variabelens kode er key og verdien er en dict
         active_var = {}
+
+        # samler de mulige responsene til den aktive variabelen i par med 
+        # responskode : responstekst
         active_var_responses = {}
+
+        # holder den aktive variabelens label, hvis den finnes
         active_var_label = ""         
 
         # loop through lines 
         for line in f:
-            if(line[0] == "*" and line[1] == " "):     # top padding, skip line
+            if(line[0] == "*" and line[1] == " "):     # "*" + " " signaliserer header. skippes
                 continue
 
-            # if blank line, add active_var to data
+            # hvis blank linje og en aktiv variabel holdes i minnet -> konsolideres variabelen,
+            # legges inn i kodeboken og variabler nullstilles
             elif(len(line) == 1):
-                if(active_var_label == ""):     # skips if no variable have been created
+                if(active_var_label == ""):     # skips if no variable have been created yet
                     continue
                 else:
                     # add response lables to active var dict
@@ -39,15 +46,19 @@ def GenerateCodebook(codebook_path, report_labels_path=""):
                     active_var_label = ""
                     active_var_responses = {}
           
-            # if new variable, catches new variable and sets active_var
-            elif(line[0] == "*" and line[1] != " "):     # new variable
+            # if new variable (* etterfulgt av symbol)
+            elif(line[0] == "*" and line[1] != " "):
+                
+                # lagrer navnet på den nye variabelen i new_var
                 new_var = ""
                 for char in line[1:-2]:
                     if(char == "\t"):
                         break
                     else:
                         new_var += char
-                # if report label path was given, add report labels
+                
+                # hvis en fil med variabelkoder og rapporttekst ble gitt, legg inn rapporttekst.
+                # Legger så til en tom dict under nøkkelen "responses"
                 if(report_labels_path != ""):
                     active_var = {new_var: {"var_text_report": report_labels[new_var], "responses": {}}}
                 else:
@@ -56,11 +67,11 @@ def GenerateCodebook(codebook_path, report_labels_path=""):
                 # sets name of the active variable
                 active_var_label = new_var
             
-            # skips lines starting with VALUE LABELS
+            # skips line starting with VALUE LABELS (TODO: flytte denne oppover)
             elif(line[0:12] == "VALUE LABELS"):
                 continue
 
-            # sets variable text
+            # henter variabelens spørsmålstekst slik den er formulert i skjemaet
             elif(line[0:15] == "VARIABLE LABELS"):
                 write = False
                 var_text = ""
@@ -76,7 +87,8 @@ def GenerateCodebook(codebook_path, report_labels_path=""):
                 active_var[active_var_label]["var_text"] = var_text
 
 
-            # adds responses to active var
+            # hvis koden kommer hit er linjen en respons. Leser av responskode og 
+            # hvilken tekst responsen har i skjema.
             else:
                 value_short = ""    # responskode
                 value_long = ""     # respons fulltekst
@@ -92,14 +104,17 @@ def GenerateCodebook(codebook_path, report_labels_path=""):
                         value_short += c
                     elif(c != "."):
                         value_long += c
-                
+            
+                # Lagrer responsen med kode som nøkkel og tekst som verdi
                 active_var_responses[value_short] = value_long
 
-    # write codebook to file
+    # skriver den fulle kodeboken til jsonfil
     with open('data/codebook.json', 'w', encoding="utf8") as json_file:
         json.dump(data, json_file, indent=2,  ensure_ascii=False)
 
-    # write codebook with only variable labels to file
+    # skriver alle variabelkodene : "" til jsonfil (som så kan fylles inn der det er ønskelig
+    # at respondentens svar i rapporten prefixes med noe annet enn spørsmålsteksten 
+    # fra spørreskjemaet)
     with open('data/codebook_var_labels_clean.json', 'w', encoding="utf8") as f:
         f.write("{\n")
         
