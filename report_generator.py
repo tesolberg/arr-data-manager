@@ -3,12 +3,11 @@ from docx import Document
 from docx.shared import Inches
 # from docx.shared import RGBColor
 
-
 # for testing
 import csv
 
 
-# dict av enkeltbesvarelse -> void + rapport i word med filnavn = checksum
+# dict av enkeltbesvarelse -> void + rapport i docx-format
 def generate_report(data, codebook_path):
     
     # loads codebook as dict
@@ -226,15 +225,15 @@ def write_var_text_report_and_multi_response(var, data, codebook, document, colo
 
 
 # for testing
-def main():
-    row =  get_first_row("data/data.tsv")
-    generate_report(row, "data/codebook.json")
+# def main():
+#     row =  get_first_row("data/data.tsv")
+#     generate_report(row, "data/codebook.json")
 
-def get_first_row(path):
-    with open(path, newline="") as csvfile:
-        reader = csv.DictReader(csvfile, dialect="excel-tab")
-        row = reader.__next__()
-        return row
+# def get_first_row(path):
+#     with open(path, newline="") as csvfile:
+#         reader = csv.DictReader(csvfile, dialect="excel-tab")
+#         row = reader.__next__()
+#         return row
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
