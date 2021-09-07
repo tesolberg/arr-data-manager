@@ -3,15 +3,19 @@ from report_generator import generate_report
 
 
 def main():
-    row =  get_first_row("data/data.tsv")
-    generate_report(row, "data/codebook.json")
-
-
-def get_first_row(path):
+    path =  ("data/data.tsv")
+    
     with open(path, newline="") as csvfile:
-        reader = csv.DictReader(csvfile, dialect="excel-tab")
-        row = reader.__next__()
-        return row
+        dr = csv.DictReader(csvfile, dialect="excel-tab")
+        
+        # skip første rad som inneholder variabelkoder
+        firstDataRow = dr.__next__()    
+
+        # generer rapport for første rad med verdier
+        generate_report(firstDataRow, "data/codebook.json")
+
+    print("Successful termination")
+
 
 
 if __name__ == "__main__":
