@@ -1,16 +1,30 @@
 {
-  "fnr": {
-    "var_text_report": "Fødselsnummer",
+  "vis-info-retting-sletting_1": {
+    "var_text_report": "empty",
+    "responses": {
+      "ja": "Vis informasjon om lagring av dine svar og rett til innsyn, kopi, retting og sletting"
+    },
+    "var_text": "null"
+  },
+  "onsker-kopi_1": {
+    "var_text_report": "empty",
+    "responses": {
+      "ja": "Jeg ønsker kopi av informasjonen på denne siden sendt til min epostadresse"
+    },
+    "var_text": "null"
+  },
+  "epost": {
+    "var_text_report": "empty",
     "responses": {},
-    "var_text": "Hva er ditt fødselsnummer (11 siffer)?"
+    "var_text": "null"
   },
   "morsmal": {
-    "var_text_report": "Morsmål",
+    "var_text_report": "empty",
     "responses": {},
     "var_text": "Ditt morsmål:"
   },
   "sprakvansker": {
-    "var_text_report": "Språkvansker",
+    "var_text_report": "empty",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -18,7 +32,7 @@
     "var_text": "Har du lesevansker, skrivevansker eller vansker med å forstå norsk?"
   },
   "sivilstatus": {
-    "var_text_report": "Sivilstatus",
+    "var_text_report": "empty",
     "responses": {
       "gift-partner": "Gift/samboer/registrert partner",
       "enslig": "Enslig"
@@ -26,17 +40,82 @@
     "var_text": "Sivilstatus"
   },
   "barn": {
-    "var_text_report": "Antall barn",
+    "var_text_report": "empty",
     "responses": {},
     "var_text": "Hvor mange barn har du?"
   },
   "antall-i-husholdning": {
-    "var_text_report": "Personer i husholdningen i tilegg til pasienten",
+    "var_text_report": "empty",
     "responses": {},
     "var_text": "Hvor mange (i tillegg til deg) bor hos deg nå/er i husholdningen?"
   },
+  "plager-verste": {
+    "var_text_report": "empty",
+    "responses": {},
+    "var_text": "Dine smerter på det verste den siste uken."
+  },
+  "plager-beste": {
+    "var_text_report": "empty",
+    "responses": {},
+    "var_text": "Dine smerter på det beste den siste uken."
+  },
+  "plager-gjsn": {
+    "var_text_report": "empty",
+    "responses": {},
+    "var_text": "Gjennomsnittet den siste uken."
+  },
+  "plager-mnd": {
+    "var_text_report": "empty",
+    "responses": {},
+    "var_text": "Antall måneder"
+  },
+  "plager-aar": {
+    "var_text_report": "empty",
+    "responses": {},
+    "var_text": "Antall år"
+  },
+  "plager-redd-skade": {
+    "var_text_report": "empty",
+    "responses": {
+      "stemmer": "Stemmer",
+      "stemmer-ikke": "Stemmer ikke"
+    },
+    "var_text": "Jeg er redd for at jeg kan skade meg ved et uhell"
+  },
+  "plager-farlig-aktiv": {
+    "var_text_report": "empty",
+    "responses": {
+      "stemmer": "Stemmer",
+      "stemmer-ikke": "Stemmer ikke"
+    },
+    "var_text": "Det er farlig for en person med min tilstand å være fysisk aktiv"
+  },
+  "plager-farlig-sykdom": {
+    "var_text_report": "empty",
+    "responses": {
+      "stemmer": "Stemmer",
+      "stemmer-ikke": "Stemmer ikke"
+    },
+    "var_text": "Smertene jeg kjenner må bety at noe farlig skjer i kroppen min"
+  },
+  "plager-smerter-betyr-skader": {
+    "var_text_report": "empty",
+    "responses": {
+      "stemmer": "Stemmer",
+      "stemmer-ikke": "Stemmer ikke"
+    },
+    "var_text": "Smerter betyr alltid at kroppen er skadet"
+  },
+  "plager-unngaaelse": {
+    "var_text_report": "empty",
+    "responses": {
+      "stemmer": "Stemmer",
+      "stemmer-ikke": "Stemmer ikke"
+    },
+    "var_text": "Jeg forsøker å unngå bevegelser som gjør vondt"
+  },
   "utdannelse": {
-    "var_text_report": "Utdannelse",
+    "var_text_report": "empty",
     "responses": {
       "ikke-grunnskole": "Ikke fullført 7 - 10-årig grunnskole/folkeskole",
       "grunnskole": "7 - 10-årig grunnskole/folkeskole",
@@ -48,7 +127,7 @@
     "var_text": "Hva er den høyeste utdannelsen du har fullført?"
   },
   "tid-i-arbeidslivet": {
-    "var_text_report": "Antall år i arbeidslivet",
+    "var_text_report": "empty",
     "responses": {
       "1": "1 år eller mindre",
       "2-5": "2 - 5 år",
@@ -59,7 +138,7 @@
     "var_text": "Hvor mange år har du vært i arbeidslivet tilsammen?"
   },
   "yrke": {
-    "var_text_report": "Nåværende eller siste yrke",
+    "var_text_report": "empty",
     "responses": {
       "student": "Student eller skoleelev",
       "laerling": "Lærling eller på arbeidsopplæring",
@@ -77,8 +156,13 @@
     },
     "var_text": "Hva er nåværende yrke, eller hva var ditt siste hovedyrke?"
   },
+  "yrke-fritekst": {
+    "var_text_report": "empty",
+    "responses": {},
+    "var_text": "Hvilket yrke har du?"
+  },
   "arbeidsforhold": {
-    "var_text_report": "Eksisterende arbeidsforhold",
+    "var_text_report": "empty",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -86,7 +170,7 @@
     "var_text": "Har du for tiden et arbeidsforhold?"
   },
   "stillingsprosent": {
-    "var_text_report": "Stillingsprosent",
+    "var_text_report": "empty",
     "responses": {
       "1-25": "1 - 25%",
       "26-50": "26 - 50%",
@@ -99,7 +183,7 @@
     "var_text": "Hvor stor stillingsprosent har du i jobben din?"
   },
   "i-jobb-na": {
-    "var_text_report": "I jobb i dag?",
+    "var_text_report": "empty",
     "responses": {
       "fullt": "Jeg jobber fullt eller mer enn stillingsprosenten jeg har",
       "redusert": "Jeg jobber en redusert del av den stillingsprosenten jeg har",
@@ -108,7 +192,7 @@
     "var_text": "Hvor mye jobber du i den stillingsprosenten du har?"
   },
   "sektor_1": {
-    "var_text_report": "Sektor",
+    "var_text_report": "empty",
     "responses": {
       "privat": "Privat sektor",
       "offentlig": "Offentlig sektor",
@@ -118,7 +202,7 @@
     "var_text": "Hvilken type virksomhet(er) arbeider du i?"
   },
   "sektor_2": {
-    "var_text_report": "",
+    "var_text_report": "empty",
     "responses": {
       "privat": "Privat sektor",
       "offentlig": "Offentlig sektor",
@@ -128,7 +212,7 @@
     "var_text": "Hvilken type virksomhet(er) arbeider du i?"
   },
   "sektor_3": {
-    "var_text_report": "",
+    "var_text_report": "empty",
     "responses": {
       "privat": "Privat sektor",
       "offentlig": "Offentlig sektor",
@@ -138,7 +222,7 @@
     "var_text": "Hvilken type virksomhet(er) arbeider du i?"
   },
   "sektor_4": {
-    "var_text_report": "",
+    "var_text_report": "empty",
     "responses": {
       "privat": "Privat sektor",
       "offentlig": "Offentlig sektor",
@@ -148,7 +232,7 @@
     "var_text": "Hvilken type virksomhet(er) arbeider du i?"
   },
   "sm-aap": {
-    "var_text_report": "Sykemeldt?",
+    "var_text_report": "empty",
     "responses": {
       "nei": "Nei, jeg er ikke sykemeldt og mottar ikke arbeidsavklaringspenger",
       "delvis-sm": "Ja, delvis sykemeldt",
@@ -157,8 +241,49 @@
     },
     "var_text": "Er du sykemeldt eller mottar du arbeidsavklaringspenger?"
   },
+  "oppfolgingsplan": {
+    "var_text_report": "empty",
+    "responses": {
+      "ja": "Ja",
+      "nei": "Nei"
+    },
+    "var_text": "Har du utarbeidet oppfølgingsplan sammen med din arbeidsgiver?"
+  },
+  "aktivitetsplan": {
+    "var_text_report": "empty",
+    "responses": {
+      "ja": "Ja",
+      "nei": "Nei"
+    },
+    "var_text": "Har du utarbeidet aktivitetsplan sammen med din NAV-veileder?"
+  },
+  "aarsak-sm-app": {
+    "var_text_report": "empty",
+    "responses": {},
+    "var_text": "Hva er årsak til at du er sykemeldt/mottar arbeidsavklaringspenger?"
+  },
+  "samarbeid-nav": {
+    "var_text_report": "empty",
+    "responses": {
+      "v-bra": "Veldig bra",
+      "bra": "Bra",
+      "middels": "Middels",
+      "daarlig": "Dårlig",
+      "v-daarlig": "Veldig dårlig",
+      "ikke-kontakt": "Jeg har ikke kontakt med NAV"
+    },
+    "var_text": "Hvordan opplever du samarbeidet med NAV?"
+  },
+  "tidl-tiltak": {
+    "var_text_report": "empty",
+    "responses": {
+      "ja": "Ja",
+      "nei": "Nei"
+    },
+    "var_text": "Har du tidligere deltatt i tiltak for å avklare din arbeidsevne?"
+  },
   "ytelser_1": {
-    "var_text_report": "Ytelser",
+    "var_text_report": "empty",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -172,7 +297,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "ytelser_2": {
-    "var_text_report": "",
+    "var_text_report": "empty",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -186,7 +311,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "ytelser_3": {
-    "var_text_report": "",
+    "var_text_report": "empty",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -200,7 +325,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "ytelser_4": {
-    "var_text_report": "",
+    "var_text_report": "empty",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -214,7 +339,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "ytelser_5": {
-    "var_text_report": "",
+    "var_text_report": "empty",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -228,7 +353,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "ytelser_6": {
-    "var_text_report": "",
+    "var_text_report": "empty",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -242,7 +367,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "ytelser_7": {
-    "var_text_report": "",
+    "var_text_report": "empty",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -256,7 +381,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "ytelser_8": {
-    "var_text_report": "",
+    "var_text_report": "empty",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -270,7 +395,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "varighet-sm-siste-ar": {
-    "var_text_report": "Tid sykemeldt siste år",
+    "var_text_report": "empty",
     "responses": {
       "0": "Jeg har ikke vært sykemeldt siste år",
       "mindre-to-uker": "Mindre enn 2 uker",
@@ -281,8 +406,18 @@
     },
     "var_text": "Hvor lenge har du tilsammen vært helt eller delvis sykemeldt de siste 12 månedene?"
   },
+  "okonomi": {
+    "var_text_report": "empty",
+    "responses": {
+      "god": "Ikke bekymret",
+      "middels": "Litt bekymret",
+      "daarlig": "Ganske bekymret",
+      "sv-daarlig": "Veldig bekymret"
+    },
+    "var_text": "Er du bekymret for økonomien din?"
+  },
   "sokt-ufor": {
-    "var_text_report": "Har søkt eller planlegger å søke ufør",
+    "var_text_report": "empty",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -290,15 +425,15 @@
     "var_text": "Har du søkt eller planlegger du å søke om uføretrygd?"
   },
   "erstatningssak": {
-    "var_text_report": "Pågående erstatningssak",
+    "var_text_report": "empty",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
     },
-    "var_text": "Har du en uavklart eller pågående erstatningssak knyttet til helseplagene dine?"
+    "var_text": "Har du en uavklart eller pågående forsikrings/erstatningssak knyttet til plagene dine?"
   },
   "arbeidsevne-generelt": {
-    "var_text_report": "Vurdering av generell arbeidsevne (0 = dårligst, 10 = best)",
+    "var_text_report": "empty",
     "responses": {
       "0": "0",
       "1": "1",
@@ -315,7 +450,7 @@
     "var_text": "Du skal nå forsøke å vurdere din nåværende arbeidsevne sammenliknet med da den var på sitt beste. Vi går ut i fra at din arbeidsevne på sitt beste verdsettes med 10 poeng. Hvor mange poeng vil du gi til din nåværende arbeidsevne?"
   },
   "arbeidsevne-fysiske-krav": {
-    "var_text_report": "Vurdering av arbeidsevne - fysiske krav",
+    "var_text_report": "empty",
     "responses": {
       "meget-darlig": "Meget dårlig",
       "ganske-darlig": "Ganske dårlig",
@@ -326,7 +461,7 @@
     "var_text": "Hvordan vurderer du din egen arbeidsevne sett opp mot fysisk krav i jobben (gå, stå, løfte etc)?"
   },
   "arbeidsevne-mentale-krav": {
-    "var_text_report": "Vurdering av arbeidsevne - mentale krav",
+    "var_text_report": "empty",
     "responses": {
       "meget-darlig": "Meget dårlig",
       "ganske-darlig": "Ganske dårlig",
@@ -337,7 +472,7 @@
     "var_text": "Hvordan vurderer du din egen arbeidsevne sett opp mot mentale krav i jobben (konsentrasjon, planlegging etc)?"
   },
   "estimat-rtw": {
-    "var_text_report": "Estimert tid før tilbake i arbeid",
+    "var_text_report": "empty",
     "responses": {
       "under-2-uker": "Umiddelbart eller i løpet av 2 uker",
       "innen-1-mnd": "Innen 1 måned",
@@ -347,539 +482,411 @@
       "innen-1-ar": "Innen 1 år",
       "mer-enn-1-ar": "Mer enn 1 år",
       "aldri": "Aldri",
-      "usikker": "Vet ikke/usikker",
       "er-i-jobb": "Jeg er i jobb"
     },
     "var_text": "Hvor lang tid tror du at det tar før du er tilbake i arbeid?"
   },
   "onsket-jobb": {
-    "var_text_report": "Ønsker å komme tilbake til",
+    "var_text_report": "empty",
     "responses": {
       "sist-jobb": "Jobben jeg har i dag/jobben jeg hadde sist",
       "ny-jobb-samme-yrke": "Ny jobb innen samme yrke",
-      "ny-jobb-annet-yrke": "Ny jobb innen annet yrke",
-      "vil-ikke-tilbake": "Jeg ønsker ikke å komme tilbake i jobb"
+      "ny-jobb-annet-yrke": "Ny jobb innen annet yrke"
     },
     "var_text": "Hvilken jobb håper du å komme tilbake til?"
   },
-  "fysakt-timer": {
-    "var_text_report": "",
+  "mosjon": {
+    "var_text_report": "empty",
+    "responses": {
+      "en-eller-sjeldnere": "Sjeldnere enn 1 gang per uke eller aldri",
+      "en-til-to": "1 til 2 ganger per uke",
+      "tre-eller-mer": "3 ganger per uke eller mer"
+    },
+    "var_text": "Tenk på de siste to ukene. Hvor ofte mosjonerte du i minst 30 minutter sammenhengende?"
+  },
+  "hoyde": {
+    "var_text_report": "empty",
     "responses": {},
-    "var_text": "Timer"
+    "var_text": "Høyde (cm)"
   },
-  "fysakt-min": {
-    "var_text_report": "",
+  "vekt": {
+    "var_text_report": "empty",
     "responses": {},
-    "var_text": "Minutter"
+    "var_text": "Vekt (kg)"
   },
-  "sm-arsak-fysakt": {
-    "var_text_report": "",
+  "kosthold": {
+    "var_text_report": "empty",
     "responses": {
-      "uenig": "Uenig",
-      "usikker": "Usikker",
-      "enig": "Enig"
+      "veldig-godt": "Veldig godt",
+      "godt": "Godt",
+      "daarlig": "Dårlig",
+      "veldig-daarlig": "Veldig dårlig"
     },
-    "var_text": "Smertene mine ble forårsaket av fysisk aktivitet"
+    "var_text": "Hvordan vurderer du ditt eget kosthold?"
   },
-  "fysakt-forverrer-sm": {
-    "var_text_report": "",
+  "maaltidsrytme": {
+    "var_text_report": "empty",
     "responses": {
-      "uenig": "Uenig",
-      "usikker": "Usikker",
-      "enig": "Enig"
+      "veldig-god": "Veldig god",
+      "god": "God",
+      "daarlig": "Dårlig",
+      "veldig-daarlig": "Veldig dårlig"
     },
-    "var_text": "Fysisk aktivitet forverrer smertene mine"
+    "var_text": "Hvordan vurderer du din måltidsrytme?"
   },
-  "fysakt-skadelig": {
-    "var_text_report": "",
+  "vurderer-endre_1": {
+    "var_text_report": "empty",
     "responses": {
-      "uenig": "Uenig",
-      "usikker": "Usikker",
-      "enig": "Enig"
+      "kosthold": "Jeg vurderer å endre på kosthold",
+      "maaltidsrytme": "Jeg vurderer å endre på måltidsrytme"
     },
-    "var_text": "Fysisk aktivitet kan være skadelig for kroppen min"
+    "var_text": "Vurderer du å endre på ditt kosthold eller din måltidsrytme?"
   },
-  "fysakt-utilradelig": {
-    "var_text_report": "",
+  "vurderer-endre_2": {
+    "var_text_report": "empty",
     "responses": {
-      "uenig": "Uenig",
-      "usikker": "Usikker",
-      "enig": "Enig"
+      "kosthold": "Jeg vurderer å endre på kosthold",
+      "maaltidsrytme": "Jeg vurderer å endre på måltidsrytme"
     },
-    "var_text": "Jeg burde ikke gjøre fysisk aktivitet som kan øke smertene mine"
+    "var_text": "Vurderer du å endre på ditt kosthold eller din måltidsrytme?"
   },
-  "sm-arsak-jobb": {
-    "var_text_report": "",
+  "hscl-skremt-uten-grunn": {
+    "var_text_report": "empty",
     "responses": {
-      "uenig": "Uenig",
-      "usikker": "Usikker",
-      "enig": "Enig"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Smertene mine ble forårsaket av jobben min eller et uhell på jobben"
+    "var_text": "Plutselig skremt uten grunn"
   },
-  "jobb-gjort-sm-verre": {
-    "var_text_report": "",
+  "hscl-engstelig": {
+    "var_text_report": "empty",
     "responses": {
-      "uenig": "Uenig",
-      "usikker": "Usikker",
-      "enig": "Enig"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jobben min har gjort smertene verre"
+    "var_text": "Føler deg engstelig"
   },
-  "erstatningskrav": {
-    "var_text_report": "",
+  "hscl-svimmel": {
+    "var_text_report": "empty",
     "responses": {
-      "uenig": "Uenig",
-      "usikker": "Usikker",
-      "enig": "Enig"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg har framsatt erstatningskrav for smertene mine"
+    "var_text": "Føler deg svimmel eller kraftløs"
   },
-  "arbeid-for-tungt": {
-    "var_text_report": "",
+  "hscl-nervoes": {
+    "var_text_report": "empty",
     "responses": {
-      "uenig": "Uenig",
-      "usikker": "Usikker",
-      "enig": "Enig"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Arbeidet mitt er for tungt for kroppen min"
+    "var_text": "Nervøs eller urolig"
   },
-  "jobb-forverrer-sm": {
-    "var_text_report": "",
+  "hscl-hjertebank": {
+    "var_text_report": "empty",
     "responses": {
-      "uenig": "Uenig",
-      "usikker": "Usikker",
-      "enig": "Enig"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Å gå på jobb forverrer smertene mine"
+    "var_text": "Hjertebank"
   },
-  "jobb-kan-skade": {
-    "var_text_report": "",
+  "hscl-skjelving": {
+    "var_text_report": "empty",
     "responses": {
-      "uenig": "Uenig",
-      "usikker": "Usikker",
-      "enig": "Enig"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Arbeidet mitt kan skade kroppen min"
+    "var_text": "Skjelving"
   },
-  "burde-ikke-jobbe": {
-    "var_text_report": "",
+  "hscl-anspent": {
+    "var_text_report": "empty",
     "responses": {
-      "uenig": "Uenig",
-      "usikker": "Usikker",
-      "enig": "Enig"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg burde ikke utføre det vanlige arbeidet mitt med mine nåværende smerter"
+    "var_text": "Føler deg anspent eller opphisset"
   },
-  "klarer-ikke-jobbe": {
-    "var_text_report": "",
+  "hscl-hodepine": {
+    "var_text_report": "empty",
     "responses": {
-      "uenig": "Uenig",
-      "usikker": "Usikker",
-      "enig": "Enig"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg klarer ikke utføre det vanlige arbeidet mitt med mine nåværende smerter"
+    "var_text": "Hodepine"
   },
-  "ikke-rtw-innen-3mnd": {
-    "var_text_report": "",
+  "hscl-panikk": {
+    "var_text_report": "empty",
     "responses": {
-      "uenig": "Uenig",
-      "usikker": "Usikker",
-      "enig": "Enig"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg tror ikke jeg vil være tilbake på det vanlige arbeidet mitt innen 3 måneder"
+    "var_text": "Anfall av redsel eller panikk"
   },
-  "aldri-rtw": {
-    "var_text_report": "",
+  "hscl-urolig": {
+    "var_text_report": "empty",
     "responses": {
-      "uenig": "Uenig",
-      "usikker": "Usikker",
-      "enig": "Enig"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg tror ikke jeg noen gang vil være i stand til å komme tilbake til det vanlige arbeidet mitt"
+    "var_text": "Rastløshet, kan ikke sitte rolig"
   },
-  "hads-tidlig-oppvakning": {
-    "var_text_report": "Tidlig oppvåkning",
+  "hscl-slapp": {
+    "var_text_report": "empty",
     "responses": {
-      "3": "Ja, definitivt",
-      "2": "Ja, noen ganger",
-      "1": "Nei, ikke så mye",
-      "0": "Nei, ikke i det hele tatt"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg våkner tidlig for så å sove dårlig resten av natten"
+    "var_text": "Føler deg slapp og uten energi"
   },
-  "hads-panikk": {
-    "var_text_report": "Panikkfølelse uten åpenbar grunn",
+  "hscl-anklager": {
+    "var_text_report": "empty",
     "responses": {
-      "3": "Ja, definitivt",
-      "2": "Ja, noen ganger",
-      "1": "Nei, ikke så mye",
-      "0": "Nei, ikke i det hele tatt"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg blir veldig redd eller får panikkfølelse uten noen åpenbar grunn"
+    "var_text": "Anklager deg selv for ting"
   },
-  "hads-trist": {
-    "var_text_report": "Trist og nedfor",
+  "hscl-graat": {
+    "var_text_report": "empty",
     "responses": {
-      "3": "Ja, definitivt",
-      "2": "Ja, noen ganger",
-      "1": "Nei, ikke så mye",
-      "0": "Nei, ikke i det hele tatt"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg føler meg trist og nedfor"
+    "var_text": "Har lett for å gråte"
   },
-  "hads-nervos": {
-    "var_text_report": "Nervøs når utenfor boligen på egenhånd",
+  "hscl-tap-seksuell": {
+    "var_text_report": "empty",
     "responses": {
-      "3": "Ja, definitivt",
-      "2": "Ja, noen ganger",
-      "1": "Nei, ikke så mye",
-      "0": "Nei, ikke i det hele tatt"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg føler meg nervøs når jeg går ut av boligen min på egenhånd"
+    "var_text": "Tap av seksuell interesse/opplevelse"
   },
-  "hads-interessetap": {
-    "var_text_report": "Interessetap",
+  "hscl-lav-apetitt": {
+    "var_text_report": "empty",
     "responses": {
-      "3": "Ja, definitivt",
-      "2": "Ja, noen ganger",
-      "1": "Nei, ikke så mye",
-      "0": "Nei, ikke i det hele tatt"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg har mistet interesse for ting"
+    "var_text": "Dårlig appetitt"
   },
-  "hads-hjertebank": {
-    "var_text_report": "Hjertebank eller sommerfugler i magen",
+  "hscl-sovn": {
+    "var_text_report": "empty",
     "responses": {
-      "3": "Ja, definitivt",
-      "2": "Ja, noen ganger",
-      "1": "Nei, ikke så mye",
-      "0": "Nei, ikke i det hele tatt"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg får hjertebank eller følelse av &#34;sommerfugler&#34; i brystet eller magen"
+    "var_text": "Vanskelig for å sove"
   },
-  "hads-svak-apetitt": {
-    "var_text_report": "Svekket apetitt",
+  "hscl-haaploshet": {
+    "var_text_report": "empty",
     "responses": {
-      "3": "Ja, definitivt",
-      "2": "Ja, noen ganger",
-      "1": "Nei, ikke så mye",
-      "0": "Nei, ikke i det hele tatt"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg har dårlig apetitt"
+    "var_text": "Følelse av håpløshet med tanke på fremtiden"
   },
-  "hads-redd": {
-    "var_text_report": "Redd",
+  "hscl-nedfor": {
+    "var_text_report": "empty",
     "responses": {
-      "3": "Ja, definitivt",
-      "2": "Ja, noen ganger",
-      "1": "Nei, ikke så mye",
-      "0": "Nei, ikke i det hele tatt"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg føler meg redd"
+    "var_text": "Føler deg nedfor"
   },
-  "hads-ikke-verd-leve": {
-    "var_text_report": "Ikke verd å leve",
+  "hscl-ensom": {
+    "var_text_report": "empty",
     "responses": {
-      "3": "Ja, definitivt",
-      "2": "Ja, noen ganger",
-      "1": "Nei, ikke så mye",
-      "0": "Nei, ikke i det hele tatt"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg føler at livet ikke er verd å leve"
+    "var_text": "Føler deg ensom"
   },
-  "hads-anhedoni": {
-    "var_text_report": "Anhedoni",
+  "hscl-selvmordstanker": {
+    "var_text_report": "empty",
     "responses": {
-      "3": "Ja, definitivt",
-      "2": "Ja, noen ganger",
-      "1": "Nei, ikke så mye",
-      "0": "Nei, ikke i det hele tatt"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg setter ikke lenger pris på ting jeg likte før"
+    "var_text": "Har tanker om å ta ditt eget liv"
   },
-  "hads-rastlos": {
-    "var_text_report": "Rastløshet",
+  "hscl-fanget": {
+    "var_text_report": "empty",
     "responses": {
-      "3": "Ja, definitivt",
-      "2": "Ja, noen ganger",
-      "1": "Nei, ikke så mye",
-      "0": "Nei, ikke i det hele tatt"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg er rastløs og har problemer med å holde meg i ro"
+    "var_text": "Følelse av å være fanget"
   },
-  "hads-irritabel": {
-    "var_text_report": "Irritabilitet",
+  "hscl-bekymringer": {
+    "var_text_report": "empty",
     "responses": {
-      "3": "Ja, definitivt",
-      "2": "Ja, noen ganger",
-      "1": "Nei, ikke så mye",
-      "0": "Nei, ikke i det hele tatt"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Jeg er mer irritabel enn jeg pleier"
+    "var_text": "Bekymrer deg for mye"
   },
-  "hads-langsomt": {
-    "var_text_report": "Beveger eller tenker senere enn vanlig",
+  "hscl-interessetap": {
+    "var_text_report": "empty",
     "responses": {
-      "3": "Ja, definitivt",
-      "2": "Ja, noen ganger",
-      "1": "Nei, ikke så mye",
-      "0": "Nei, ikke i det hele tatt"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Det føles som jeg beveger meg eller tenker seinere enn vanlig"
+    "var_text": "Føler ikke interesse for noe"
   },
-  "hads-bekymringer": {
-    "var_text_report": "Bekymringer alltid tilstede",
+  "hscl-anstrengelse": {
+    "var_text_report": "empty",
     "responses": {
-      "3": "Ja, definitivt",
-      "2": "Ja, noen ganger",
-      "1": "Nei, ikke så mye",
-      "0": "Nei, ikke i det hele tatt"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Bekymringer er alltid tilstede i tankene mine"
+    "var_text": "Føler at alt krever stor anstrengelse"
   },
-  "eq5d-gange": {
-    "var_text_report": "",
+  "hscl-verdiloshet": {
+    "var_text_report": "empty",
     "responses": {
-      "ingen-prob": "Jeg har ingen problemer med å gå omkring",
-      "litt-prob": "Jeg har litt problemer med å gå omkring",
-      "middels-prob": "Jeg har middels store problemer med å gå omkring",
-      "store-prob": "Jeg har store problemer med å gå omkring",
-      "ute-av-stand": "Jeg er ute av stand til å gå omkring"
+      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "en-god-del": "En god del",
+      "svaert-mye": "Svært mye"
     },
-    "var_text": "Gange"
+    "var_text": "Føler at du ikke er noe verd"
   },
-  "eq5d-stell": {
-    "var_text_report": "",
-    "responses": {
-      "ingen-prob": "Jeg har ingen problemer med å vaske meg eller kle meg",
-      "litt-prob": "Jeg har litt problemer med å vaske meg eller kle meg",
-      "middels-prob": "Jeg har middels store problemer med å vaske meg eller kle meg",
-      "store-prob": "Jeg har store problemer med å vaske meg eller kle meg",
-      "ute-av-stand": "Jeg er ute av stand til å vaske meg eller kle meg"
-    },
-    "var_text": "Personlig stell"
-  },
-  "eq5d-gjoremal": {
-    "var_text_report": "",
-    "responses": {
-      "ingen-prob": "Jeg har ingen problemer med å utføre mine vanlige gjøremål",
-      "litt-prob": "Jeg har litt problemer med å utføre mine vanlige gjøremål",
-      "middels-prob": "Jeg har middels store problemer med å utføre mine vanlige gjøremål",
-      "store-prob": "Jeg har store problemer med å utføre mine vanlige gjøremål",
-      "ute-av-stand": "Jeg er ute av stand til å utføre mine vanlige gjøremål"
-    },
-    "var_text": "Vanlige gjøremål"
-  },
-  "eq5d-smerter": {
-    "var_text_report": "",
-    "responses": {
-      "nei": "Jeg har verken smerter eller ubehag",
-      "litt": "Jeg har litt smerter eller ubehag",
-      "middels": "Jeg har middels sterke smerter eller ubehag",
-      "sterke": "Jeg har sterke smerter eller ubehag",
-      "svaert-sterke": "Jeg har svært sterke smerter eller ubehag"
-    },
-    "var_text": "Smerter/ubehag"
-  },
-  "eq5d-angst-dep": {
-    "var_text_report": "",
-    "responses": {
-      "nei": "Jeg er verken engstelig eller deprimert",
-      "litt": "Jeg er litt engstelig eller deprimert",
-      "middels": "Jeg er middels engstelig eller deprimert",
-      "svaert": "Jeg er svært engstelig eller deprimert",
-      "ekstremt": "Jeg er ekstremt engstelig eller deprimert"
-    },
-    "var_text": "Angst/depresjon"
-  },
-  "gsaq-innsovning": {
-    "var_text_report": "Innsovningsvansker",
-    "responses": {
-      "0": "Aldri",
-      "1": "Noen ganger",
-      "2": "Vanligvis",
-      "3": "Alltid"
-    },
-    "var_text": "... har du hatt vansker med å sovne inn?"
-  },
-  "gsaq-oppvakning": {
-    "var_text_report": "Oppvåkninger nattestid",
-    "responses": {
-      "0": "Aldri",
-      "1": "Noen ganger",
-      "2": "Vanligvis",
-      "3": "Alltid"
-    },
-    "var_text": "... hatt vansker med å sove gjennom natta?"
-  },
-  "gsaq-utvilt-dagtid": {
-    "var_text_report": "Ikke uthvilt dagtid",
-    "responses": {
-      "0": "Aldri",
-      "1": "Noen ganger",
-      "2": "Vanligvis",
-      "3": "Alltid"
-    },
-    "var_text": "... har du følt deg lite uthvilt på dagtid?"
-  },
-  "gsaq-vansker-holde-vaken": {
-    "var_text_report": "Søvnighet dagtid",
-    "responses": {
-      "0": "Aldri",
-      "1": "Noen ganger",
-      "2": "Vanligvis",
-      "3": "Alltid"
-    },
-    "var_text": "... har du sovet uten at du ville det, eller måtte kjempe med å holde deg våken på dagtid?"
-  },
-  "gsaq-dagtidfunksjon": {
-    "var_text_report": "Forstyrret daglige aktiviteter",
-    "responses": {
-      "0": "Aldri",
-      "1": "Noen ganger",
-      "2": "Vanligvis",
-      "3": "Alltid"
-    },
-    "var_text": "... har søvnvansker eller søvnighet på dagtid forstyrret dine daglige aktiviteter?"
-  },
-  "gsaq-jobb-akt-hinder-sovn": {
-    "var_text_report": "Jobbaktivitet til hinder for søvn",
-    "responses": {
-      "0": "Aldri",
-      "1": "Noen ganger",
-      "2": "Vanligvis",
-      "3": "Alltid"
-    },
-    "var_text": "... har arbeid eller andre aktiviteter hindret deg fra å få nok søvn?"
-  },
-  "gsaq-snorking": {
-    "var_text_report": "Snorking",
-    "responses": {
-      "0": "Aldri",
-      "1": "Noen ganger",
-      "2": "Vanligvis",
-      "3": "Alltid"
-    },
-    "var_text": "... har du snorket høyt?"
-  },
-  "gsaq-apne": {
-    "var_text_report": "Pustestopp",
-    "responses": {
-      "0": "Aldri",
-      "1": "Noen ganger",
-      "2": "Vanligvis",
-      "3": "Alltid"
-    },
-    "var_text": "... har du hatt pustepauser eller stoppet å puste i søvne?"
-  },
-  "gsaq-restless-legs": {
-    "var_text_report": "Urolige bein",
-    "responses": {
-      "0": "Aldri",
-      "1": "Noen ganger",
-      "2": "Vanligvis",
-      "3": "Alltid"
-    },
-    "var_text": "... har du hatt urolige eller maurende følelser i bena om kvelden eller natta, og som ble bedre av bevegelse?"
-  },
-  "gsaq-rykninger": {
-    "var_text_report": "Rykninger nattestid",
-    "responses": {
-      "0": "Aldri",
-      "1": "Noen ganger",
-      "2": "Vanligvis",
-      "3": "Alltid"
-    },
-    "var_text": "... har du hatt gjentatte rykninger eller bevegelser i bena i søvne?"
-  },
-  "gsaq-parasomnier": {
-    "var_text_report": "Parasominer",
-    "responses": {
-      "0": "Aldri",
-      "1": "Noen ganger",
-      "2": "Vanligvis",
-      "3": "Alltid"
-    },
-    "var_text": "... har du hatt mareritt eller ropt, gått, slått eller sparket i søvne?"
-  },
-  "gsaq-trist-engstelig": {
-    "var_text_report": "Trist eller engstelig",
-    "responses": {
-      "0": "Aldri",
-      "1": "Noen ganger",
-      "2": "Vanligvis",
-      "3": "Alltid"
-    },
-    "var_text": "... har du vært trist eller engstelig?"
-  },
-  "gsaq-smerter": {
-    "var_text_report": "Smerter",
-    "responses": {
-      "0": "Aldri",
-      "1": "Noen ganger",
-      "2": "Vanligvis",
-      "3": "Alltid"
-    },
-    "var_text": "Smerter"
-  },
-  "gsaq-kroppslige-plager": {
-    "var_text_report": "Andre kroppslige plager",
-    "responses": {
-      "0": "Aldri",
-      "1": "Noen ganger",
-      "2": "Vanligvis",
-      "3": "Alltid"
-    },
-    "var_text": "Andre kroppslige plager"
-  },
-  "gsaq-bekymringer": {
-    "var_text_report": "Bekymringer",
-    "responses": {
-      "0": "Aldri",
-      "1": "Noen ganger",
-      "2": "Vanligvis",
-      "3": "Alltid"
-    },
-    "var_text": "Bekymringer"
-  },
-  "gsaq-medikamenter": {
-    "var_text_report": "Medikamenter",
-    "responses": {
-      "0": "Aldri",
-      "1": "Noen ganger",
-      "2": "Vanligvis",
-      "3": "Alltid"
-    },
-    "var_text": "Medikamenter"
-  },
-  "helse-samlet": {
-    "var_text_report": "Egenvurdert helse samlet sett (0 = dårligst, 10 = best)",
-    "responses": {
-      "0": "0",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
-      "10": "10"
-    },
-    "var_text": "Prøv å angi hvor god eller dårlig din samlede helse er i dag."
-  },
-  "godt-nok-utredet": {
-    "var_text_report": "Opplever deg godt nok utredet",
+  "sovnproblemer": {
+    "var_text_report": "empty",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
     },
-    "var_text": "Opplever du deg godt nok medisinsk utredet for dine muskel-/skjelettplager?"
+    "var_text": "Opplever du problemer med å få sove, sove sammenhengende eller våkne for tidlig?"
+  },
+  "isi-innsov": {
+    "var_text_report": "empty",
+    "responses": {
+      "ingen": "Ingen",
+      "milde": "Milde",
+      "moderate": "Moderate",
+      "alvorlige": "Alvorlige",
+      "veldig-alvorlige": "Veldig alvorlige"
+    },
+    "var_text": "Problemer med å sovne"
+  },
+  "isi-oppvaak": {
+    "var_text_report": "empty",
+    "responses": {
+      "ingen": "Ingen",
+      "milde": "Milde",
+      "moderate": "Moderate",
+      "alvorlige": "Alvorlige",
+      "veldig-alvorlige": "Veldig alvorlige"
+    },
+    "var_text": "Problemer med at du våkner opp i løpet av natten"
+  },
+  "isi-for-tidlig-oppvaak": {
+    "var_text_report": "empty",
+    "responses": {
+      "ingen": "Ingen",
+      "milde": "Milde",
+      "moderate": "Moderate",
+      "alvorlige": "Alvorlige",
+      "veldig-alvorlige": "Veldig alvorlige"
+    },
+    "var_text": "Våkner for tidlig"
+  },
+  "isi-tilfreds": {
+    "var_text_report": "empty",
+    "responses": {
+      "veldig-tilfreds": "Veldig tilfreds",
+      "tilfreds": "Tilfreds",
+      "verken": "Verken tilfreds eller utilfreds",
+      "utilfreds": "Utilfreds",
+      "veldig-utilfreds": "Veldig utilfreds"
+    },
+    "var_text": "Hvor tilfreds/utilfreds er du med ditt nåværende søvnmønster?"
+  },
+  "isi-fungering": {
+    "var_text_report": "empty",
+    "responses": {
+      "ingen": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "noe": "Noe",
+      "ganske-mye": "Ganske mye",
+      "veldig-mye": "Veldig mye"
+    },
+    "var_text": "I hvor stor grad synes du søvnproblemene dine REDUSERER funksjonsevnen din til daglig ?"
+  },
+  "isi-merkbart": {
+    "var_text_report": "empty",
+    "responses": {
+      "ingen": "Ikke merkbare i det hele tatt",
+      "litt": "Litt merkbare",
+      "noe": "Noe merkbare",
+      "ganske": "Ganske merkbare",
+      "veldig": "Veldig merkbare"
+    },
+    "var_text": "Hvor MERKBARE tror du at søvnproblemene dine er for andre, sett ut fra din reduserte livskvalitet?"
+  },
+  "isi-bekymret": {
+    "var_text_report": "empty",
+    "responses": {
+      "ingen": "Ikke i det hele tatt",
+      "litt": "Litt",
+      "noe": "Noe",
+      "mye": "Mye",
+      "veldig-mye": "Veldig mye"
+    },
+    "var_text": "I hvor stor grad BEKYMRER/plager dine søvnproblemer deg?"
   },
   "tilbakemeldinger": {
-    "var_text_report": "",
+    "var_text_report": "empty",
     "responses": {},
     "var_text": "Mine tilbakemeldinger"
   }
