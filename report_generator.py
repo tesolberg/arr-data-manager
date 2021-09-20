@@ -16,7 +16,7 @@ def generate_report(data, codebook_path):
 
     # creates new document and adds heading
     document = Document()
-    document.add_heading('Nettbasert kartlegging - arbeidsrettet rehabilitering', 0)
+    document.add_heading('Pasientrapportert kartlegging - arbeidsrettet rehabilitering', 0)
     document.add_heading('Avdeling for fysikalsk medisin og forebygging, Sørlandet sykehus HF', 3)
 
 

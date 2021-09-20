@@ -1,0 +1,711 @@
+* Encoding: UTF-8.
+* SSHF ARR T0 testskjema v2 (id 215878) - 20.09.2021 13:01
+
+* Define Variable Properties.
+
+*vis-info-retting-sletting_1.
+VARIABLE LABELS vis-info-retting-sletting_1 'null'.
+VALUE LABELS vis-info-retting-sletting_1
+  ja 'Vis informasjon om lagring av dine svar og rett til innsyn, kopi, retting og sletting'.
+
+*onsker-kopi_1.
+VARIABLE LABELS onsker-kopi_1 'null'.
+VALUE LABELS onsker-kopi_1
+  ja 'Jeg ønsker kopi av informasjonen på denne siden sendt til min epostadresse'.
+
+*epost.
+VARIABLE LABELS epost 'null'.
+
+*morsmal.
+VARIABLE LABELS morsmal 'Ditt morsmål:'.
+
+*sprakvansker.
+VARIABLE LABELS sprakvansker 'Har du lesevansker, skrivevansker eller vansker med å forstå norsk?'.
+VALUE LABELS sprakvansker
+  ja 'Ja'
+  nei 'Nei'.
+
+*sivilstatus.
+VARIABLE LABELS sivilstatus 'Sivilstatus'.
+VALUE LABELS sivilstatus
+  gift-partner 'Gift/samboer/registrert partner'
+  enslig 'Enslig'.
+
+*barn.
+VARIABLE LABELS barn 'Hvor mange barn har du?'.
+
+*antall-i-husholdning.
+VARIABLE LABELS antall-i-husholdning 'Hvor mange (i tillegg til deg) bor hos deg nå/er i husholdningen?'.
+
+*plager-verste.
+VARIABLE LABELS plager-verste 'Dine smerter på det verste den siste uken.'.
+
+*plager-beste.
+VARIABLE LABELS plager-beste 'Dine smerter på det beste den siste uken.'.
+
+*plager-gjsn.
+VARIABLE LABELS plager-gjsn 'Gjennomsnittet den siste uken.'.
+
+*plager-mnd.
+VARIABLE LABELS plager-mnd 'Antall måneder'.
+
+*plager-aar.
+VARIABLE LABELS plager-aar 'Antall år'.
+
+*plager-redd-skade.
+VARIABLE LABELS plager-redd-skade 'Jeg er redd for at jeg kan skade meg ved et uhell'.
+VALUE LABELS plager-redd-skade
+  stemmer 'Stemmer'
+  stemmer-ikke 'Stemmer ikke'.
+
+*plager-farlig-aktiv.
+VARIABLE LABELS plager-farlig-aktiv 'Det er farlig for en person med min tilstand å være fysisk aktiv'.
+VALUE LABELS plager-farlig-aktiv
+  stemmer 'Stemmer'
+  stemmer-ikke 'Stemmer ikke'.
+
+*plager-farlig-sykdom.
+VARIABLE LABELS plager-farlig-sykdom 'Smertene jeg kjenner må bety at noe farlig skjer i kroppen min'.
+VALUE LABELS plager-farlig-sykdom
+  stemmer 'Stemmer'
+  stemmer-ikke 'Stemmer ikke'.
+
+*plager-smerter-betyr-skader.
+VARIABLE LABELS plager-smerter-betyr-skader 'Smerter betyr alltid at kroppen er skadet'.
+VALUE LABELS plager-smerter-betyr-skader
+  stemmer 'Stemmer'
+  stemmer-ikke 'Stemmer ikke'.
+
+*plager-unngaaelse.
+VARIABLE LABELS plager-unngaaelse 'Jeg forsøker å unngå bevegelser som gjør vondt'.
+VALUE LABELS plager-unngaaelse
+  stemmer 'Stemmer'
+  stemmer-ikke 'Stemmer ikke'.
+
+*utdannelse.
+VARIABLE LABELS utdannelse 'Hva er den høyeste utdannelsen du har fullført?'.
+VALUE LABELS utdannelse
+  ikke-grunnskole 'Ikke fullført 7 - 10-årig grunnskole/folkeskole'
+  grunnskole '7 - 10-årig grunnskole/folkeskole'
+  vgs 'Videregående skole'
+  fagbrev 'Videregående skole med fagbrev'
+  hoyere-under-4ar 'Høyskole eller universitet, mindre enn 4 år'
+  hoyere-4ar-og-over 'Høyskole eller universitet, 4 år eller mer'.
+
+*tid-i-arbeidslivet.
+VARIABLE LABELS tid-i-arbeidslivet 'Hvor mange år har du vært i arbeidslivet tilsammen?'.
+VALUE LABELS tid-i-arbeidslivet
+  1 '1 år eller mindre'
+  2-5 '2 - 5 år'
+  6-10 '6 - 10 år'
+  11-20 '11 - 20 år'
+  mer-enn-20 'Mer enn 20 år'.
+
+*yrke.
+VARIABLE LABELS yrke 'Hva er nåværende yrke, eller hva var ditt siste hovedyrke?'.
+VALUE LABELS yrke
+  student 'Student eller skoleelev'
+  laerling 'Lærling eller på arbeidsopplæring'
+  ufaglaert 'Yrke uten krav til utdanning'
+  operator-transport 'Prosess-/maskinoperatør eller transportarbeider'
+  handtverker 'Håndtverker'
+  jord-skog-fisk 'Yrke innen jorbruk, skogbruk eller fiske'
+  salg-service-omsorg 'Salgs-, service- eller omsorgsyrke'
+  kontor 'Kontor- eller kundeserviceyrke'
+  bachelor 'Yrke med kortere (3 årig) høyskole- eller universitetsutdanning'
+  akademisk 'Akademisk yrke'
+  ledelse-politikk 'Yrke innen administrativ ledelse eller politikk'
+  militaert 'Militært yrke'
+  annet 'Annet yrke'.
+
+*yrke-fritekst.
+VARIABLE LABELS yrke-fritekst 'Hvilket yrke har du?'.
+
+*arbeidsforhold.
+VARIABLE LABELS arbeidsforhold 'Har du for tiden et arbeidsforhold?'.
+VALUE LABELS arbeidsforhold
+  ja 'Ja'
+  nei 'Nei'.
+
+*stillingsprosent.
+VARIABLE LABELS stillingsprosent 'Hvor stor stillingsprosent har du i jobben din?'.
+VALUE LABELS stillingsprosent
+  1-25 '1 - 25%'
+  26-50 '26 - 50%'
+  51-75 '51-75%'
+  76-99 '76 - 99%'
+  100 '100%'
+  mer-enn-100 'Mer enn 100%'
+  usikker 'Vet ikke/usikker'.
+
+*i-jobb-na.
+VARIABLE LABELS i-jobb-na 'Hvor mye jobber du i den stillingsprosenten du har?'.
+VALUE LABELS i-jobb-na
+  fullt 'Jeg jobber fullt eller mer enn stillingsprosenten jeg har'
+  redusert 'Jeg jobber en redusert del av den stillingsprosenten jeg har'
+  nei 'Jeg jobber ikke'.
+
+*sektor_1.
+VARIABLE LABELS sektor_1 'Hvilken type virksomhet(er) arbeider du i?'.
+VALUE LABELS sektor_1
+  privat 'Privat sektor'
+  offentlig 'Offentlig sektor'
+  selvstendig 'Selvstendig næringsdrivende'
+  usikker 'Vet ikke/usikker'.
+
+*sektor_2.
+VARIABLE LABELS sektor_2 'Hvilken type virksomhet(er) arbeider du i?'.
+VALUE LABELS sektor_2
+  privat 'Privat sektor'
+  offentlig 'Offentlig sektor'
+  selvstendig 'Selvstendig næringsdrivende'
+  usikker 'Vet ikke/usikker'.
+
+*sektor_3.
+VARIABLE LABELS sektor_3 'Hvilken type virksomhet(er) arbeider du i?'.
+VALUE LABELS sektor_3
+  privat 'Privat sektor'
+  offentlig 'Offentlig sektor'
+  selvstendig 'Selvstendig næringsdrivende'
+  usikker 'Vet ikke/usikker'.
+
+*sektor_4.
+VARIABLE LABELS sektor_4 'Hvilken type virksomhet(er) arbeider du i?'.
+VALUE LABELS sektor_4
+  privat 'Privat sektor'
+  offentlig 'Offentlig sektor'
+  selvstendig 'Selvstendig næringsdrivende'
+  usikker 'Vet ikke/usikker'.
+
+*sm-aap.
+VARIABLE LABELS sm-aap 'Er du sykemeldt eller mottar du arbeidsavklaringspenger?'.
+VALUE LABELS sm-aap
+  nei 'Nei, jeg er ikke sykemeldt og mottar ikke arbeidsavklaringspenger'
+  delvis-sm 'Ja, delvis sykemeldt'
+  fullt-sm 'Ja, fullt sykemeldt'
+  aap 'Mottar arbeidsavklaringspenger'.
+
+*oppfolgingsplan.
+VARIABLE LABELS oppfolgingsplan 'Har du utarbeidet oppfølgingsplan sammen med din arbeidsgiver?'.
+VALUE LABELS oppfolgingsplan
+  ja 'Ja'
+  nei 'Nei'.
+
+*aktivitetsplan.
+VARIABLE LABELS aktivitetsplan 'Har du utarbeidet aktivitetsplan sammen med din NAV-veileder?'.
+VALUE LABELS aktivitetsplan
+  ja 'Ja'
+  nei 'Nei'.
+
+*aarsak-sm-app.
+VARIABLE LABELS aarsak-sm-app 'Hva er årsak til at du er sykemeldt/mottar arbeidsavklaringspenger?'.
+
+*samarbeid-nav.
+VARIABLE LABELS samarbeid-nav 'Hvordan opplever du samarbeidet med NAV?'.
+VALUE LABELS samarbeid-nav
+  v-bra 'Veldig bra'
+  bra 'Bra'
+  middels 'Middels'
+  daarlig 'Dårlig'
+  v-daarlig 'Veldig dårlig'
+  ikke-kontakt 'Jeg har ikke kontakt med NAV'.
+
+*tidl-tiltak.
+VARIABLE LABELS tidl-tiltak 'Har du tidligere deltatt i tiltak for å avklare din arbeidsevne?'.
+VALUE LABELS tidl-tiltak
+  ja 'Ja'
+  nei 'Nei'.
+
+*ytelser_1.
+VARIABLE LABELS ytelser_1 'Mottar du noen av disse ytelsene? (kan velge flere)'.
+VALUE LABELS ytelser_1
+  sykepenger 'Sykepenger (fra arbeidsgiver eller NAV)'
+  aap 'Arbeidsavklaringspenger (AAP)'
+  ufor 'Uføretrygd'
+  dagpenger 'Dagpenger ved arbeidsledighet'
+  sosialhjelp 'Sosialstønad/sosialhjelp'
+  tult 'Tidsubegrenset lønnstilskudd (TULT)'
+  nei 'Nei, jeg mottar ingen av disse ytelsene'
+  usikker 'Vet ikke/usikker'.
+
+*ytelser_2.
+VARIABLE LABELS ytelser_2 'Mottar du noen av disse ytelsene? (kan velge flere)'.
+VALUE LABELS ytelser_2
+  sykepenger 'Sykepenger (fra arbeidsgiver eller NAV)'
+  aap 'Arbeidsavklaringspenger (AAP)'
+  ufor 'Uføretrygd'
+  dagpenger 'Dagpenger ved arbeidsledighet'
+  sosialhjelp 'Sosialstønad/sosialhjelp'
+  tult 'Tidsubegrenset lønnstilskudd (TULT)'
+  nei 'Nei, jeg mottar ingen av disse ytelsene'
+  usikker 'Vet ikke/usikker'.
+
+*ytelser_3.
+VARIABLE LABELS ytelser_3 'Mottar du noen av disse ytelsene? (kan velge flere)'.
+VALUE LABELS ytelser_3
+  sykepenger 'Sykepenger (fra arbeidsgiver eller NAV)'
+  aap 'Arbeidsavklaringspenger (AAP)'
+  ufor 'Uføretrygd'
+  dagpenger 'Dagpenger ved arbeidsledighet'
+  sosialhjelp 'Sosialstønad/sosialhjelp'
+  tult 'Tidsubegrenset lønnstilskudd (TULT)'
+  nei 'Nei, jeg mottar ingen av disse ytelsene'
+  usikker 'Vet ikke/usikker'.
+
+*ytelser_4.
+VARIABLE LABELS ytelser_4 'Mottar du noen av disse ytelsene? (kan velge flere)'.
+VALUE LABELS ytelser_4
+  sykepenger 'Sykepenger (fra arbeidsgiver eller NAV)'
+  aap 'Arbeidsavklaringspenger (AAP)'
+  ufor 'Uføretrygd'
+  dagpenger 'Dagpenger ved arbeidsledighet'
+  sosialhjelp 'Sosialstønad/sosialhjelp'
+  tult 'Tidsubegrenset lønnstilskudd (TULT)'
+  nei 'Nei, jeg mottar ingen av disse ytelsene'
+  usikker 'Vet ikke/usikker'.
+
+*ytelser_5.
+VARIABLE LABELS ytelser_5 'Mottar du noen av disse ytelsene? (kan velge flere)'.
+VALUE LABELS ytelser_5
+  sykepenger 'Sykepenger (fra arbeidsgiver eller NAV)'
+  aap 'Arbeidsavklaringspenger (AAP)'
+  ufor 'Uføretrygd'
+  dagpenger 'Dagpenger ved arbeidsledighet'
+  sosialhjelp 'Sosialstønad/sosialhjelp'
+  tult 'Tidsubegrenset lønnstilskudd (TULT)'
+  nei 'Nei, jeg mottar ingen av disse ytelsene'
+  usikker 'Vet ikke/usikker'.
+
+*ytelser_6.
+VARIABLE LABELS ytelser_6 'Mottar du noen av disse ytelsene? (kan velge flere)'.
+VALUE LABELS ytelser_6
+  sykepenger 'Sykepenger (fra arbeidsgiver eller NAV)'
+  aap 'Arbeidsavklaringspenger (AAP)'
+  ufor 'Uføretrygd'
+  dagpenger 'Dagpenger ved arbeidsledighet'
+  sosialhjelp 'Sosialstønad/sosialhjelp'
+  tult 'Tidsubegrenset lønnstilskudd (TULT)'
+  nei 'Nei, jeg mottar ingen av disse ytelsene'
+  usikker 'Vet ikke/usikker'.
+
+*ytelser_7.
+VARIABLE LABELS ytelser_7 'Mottar du noen av disse ytelsene? (kan velge flere)'.
+VALUE LABELS ytelser_7
+  sykepenger 'Sykepenger (fra arbeidsgiver eller NAV)'
+  aap 'Arbeidsavklaringspenger (AAP)'
+  ufor 'Uføretrygd'
+  dagpenger 'Dagpenger ved arbeidsledighet'
+  sosialhjelp 'Sosialstønad/sosialhjelp'
+  tult 'Tidsubegrenset lønnstilskudd (TULT)'
+  nei 'Nei, jeg mottar ingen av disse ytelsene'
+  usikker 'Vet ikke/usikker'.
+
+*ytelser_8.
+VARIABLE LABELS ytelser_8 'Mottar du noen av disse ytelsene? (kan velge flere)'.
+VALUE LABELS ytelser_8
+  sykepenger 'Sykepenger (fra arbeidsgiver eller NAV)'
+  aap 'Arbeidsavklaringspenger (AAP)'
+  ufor 'Uføretrygd'
+  dagpenger 'Dagpenger ved arbeidsledighet'
+  sosialhjelp 'Sosialstønad/sosialhjelp'
+  tult 'Tidsubegrenset lønnstilskudd (TULT)'
+  nei 'Nei, jeg mottar ingen av disse ytelsene'
+  usikker 'Vet ikke/usikker'.
+
+*varighet-sm-siste-ar.
+VARIABLE LABELS varighet-sm-siste-ar 'Hvor lenge har du tilsammen vært helt eller delvis sykemeldt de siste 12 månedene?'.
+VALUE LABELS varighet-sm-siste-ar
+  0 'Jeg har ikke vært sykemeldt siste år'
+  mindre-to-uker 'Mindre enn 2 uker'
+  2-8-uker 'Mellom 2 og 8 uker'
+  9-uker-6-mnd 'Mellom 9 uker og 6 måneder'
+  7-12-mnd 'Mellom 7 og 12 måneder'
+  usikker 'Vet ikke/usikker'.
+
+*okonomi.
+VARIABLE LABELS okonomi 'Er du bekymret for økonomien din?'.
+VALUE LABELS okonomi
+  god 'Ikke bekymret'
+  middels 'Litt bekymret'
+  daarlig 'Ganske bekymret'
+  sv-daarlig 'Veldig bekymret'.
+
+*sokt-ufor.
+VARIABLE LABELS sokt-ufor 'Har du søkt eller planlegger du å søke om uføretrygd?'.
+VALUE LABELS sokt-ufor
+  ja 'Ja'
+  nei 'Nei'.
+
+*erstatningssak.
+VARIABLE LABELS erstatningssak 'Har du en uavklart eller pågående forsikrings/erstatningssak knyttet til plagene dine?'.
+VALUE LABELS erstatningssak
+  ja 'Ja'
+  nei 'Nei'.
+
+*arbeidsevne-generelt.
+VARIABLE LABELS arbeidsevne-generelt 'Du skal nå forsøke å vurdere din nåværende arbeidsevne sammenliknet med da den var på sitt beste. Vi går ut i fra at din arbeidsevne på sitt beste verdsettes med 10 poeng. Hvor mange poeng vil du gi til din nåværende arbeidsevne?'.
+VALUE LABELS arbeidsevne-generelt
+  0 '0'
+  1 '1'
+  2 '2'
+  3 '3'
+  4 '4'
+  5 '5'
+  6 '6'
+  7 '7'
+  8 '8'
+  9 '9'
+  10 '10'.
+
+*arbeidsevne-fysiske-krav.
+VARIABLE LABELS arbeidsevne-fysiske-krav 'Hvordan vurderer du din egen arbeidsevne sett opp mot fysisk krav i jobben (gå, stå, løfte etc)?'.
+VALUE LABELS arbeidsevne-fysiske-krav
+  meget-darlig 'Meget dårlig'
+  ganske-darlig 'Ganske dårlig'
+  middels 'Middels'
+  ganske-god 'Ganske god'
+  meget-god 'Meget god'.
+
+*arbeidsevne-mentale-krav.
+VARIABLE LABELS arbeidsevne-mentale-krav 'Hvordan vurderer du din egen arbeidsevne sett opp mot mentale krav i jobben (konsentrasjon, planlegging etc)?'.
+VALUE LABELS arbeidsevne-mentale-krav
+  meget-darlig 'Meget dårlig'
+  ganske-darlig 'Ganske dårlig'
+  middels 'Middels'
+  ganske-god 'Ganske god'
+  meget-god 'Meget god'.
+
+*estimat-rtw.
+VARIABLE LABELS estimat-rtw 'Hvor lang tid tror du at det tar før du er tilbake i arbeid?'.
+VALUE LABELS estimat-rtw
+  under-2-uker 'Umiddelbart eller i løpet av 2 uker'
+  innen-1-mnd 'Innen 1 måned'
+  innen-2-mnd 'Innen 2 måneder'
+  innen-3-mnd 'Innen 3 måneder'
+  innen-6-mnd 'Innen 6 måneder'
+  innen-1-ar 'Innen 1 år'
+  mer-enn-1-ar 'Mer enn 1 år'
+  aldri 'Aldri'
+  er-i-jobb 'Jeg er i jobb'.
+
+*onsket-jobb.
+VARIABLE LABELS onsket-jobb 'Hvilken jobb håper du å komme tilbake til?'.
+VALUE LABELS onsket-jobb
+  sist-jobb 'Jobben jeg har i dag/jobben jeg hadde sist'
+  ny-jobb-samme-yrke 'Ny jobb innen samme yrke'
+  ny-jobb-annet-yrke 'Ny jobb innen annet yrke'.
+
+*mosjon.
+VARIABLE LABELS mosjon 'Tenk på de siste to ukene. Hvor ofte mosjonerte du i minst 30 minutter sammenhengende?'.
+VALUE LABELS mosjon
+  en-eller-sjeldnere 'Sjeldnere enn 1 gang per uke eller aldri'
+  en-til-to '1 til 2 ganger per uke'
+  tre-eller-mer '3 ganger per uke eller mer'.
+
+*hoyde.
+VARIABLE LABELS hoyde 'Høyde (cm)'.
+
+*vekt.
+VARIABLE LABELS vekt 'Vekt (kg)'.
+
+*kosthold.
+VARIABLE LABELS kosthold 'Hvordan vurderer du ditt eget kosthold?'.
+VALUE LABELS kosthold
+  veldig-godt 'Veldig godt'
+  godt 'Godt'
+  daarlig 'Dårlig'
+  veldig-daarlig 'Veldig dårlig'.
+
+*maaltidsrytme.
+VARIABLE LABELS maaltidsrytme 'Hvordan vurderer du din måltidsrytme?'.
+VALUE LABELS maaltidsrytme
+  veldig-god 'Veldig god'
+  god 'God'
+  daarlig 'Dårlig'
+  veldig-daarlig 'Veldig dårlig'.
+
+*vurderer-endre_1.
+VARIABLE LABELS vurderer-endre_1 'Vurderer du å endre på ditt kosthold eller din måltidsrytme?'.
+VALUE LABELS vurderer-endre_1
+  kosthold 'Jeg vurderer å endre på kosthold'
+  maaltidsrytme 'Jeg vurderer å endre på måltidsrytme'.
+
+*vurderer-endre_2.
+VARIABLE LABELS vurderer-endre_2 'Vurderer du å endre på ditt kosthold eller din måltidsrytme?'.
+VALUE LABELS vurderer-endre_2
+  kosthold 'Jeg vurderer å endre på kosthold'
+  maaltidsrytme 'Jeg vurderer å endre på måltidsrytme'.
+
+*hscl-skremt-uten-grunn.
+VARIABLE LABELS hscl-skremt-uten-grunn 'Plutselig skremt uten grunn'.
+VALUE LABELS hscl-skremt-uten-grunn
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-engstelig.
+VARIABLE LABELS hscl-engstelig 'Føler deg engstelig'.
+VALUE LABELS hscl-engstelig
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-svimmel.
+VARIABLE LABELS hscl-svimmel 'Føler deg svimmel eller kraftløs'.
+VALUE LABELS hscl-svimmel
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-nervoes.
+VARIABLE LABELS hscl-nervoes 'Nervøs eller urolig'.
+VALUE LABELS hscl-nervoes
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-hjertebank.
+VARIABLE LABELS hscl-hjertebank 'Hjertebank'.
+VALUE LABELS hscl-hjertebank
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-skjelving.
+VARIABLE LABELS hscl-skjelving 'Skjelving'.
+VALUE LABELS hscl-skjelving
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-anspent.
+VARIABLE LABELS hscl-anspent 'Føler deg anspent eller opphisset'.
+VALUE LABELS hscl-anspent
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-hodepine.
+VARIABLE LABELS hscl-hodepine 'Hodepine'.
+VALUE LABELS hscl-hodepine
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-panikk.
+VARIABLE LABELS hscl-panikk 'Anfall av redsel eller panikk'.
+VALUE LABELS hscl-panikk
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-urolig.
+VARIABLE LABELS hscl-urolig 'Rastløshet, kan ikke sitte rolig'.
+VALUE LABELS hscl-urolig
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-slapp.
+VARIABLE LABELS hscl-slapp 'Føler deg slapp og uten energi'.
+VALUE LABELS hscl-slapp
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-anklager.
+VARIABLE LABELS hscl-anklager 'Anklager deg selv for ting'.
+VALUE LABELS hscl-anklager
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-graat.
+VARIABLE LABELS hscl-graat 'Har lett for å gråte'.
+VALUE LABELS hscl-graat
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-tap-seksuell.
+VARIABLE LABELS hscl-tap-seksuell 'Tap av seksuell interesse/opplevelse'.
+VALUE LABELS hscl-tap-seksuell
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-lav-apetitt.
+VARIABLE LABELS hscl-lav-apetitt 'Dårlig appetitt'.
+VALUE LABELS hscl-lav-apetitt
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-sovn.
+VARIABLE LABELS hscl-sovn 'Vanskelig for å sove'.
+VALUE LABELS hscl-sovn
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-haaploshet.
+VARIABLE LABELS hscl-haaploshet 'Følelse av håpløshet med tanke på fremtiden'.
+VALUE LABELS hscl-haaploshet
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-nedfor.
+VARIABLE LABELS hscl-nedfor 'Føler deg nedfor'.
+VALUE LABELS hscl-nedfor
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-ensom.
+VARIABLE LABELS hscl-ensom 'Føler deg ensom'.
+VALUE LABELS hscl-ensom
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-selvmordstanker.
+VARIABLE LABELS hscl-selvmordstanker 'Har tanker om å ta ditt eget liv'.
+VALUE LABELS hscl-selvmordstanker
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-fanget.
+VARIABLE LABELS hscl-fanget 'Følelse av å være fanget'.
+VALUE LABELS hscl-fanget
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-bekymringer.
+VARIABLE LABELS hscl-bekymringer 'Bekymrer deg for mye'.
+VALUE LABELS hscl-bekymringer
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-interessetap.
+VARIABLE LABELS hscl-interessetap 'Føler ikke interesse for noe'.
+VALUE LABELS hscl-interessetap
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-anstrengelse.
+VARIABLE LABELS hscl-anstrengelse 'Føler at alt krever stor anstrengelse'.
+VALUE LABELS hscl-anstrengelse
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*hscl-verdiloshet.
+VARIABLE LABELS hscl-verdiloshet 'Føler at du ikke er noe verd'.
+VALUE LABELS hscl-verdiloshet
+  ikke-i-det-hele-tatt 'Ikke i det hele tatt'
+  litt 'Litt'
+  en-god-del 'En god del'
+  svaert-mye 'Svært mye'.
+
+*sovnproblemer.
+VARIABLE LABELS sovnproblemer 'Opplever du problemer med å få sove, sove sammenhengende eller våkne for tidlig?'.
+VALUE LABELS sovnproblemer
+  ja 'Ja'
+  nei 'Nei'.
+
+*isi-innsov.
+VARIABLE LABELS isi-innsov 'Problemer med å sovne'.
+VALUE LABELS isi-innsov
+  ingen 'Ingen'
+  milde 'Milde'
+  moderate 'Moderate'
+  alvorlige 'Alvorlige'
+  veldig-alvorlige 'Veldig alvorlige'.
+
+*isi-oppvaak.
+VARIABLE LABELS isi-oppvaak 'Problemer med at du våkner opp i løpet av natten'.
+VALUE LABELS isi-oppvaak
+  ingen 'Ingen'
+  milde 'Milde'
+  moderate 'Moderate'
+  alvorlige 'Alvorlige'
+  veldig-alvorlige 'Veldig alvorlige'.
+
+*isi-for-tidlig-oppvaak.
+VARIABLE LABELS isi-for-tidlig-oppvaak 'Våkner for tidlig'.
+VALUE LABELS isi-for-tidlig-oppvaak
+  ingen 'Ingen'
+  milde 'Milde'
+  moderate 'Moderate'
+  alvorlige 'Alvorlige'
+  veldig-alvorlige 'Veldig alvorlige'.
+
+*isi-tilfreds.
+VARIABLE LABELS isi-tilfreds 'Hvor tilfreds/utilfreds er du med ditt nåværende søvnmønster?'.
+VALUE LABELS isi-tilfreds
+  veldig-tilfreds 'Veldig tilfreds'
+  tilfreds 'Tilfreds'
+  verken 'Verken tilfreds eller utilfreds'
+  utilfreds 'Utilfreds'
+  veldig-utilfreds 'Veldig utilfreds'.
+
+*isi-fungering.
+VARIABLE LABELS isi-fungering 'I hvor stor grad synes du søvnproblemene dine REDUSERER funksjonsevnen din til daglig ?'.
+VALUE LABELS isi-fungering
+  ingen 'Ikke i det hele tatt'
+  litt 'Litt'
+  noe 'Noe'
+  ganske-mye 'Ganske mye'
+  veldig-mye 'Veldig mye'.
+
+*isi-merkbart.
+VARIABLE LABELS isi-merkbart 'Hvor MERKBARE tror du at søvnproblemene dine er for andre, sett ut fra din reduserte livskvalitet?'.
+VALUE LABELS isi-merkbart
+  ingen 'Ikke merkbare i det hele tatt'
+  litt 'Litt merkbare'
+  noe 'Noe merkbare'
+  ganske 'Ganske merkbare'
+  veldig 'Veldig merkbare'.
+
+*isi-bekymret.
+VARIABLE LABELS isi-bekymret 'I hvor stor grad BEKYMRER/plager dine søvnproblemer deg?'.
+VALUE LABELS isi-bekymret
+  ingen 'Ikke i det hele tatt'
+  litt 'Litt'
+  noe 'Noe'
+  mye 'Mye'
+  veldig-mye 'Veldig mye'.
+
+*tilbakemeldinger.
+VARIABLE LABELS tilbakemeldinger 'Mine tilbakemeldinger'.
+
+EXECUTE.
