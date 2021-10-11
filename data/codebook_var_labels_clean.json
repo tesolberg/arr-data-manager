@@ -1,12 +1,12 @@
 {
    "vis-info-retting-sletting_1": "",
-   "fnr": "Fødselsnummer",
+   "fnr": "",
    "morsmaal": "",
-   "morsmaal-tekst": "Morsmål",
-   "sprakvansker": "Språkvansker",
-   "sivilstatus": "Sivilstatus",
-   "barn": "Barn",
-   "antall-i-husholdning": "Personer i husholdningen i tillegg til pasienten",
+   "morsmaal-tekst": "",
+   "sprakvansker": "",
+   "sivilstatus": "",
+   "barn": "",
+   "antall-i-husholdning": "",
    "plager-verste": "",
    "plager-beste": "",
    "plager-gjsn": "",
@@ -136,7 +136,7 @@
    "isi-fungering": "",
    "isi-merkbart": "",
    "isi-bekymret": "",
-   "viktigste-problem": "Viktigste problem å få hjelp med",
+   "viktigste-problem": "",
    "type-hjelp": "",
    "tilbakemeldinger": ""
 }

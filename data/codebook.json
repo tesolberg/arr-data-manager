@@ -1,18 +1,18 @@
 {
   "vis-info-retting-sletting_1": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ja": "Vis informasjon om lagring av dine svar og rett til innsyn, kopi, retting og sletting"
     },
     "var_text": "null"
   },
   "fnr": {
-    "var_text_report": "empty",
+    "var_text_report": "Fødselsnummer",
     "responses": {},
     "var_text": "Hva er ditt fødselsnummer? (11 siffer)"
   },
   "morsmaal": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "norsk": "Norsk",
       "annet": "Annet"
@@ -20,12 +20,12 @@
     "var_text": "Hva er ditt morsmål?"
   },
   "morsmaal-tekst": {
-    "var_text_report": "empty",
+    "var_text_report": "Morsmål",
     "responses": {},
     "var_text": "Morsmål:"
   },
   "sprakvansker": {
-    "var_text_report": "empty",
+    "var_text_report": "Språkvansker",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -33,7 +33,7 @@
     "var_text": "Har du lesevansker, skrivevansker eller vansker med å forstå norsk?"
   },
   "sivilstatus": {
-    "var_text_report": "empty",
+    "var_text_report": "Sivilstatus",
     "responses": {
       "gift-partner": "Gift/samboer/registrert partner",
       "enslig": "Enslig"
@@ -41,32 +41,32 @@
     "var_text": "Sivilstatus"
   },
   "barn": {
-    "var_text_report": "empty",
+    "var_text_report": "Barn",
     "responses": {},
     "var_text": "Hvor mange barn har du?"
   },
   "antall-i-husholdning": {
-    "var_text_report": "empty",
+    "var_text_report": "Personer i husholdningen i tillegg til pasienten",
     "responses": {},
     "var_text": "Hvor mange personer (i tillegg til deg) bor hos deg nå/er i husholdningen?"
   },
   "plager-verste": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {},
     "var_text": "Dine smerter på det verste den siste uken."
   },
   "plager-beste": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {},
     "var_text": "Dine smerter på det beste den siste uken."
   },
   "plager-gjsn": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {},
     "var_text": "Gjennomsnittet den siste uken."
   },
   "plager-mer-enn-et-aar": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -74,17 +74,17 @@
     "var_text": "Har du hatt smertene i ett år eller mer?"
   },
   "plager-mnd": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {},
     "var_text": "Hvor mange måneder har du hatt smertene?"
   },
   "plager-aar": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {},
     "var_text": "Hvor mange år har du hatt smertene?"
   },
   "fibro-utmattelse": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ingen": "0",
       "lett": "1",
@@ -94,7 +94,7 @@
     "var_text": "Utmattelse"
   },
   "fibro-kognisjon": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ingen": "0",
       "lett": "1",
@@ -104,7 +104,7 @@
     "var_text": "Problemer med å tenke og huske"
   },
   "fibro-trett": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ingen": "0",
       "lett": "1",
@@ -114,7 +114,7 @@
     "var_text": "Våkner opp trett (ikke uthvilt)"
   },
   "fibro-mage": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -122,7 +122,7 @@
     "var_text": "Smerte/krampe nedre del av magen"
   },
   "fibro-depresjon": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -130,7 +130,7 @@
     "var_text": "Depresjon"
   },
   "fibro-hodepine": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -138,7 +138,7 @@
     "var_text": "Hodepine"
   },
   "fibro-smerteomraader_1": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -164,7 +164,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_2": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -190,7 +190,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_3": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -216,7 +216,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_4": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -242,7 +242,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_5": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -268,7 +268,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_6": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -294,7 +294,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_7": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -320,7 +320,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_8": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -346,7 +346,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_9": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -372,7 +372,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_10": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -398,7 +398,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_11": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -424,7 +424,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_12": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -450,7 +450,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_13": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -476,7 +476,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_14": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -502,7 +502,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_15": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -528,7 +528,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_16": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -554,7 +554,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_17": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -580,7 +580,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_18": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -606,7 +606,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_19": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -632,7 +632,7 @@
     "var_text": "null"
   },
   "fibro-smerteomraader_20": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -658,7 +658,7 @@
     "var_text": "null"
   },
   "plager-redd-skade": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "stemmer": "Stemmer",
       "stemmer-ikke": "Stemmer ikke"
@@ -666,7 +666,7 @@
     "var_text": "Jeg er redd for at jeg kan skade meg ved et uhell"
   },
   "plager-farlig-aktiv": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "stemmer": "Stemmer",
       "stemmer-ikke": "Stemmer ikke"
@@ -674,7 +674,7 @@
     "var_text": "Det kan være skadelig for en person med min tilstand å være fysisk aktiv"
   },
   "plager-farlig-sykdom": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "stemmer": "Stemmer",
       "stemmer-ikke": "Stemmer ikke"
@@ -682,7 +682,7 @@
     "var_text": "Smertene jeg kjenner må bety at noe farlig skjer i kroppen min"
   },
   "plager-smerter-betyr-skader": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "stemmer": "Stemmer",
       "stemmer-ikke": "Stemmer ikke"
@@ -690,7 +690,7 @@
     "var_text": "Smerter betyr alltid at kroppen er skadet"
   },
   "plager-unngaaelse": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "stemmer": "Stemmer",
       "stemmer-ikke": "Stemmer ikke"
@@ -698,7 +698,7 @@
     "var_text": "Jeg forsøker å unngå bevegelser som gjør vondt"
   },
   "plager-tro-paa-bedring": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "stemmer": "Stemmer",
       "stemmer-ikke": "Stemmer ikke"
@@ -706,12 +706,12 @@
     "var_text": "Jeg har tro på bedring av plagene mine"
   },
   "aarsak": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {},
     "var_text": "Hva tror du er årsak til plagene dine?"
   },
   "tidligere-behandling_1": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "fysio-trening": "Trening hos fysioterapeut",
       "fysio-passiv": "Passiv behandling hos fysioterapeut (massasje, varmepakning el)",
@@ -729,7 +729,7 @@
     "var_text": "Har du forsøkt noen annen behandling før du ble henvist hit?"
   },
   "tidligere-behandling_2": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "fysio-trening": "Trening hos fysioterapeut",
       "fysio-passiv": "Passiv behandling hos fysioterapeut (massasje, varmepakning el)",
@@ -747,7 +747,7 @@
     "var_text": "Har du forsøkt noen annen behandling før du ble henvist hit?"
   },
   "tidligere-behandling_3": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "fysio-trening": "Trening hos fysioterapeut",
       "fysio-passiv": "Passiv behandling hos fysioterapeut (massasje, varmepakning el)",
@@ -765,7 +765,7 @@
     "var_text": "Har du forsøkt noen annen behandling før du ble henvist hit?"
   },
   "tidligere-behandling_4": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "fysio-trening": "Trening hos fysioterapeut",
       "fysio-passiv": "Passiv behandling hos fysioterapeut (massasje, varmepakning el)",
@@ -783,7 +783,7 @@
     "var_text": "Har du forsøkt noen annen behandling før du ble henvist hit?"
   },
   "tidligere-behandling_5": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "fysio-trening": "Trening hos fysioterapeut",
       "fysio-passiv": "Passiv behandling hos fysioterapeut (massasje, varmepakning el)",
@@ -801,7 +801,7 @@
     "var_text": "Har du forsøkt noen annen behandling før du ble henvist hit?"
   },
   "tidligere-behandling_6": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "fysio-trening": "Trening hos fysioterapeut",
       "fysio-passiv": "Passiv behandling hos fysioterapeut (massasje, varmepakning el)",
@@ -819,7 +819,7 @@
     "var_text": "Har du forsøkt noen annen behandling før du ble henvist hit?"
   },
   "tidligere-behandling_7": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "fysio-trening": "Trening hos fysioterapeut",
       "fysio-passiv": "Passiv behandling hos fysioterapeut (massasje, varmepakning el)",
@@ -837,7 +837,7 @@
     "var_text": "Har du forsøkt noen annen behandling før du ble henvist hit?"
   },
   "tidligere-behandling_8": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "fysio-trening": "Trening hos fysioterapeut",
       "fysio-passiv": "Passiv behandling hos fysioterapeut (massasje, varmepakning el)",
@@ -855,7 +855,7 @@
     "var_text": "Har du forsøkt noen annen behandling før du ble henvist hit?"
   },
   "tidligere-behandling_9": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "fysio-trening": "Trening hos fysioterapeut",
       "fysio-passiv": "Passiv behandling hos fysioterapeut (massasje, varmepakning el)",
@@ -873,7 +873,7 @@
     "var_text": "Har du forsøkt noen annen behandling før du ble henvist hit?"
   },
   "tidligere-behandling_10": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "fysio-trening": "Trening hos fysioterapeut",
       "fysio-passiv": "Passiv behandling hos fysioterapeut (massasje, varmepakning el)",
@@ -891,7 +891,7 @@
     "var_text": "Har du forsøkt noen annen behandling før du ble henvist hit?"
   },
   "tidligere-behandling_11": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "fysio-trening": "Trening hos fysioterapeut",
       "fysio-passiv": "Passiv behandling hos fysioterapeut (massasje, varmepakning el)",
@@ -909,7 +909,7 @@
     "var_text": "Har du forsøkt noen annen behandling før du ble henvist hit?"
   },
   "tidligere-behandling_12": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "fysio-trening": "Trening hos fysioterapeut",
       "fysio-passiv": "Passiv behandling hos fysioterapeut (massasje, varmepakning el)",
@@ -927,12 +927,12 @@
     "var_text": "Har du forsøkt noen annen behandling før du ble henvist hit?"
   },
   "annen-tidligere-beh": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {},
     "var_text": "Beskriv annen tidligere behandling"
   },
   "utdannelse": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-grunnskole": "Ikke fullført 7 - 10-årig grunnskole/folkeskole",
       "grunnskole": "7 - 10-årig grunnskole/folkeskole",
@@ -944,7 +944,7 @@
     "var_text": "Hva er den høyeste utdannelsen du har fullført?"
   },
   "tid-i-arbeidslivet": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "1": "1 år eller mindre",
       "2-5": "2 - 5 år",
@@ -955,7 +955,7 @@
     "var_text": "Hvor mange år har du vært i arbeidslivet tilsammen?"
   },
   "yrke": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "student": "Student eller skoleelev",
       "laerling": "Lærling eller på arbeidsopplæring",
@@ -974,12 +974,12 @@
     "var_text": "Hva er nåværende yrke, eller hva var ditt siste hovedyrke?"
   },
   "yrke-fritekst": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {},
     "var_text": "Hva jobber du som?"
   },
   "arbeidsforhold": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -987,7 +987,7 @@
     "var_text": "Har du for tiden et arbeidsforhold?"
   },
   "stillingsprosent": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "1-25": "1 - 25%",
       "26-50": "26 - 50%",
@@ -1000,7 +1000,7 @@
     "var_text": "Hvor stor stillingsprosent har du i jobben din?"
   },
   "i-jobb-na": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "fullt": "Jeg jobber fullt eller mer enn stillingsprosenten jeg har",
       "redusert": "Jeg jobber en redusert del av den stillingsprosenten jeg har",
@@ -1009,7 +1009,7 @@
     "var_text": "Hvor mye jobber du i den stillingsprosenten du har?"
   },
   "sektor_1": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "privat": "Privat sektor",
       "offentlig": "Offentlig sektor",
@@ -1019,7 +1019,7 @@
     "var_text": "Hvilken type virksomhet(er) arbeider du i?"
   },
   "sektor_2": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "privat": "Privat sektor",
       "offentlig": "Offentlig sektor",
@@ -1029,7 +1029,7 @@
     "var_text": "Hvilken type virksomhet(er) arbeider du i?"
   },
   "sektor_3": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "privat": "Privat sektor",
       "offentlig": "Offentlig sektor",
@@ -1039,7 +1039,7 @@
     "var_text": "Hvilken type virksomhet(er) arbeider du i?"
   },
   "sektor_4": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "privat": "Privat sektor",
       "offentlig": "Offentlig sektor",
@@ -1049,7 +1049,7 @@
     "var_text": "Hvilken type virksomhet(er) arbeider du i?"
   },
   "sm-aap": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "nei": "Nei, jeg er ikke sykemeldt og mottar ikke arbeidsavklaringspenger",
       "delvis-sm": "Ja, delvis sykemeldt",
@@ -1059,7 +1059,7 @@
     "var_text": "Er du sykemeldt eller mottar du arbeidsavklaringspenger?"
   },
   "oppfolgingsplan": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -1067,7 +1067,7 @@
     "var_text": "Har du utarbeidet oppfølgingsplan sammen med din arbeidsgiver?"
   },
   "aktivitetsplan": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -1075,12 +1075,12 @@
     "var_text": "Har du utarbeidet aktivitetsplan sammen med din NAV-veileder?"
   },
   "aarsak-sm-app": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {},
     "var_text": "Hva er årsak til at du er sykemeldt/mottar arbeidsavklaringspenger?"
   },
   "samarbeid-nav": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "v-bra": "Veldig bra",
       "bra": "Bra",
@@ -1092,7 +1092,7 @@
     "var_text": "Hvordan opplever du samarbeidet med NAV?"
   },
   "tidl-tiltak": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -1100,7 +1100,7 @@
     "var_text": "Har du tidligere deltatt i tiltak for å avklare din arbeidsevne?"
   },
   "rapport-avklaring": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -1108,7 +1108,7 @@
     "var_text": "Foreligger det rapport(er) derfra?"
   },
   "ytelser_1": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -1122,7 +1122,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "ytelser_2": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -1136,7 +1136,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "ytelser_3": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -1150,7 +1150,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "ytelser_4": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -1164,7 +1164,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "ytelser_5": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -1178,7 +1178,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "ytelser_6": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -1192,7 +1192,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "ytelser_7": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -1206,7 +1206,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "ytelser_8": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -1220,7 +1220,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "varighet-sm-siste-ar": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "0": "Jeg har ikke vært sykemeldt siste år",
       "mindre-to-uker": "Mindre enn 2 uker",
@@ -1232,7 +1232,7 @@
     "var_text": "Hvor lenge har du tilsammen vært helt eller delvis sykemeldt de siste 12 månedene?"
   },
   "okonomi": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "god": "Ikke bekymret",
       "middels": "Litt bekymret",
@@ -1242,7 +1242,7 @@
     "var_text": "Er du bekymret for økonomien din?"
   },
   "sokt-ufor": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -1250,7 +1250,7 @@
     "var_text": "Har du søkt eller planlegger du å søke om uføretrygd?"
   },
   "erstatningssak": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -1258,7 +1258,7 @@
     "var_text": "Har du en uavklart eller pågående forsikrings/erstatningssak knyttet til plagene dine?"
   },
   "arbeidsevne-generelt": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "0": "0",
       "1": "1",
@@ -1275,7 +1275,7 @@
     "var_text": "Du skal nå forsøke å vurdere din nåværende arbeidsevne sammenliknet med da den var på sitt beste. Vi går ut i fra at din arbeidsevne på sitt beste verdsettes med 10 poeng. Hvor mange poeng vil du gi til din nåværende arbeidsevne?"
   },
   "arbeidsevne-fysiske-krav": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "meget-darlig": "Meget dårlig",
       "ganske-darlig": "Ganske dårlig",
@@ -1286,7 +1286,7 @@
     "var_text": "Hvordan vurderer du din egen arbeidsevne sett opp mot fysisk krav i jobben (gå, stå, løfte etc)?"
   },
   "arbeidsevne-mentale-krav": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "meget-darlig": "Meget dårlig",
       "ganske-darlig": "Ganske dårlig",
@@ -1297,7 +1297,7 @@
     "var_text": "Hvordan vurderer du din egen arbeidsevne sett opp mot mentale krav i jobben (konsentrasjon, planlegging etc)?"
   },
   "estimat-rtw": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "under-2-uker": "Umiddelbart eller i løpet av 2 uker",
       "innen-1-mnd": "Innen 1 måned",
@@ -1312,12 +1312,12 @@
     "var_text": "Hvor lang tid tror du at det tar før du er tilbake i arbeid?"
   },
   "endringer-jobbsit-rtw": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {},
     "var_text": "Hvis du ser bort i fra endring i smertesituasjonen, hvilke endringer i arbeidssituasjonen skal til for at du med dine plager gradvis kan gå tilbake i jobb?"
   },
   "onsket-jobb": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "sist-jobb": "Jobben jeg har i dag/jobben jeg hadde sist",
       "ny-jobb-samme-yrke": "Ny jobb innen samme yrke",
@@ -1326,7 +1326,7 @@
     "var_text": "Hvilken jobb håper du å komme tilbake til?"
   },
   "mosjon": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "en-eller-sjeldnere": "Sjeldnere enn 1 gang per uke eller aldri",
       "en-til-to": "1 til 2 ganger per uke",
@@ -1336,17 +1336,17 @@
     "var_text": "Tenk på de siste to ukene. Hvor ofte mosjonerte du i minst 30 minutter sammenhengende?"
   },
   "hoyde": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {},
     "var_text": "Høyde (cm)"
   },
   "vekt": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {},
     "var_text": "Vekt (kg)"
   },
   "kosthold": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "veldig-godt": "Veldig godt",
       "godt": "Godt",
@@ -1356,7 +1356,7 @@
     "var_text": "Hvordan vurderer du ditt eget kosthold?"
   },
   "maaltidsrytme": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "veldig-god": "Veldig god",
       "god": "God",
@@ -1366,7 +1366,7 @@
     "var_text": "Hvordan vurderer du din måltidsrytme?"
   },
   "vurderer-endre_1": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "kosthold": "Jeg vurderer å endre på kosthold",
       "maaltidsrytme": "Jeg vurderer å endre på måltidsrytme"
@@ -1374,7 +1374,7 @@
     "var_text": "Vurderer du å endre på ditt kosthold eller din måltidsrytme?"
   },
   "vurderer-endre_2": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "kosthold": "Jeg vurderer å endre på kosthold",
       "maaltidsrytme": "Jeg vurderer å endre på måltidsrytme"
@@ -1382,7 +1382,7 @@
     "var_text": "Vurderer du å endre på ditt kosthold eller din måltidsrytme?"
   },
   "hscl-skremt-uten-grunn": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1392,7 +1392,7 @@
     "var_text": "Plutselig skremt uten grunn"
   },
   "hscl-engstelig": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1402,7 +1402,7 @@
     "var_text": "Føler deg engstelig"
   },
   "hscl-svimmel": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1412,7 +1412,7 @@
     "var_text": "Føler deg svimmel eller kraftløs"
   },
   "hscl-nervoes": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1422,7 +1422,7 @@
     "var_text": "Nervøs eller urolig"
   },
   "hscl-hjertebank": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1432,7 +1432,7 @@
     "var_text": "Hjertebank"
   },
   "hscl-skjelving": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1442,7 +1442,7 @@
     "var_text": "Skjelving"
   },
   "hscl-anspent": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1452,7 +1452,7 @@
     "var_text": "Føler deg anspent eller opphisset"
   },
   "hscl-hodepine": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1462,7 +1462,7 @@
     "var_text": "Hodepine"
   },
   "hscl-panikk": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1472,7 +1472,7 @@
     "var_text": "Anfall av redsel eller panikk"
   },
   "hscl-urolig": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1482,7 +1482,7 @@
     "var_text": "Rastløshet, kan ikke sitte rolig"
   },
   "hscl-slapp": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1492,7 +1492,7 @@
     "var_text": "Føler deg slapp og uten energi"
   },
   "hscl-anklager": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1502,7 +1502,7 @@
     "var_text": "Anklager deg selv for ting"
   },
   "hscl-graat": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1512,7 +1512,7 @@
     "var_text": "Har lett for å gråte"
   },
   "hscl-tap-seksuell": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1522,7 +1522,7 @@
     "var_text": "Tap av seksuell interesse/opplevelse"
   },
   "hscl-lav-apetitt": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1532,7 +1532,7 @@
     "var_text": "Dårlig appetitt"
   },
   "hscl-sovn": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1542,7 +1542,7 @@
     "var_text": "Vanskelig for å sove"
   },
   "hscl-haaploshet": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1552,7 +1552,7 @@
     "var_text": "Følelse av håpløshet med tanke på fremtiden"
   },
   "hscl-nedfor": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1562,7 +1562,7 @@
     "var_text": "Føler deg nedfor"
   },
   "hscl-ensom": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1572,7 +1572,7 @@
     "var_text": "Føler deg ensom"
   },
   "hscl-selvmordstanker": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1582,7 +1582,7 @@
     "var_text": "Har tanker om å ta ditt eget liv"
   },
   "hscl-fanget": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1592,7 +1592,7 @@
     "var_text": "Følelse av å være fanget"
   },
   "hscl-bekymringer": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1602,7 +1602,7 @@
     "var_text": "Bekymrer deg for mye"
   },
   "hscl-interessetap": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1612,7 +1612,7 @@
     "var_text": "Føler ikke interesse for noe"
   },
   "hscl-anstrengelse": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1622,7 +1622,7 @@
     "var_text": "Føler at alt krever stor anstrengelse"
   },
   "hscl-verdiloshet": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1632,7 +1632,7 @@
     "var_text": "Føler at du ikke er noe verd"
   },
   "overbelastning": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -1640,7 +1640,7 @@
     "var_text": "Opplever du overbelastning/stress i en slik grad at det påvirker deg negativt i dagliglivet?"
   },
   "sovnproblemer": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -1648,7 +1648,7 @@
     "var_text": "Opplever du problemer med å få sove, sove sammenhengende eller våkne for tidlig?"
   },
   "isi-innsov": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ingen": "Ingen",
       "milde": "Milde",
@@ -1659,7 +1659,7 @@
     "var_text": "Problemer med å sovne"
   },
   "isi-oppvaak": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ingen": "Ingen",
       "milde": "Milde",
@@ -1670,7 +1670,7 @@
     "var_text": "Problemer med at du våkner opp i løpet av natten"
   },
   "isi-for-tidlig-oppvaak": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ingen": "Ingen",
       "milde": "Milde",
@@ -1681,7 +1681,7 @@
     "var_text": "Våkner for tidlig"
   },
   "isi-tilfreds": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "veldig-tilfreds": "Veldig tilfreds",
       "tilfreds": "Tilfreds",
@@ -1692,7 +1692,7 @@
     "var_text": "Hvor tilfreds/utilfreds er du med ditt nåværende søvnmønster?"
   },
   "isi-fungering": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ingen": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1703,7 +1703,7 @@
     "var_text": "I hvor stor grad synes du søvnproblemene dine REDUSERER funksjonsevnen din til daglig ?"
   },
   "isi-merkbart": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ingen": "Ikke merkbare i det hele tatt",
       "litt": "Litt merkbare",
@@ -1714,7 +1714,7 @@
     "var_text": "Hvor MERKBARE tror du at søvnproblemene dine er for andre?"
   },
   "isi-bekymret": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {
       "ingen": "Ikke i det hele tatt",
       "litt": "Litt",
@@ -1725,17 +1725,17 @@
     "var_text": "I hvor stor grad BEKYMRER/plager dine søvnproblemer deg?"
   },
   "viktigste-problem": {
-    "var_text_report": "empty",
+    "var_text_report": "Viktigste problem å få hjelp med",
     "responses": {},
     "var_text": "Hvilket problem er viktigst for deg å få hjelp med?"
   },
   "type-hjelp": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {},
     "var_text": "Hva slags type hjelp/oppfølging tror du vil være nyttig for deg nå?"
   },
   "tilbakemeldinger": {
-    "var_text_report": "empty",
+    "var_text_report": "",
     "responses": {},
     "var_text": "Mine tilbakemeldinger"
   }

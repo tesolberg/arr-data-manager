@@ -133,7 +133,7 @@ def GenerateCodebook(codebook_path, report_labels_path=""):
 
 
 def main():
-    GenerateCodebook("data/codebook-221073-2021-10-09.sps", "variable-snippets-report.json")
+    GenerateCodebook("data/codebook-221073-2021-10-09.sps", "data/variable-snippets-report.json")
 
 
 if __name__ == "__main__":

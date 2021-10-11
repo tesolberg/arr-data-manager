@@ -19,30 +19,86 @@ def generate_report(data, codebook_path):
     document.add_heading('Pasientrapportert kartlegging - arbeidsrettet rehabilitering', 0)
     document.add_heading('Avdeling for fysikalsk medisin og forebygging, Sørlandet sykehus HF', 3)
 
+    # Demografi
+    # Fnr
+    demografi = document.add_paragraph("Fødselsnummer: " + data["fnr"])
+    
+    # Dato
+    demografi.add_run("\n")
+    demografi.add_run("Dato utfylt: " + data["Opprettet"])
+    
+    # Morsmål og lese-/skrivevansker
+    demografi.add_run("\n")
+    if (data["morsmaal"] == "annet"):
+        demografi.add_run("Morsmål: " + data["morsmaal-tekst"])
+        write_var_snippet_and_response("sprakvansker", data, codebook, document, demografi)
 
 
-    # work related
-    write_work_related(data, codebook, document)
+    # Hvis utslag:
+        # Morsmål (hvis ikke norsk)
+        # Språkvansker
+    # Sivilstatus
+    # Antall barn
+    # Antall personer i husholdning
 
-    # physical activity
-    write_physical_activity(data, codebook, document)
+    document.add_heading('Oppsummering')
 
-    # fear avoidance beliefs questionnaire
-    write_fabq(data, codebook, document)
+    # Viktigste problem
 
-    # hads
-    write_hads(data, codebook, document)
+    # Ønsket hjelp
+    
+    # Ufør og erstatningssak
+    
+    # Jobbstatus
+    
+    # WPI
+    
+    # SSS
+    
+    # Fibro = (WPI >=7 & SSS >=5 || WPI >=4 & SSS >=9) & >=4 kroppsregioner & >=3 mnd
+    
+    # HSCL-25
+    
+    # ISI
 
-    # EQ5D-5L
-    write_eq5d(data, codebook, document)
 
-    # GSAQ
-    write_gsaq(data, codebook, document)
 
-    # restspm
-    document.add_heading("Avsluttende spørsmål")
-    write_var_text_report_and_response("helse-samlet", data, codebook, document)
-    write_var_text_report_and_response("godt-nok-utredet", data, codebook, document)
+    # Smerte
+    # Smerte (10- punkts skala etc.)
+    # Verste
+    # Beste
+    # Gjsn
+    # Varighet smerter
+
+    # Fibroskjema
+    # Utmattelse, kognisjon og trett (fargekodet)
+    # Grå/svart på IBS, dep, hodepine
+    # Oppramsing av smerteområder
+
+
+
+    # # work related
+    # write_work_related(data, codebook, document)
+
+    # # physical activity
+    # write_physical_activity(data, codebook, document)
+
+    # # fear avoidance beliefs questionnaire
+    # write_fabq(data, codebook, document)
+
+    # # hads
+    # write_hads(data, codebook, document)
+
+    # # EQ5D-5L
+    # write_eq5d(data, codebook, document)
+
+    # # GSAQ
+    # write_gsaq(data, codebook, document)
+
+    # # restspm
+    # document.add_heading("Avsluttende spørsmål")
+    # write_var_snippet_and_response("helse-samlet", data, codebook, document)
+    # write_var_snippet_and_response("godt-nok-utredet", data, codebook, document)
 
     # saves document to file
     document.save('sample_report.docx')
@@ -60,45 +116,45 @@ def write_eq5d(data, codebook, document):
 
 def write_gsaq(data, codebook, document):
     document.add_heading("Global sleep assessment questionnaire")
-    write_var_text_report_and_response("gsaq-innsovning", data, codebook, document)
-    write_var_text_report_and_response("gsaq-oppvakning", data, codebook, document)
-    write_var_text_report_and_response("gsaq-utvilt-dagtid", data, codebook, document)
-    write_var_text_report_and_response("gsaq-vansker-holde-vaken", data, codebook, document)
-    write_var_text_report_and_response("gsaq-dagtidfunksjon", data, codebook, document)
-    write_var_text_report_and_response("gsaq-jobb-akt-hinder-sovn", data, codebook, document)
-    write_var_text_report_and_response("gsaq-snorking", data, codebook, document)
-    write_var_text_report_and_response("gsaq-apne", data, codebook, document)
-    write_var_text_report_and_response("gsaq-restless-legs", data, codebook, document)
-    write_var_text_report_and_response("gsaq-rykninger", data, codebook, document)
-    write_var_text_report_and_response("gsaq-parasomnier", data, codebook, document)
-    write_var_text_report_and_response("gsaq-trist-engstelig", data, codebook, document)
+    write_var_snippet_and_response("gsaq-innsovning", data, codebook, document)
+    write_var_snippet_and_response("gsaq-oppvakning", data, codebook, document)
+    write_var_snippet_and_response("gsaq-utvilt-dagtid", data, codebook, document)
+    write_var_snippet_and_response("gsaq-vansker-holde-vaken", data, codebook, document)
+    write_var_snippet_and_response("gsaq-dagtidfunksjon", data, codebook, document)
+    write_var_snippet_and_response("gsaq-jobb-akt-hinder-sovn", data, codebook, document)
+    write_var_snippet_and_response("gsaq-snorking", data, codebook, document)
+    write_var_snippet_and_response("gsaq-apne", data, codebook, document)
+    write_var_snippet_and_response("gsaq-restless-legs", data, codebook, document)
+    write_var_snippet_and_response("gsaq-rykninger", data, codebook, document)
+    write_var_snippet_and_response("gsaq-parasomnier", data, codebook, document)
+    write_var_snippet_and_response("gsaq-trist-engstelig", data, codebook, document)
     
     document.add_paragraph("")
     p = document.add_paragraph("")
     p.add_run("Faktorer som forstyrrer søvnen").italic = True
-    write_var_text_report_and_response("gsaq-smerter", data, codebook, document)
-    write_var_text_report_and_response("gsaq-kroppslige-plager", data, codebook, document)
-    write_var_text_report_and_response("gsaq-bekymringer", data, codebook, document)
-    write_var_text_report_and_response("gsaq-medikamenter", data, codebook, document)
+    write_var_snippet_and_response("gsaq-smerter", data, codebook, document)
+    write_var_snippet_and_response("gsaq-kroppslige-plager", data, codebook, document)
+    write_var_snippet_and_response("gsaq-bekymringer", data, codebook, document)
+    write_var_snippet_and_response("gsaq-medikamenter", data, codebook, document)
     
 
 
 def write_hads(data, codebook, document):
     document.add_heading("Hospital anxiety depression scale")
-    write_var_text_report_and_response("hads-tidlig-oppvakning", data, codebook, document)
-    write_var_text_report_and_response("hads-panikk", data, codebook, document)
-    write_var_text_report_and_response("hads-trist", data, codebook, document)
-    write_var_text_report_and_response("hads-nervos", data, codebook, document)
-    write_var_text_report_and_response("hads-interessetap", data, codebook, document)
-    write_var_text_report_and_response("hads-hjertebank", data, codebook, document)
-    write_var_text_report_and_response("hads-svak-apetitt", data, codebook, document)
-    write_var_text_report_and_response("hads-redd", data, codebook, document)
-    write_var_text_report_and_response("hads-ikke-verd-leve", data, codebook, document)
-    write_var_text_report_and_response("hads-anhedoni", data, codebook, document)
-    write_var_text_report_and_response("hads-rastlos", data, codebook, document)
-    write_var_text_report_and_response("hads-irritabel", data, codebook, document)
-    write_var_text_report_and_response("hads-langsomt", data, codebook, document)
-    write_var_text_report_and_response("hads-bekymringer", data, codebook, document)
+    write_var_snippet_and_response("hads-tidlig-oppvakning", data, codebook, document)
+    write_var_snippet_and_response("hads-panikk", data, codebook, document)
+    write_var_snippet_and_response("hads-trist", data, codebook, document)
+    write_var_snippet_and_response("hads-nervos", data, codebook, document)
+    write_var_snippet_and_response("hads-interessetap", data, codebook, document)
+    write_var_snippet_and_response("hads-hjertebank", data, codebook, document)
+    write_var_snippet_and_response("hads-svak-apetitt", data, codebook, document)
+    write_var_snippet_and_response("hads-redd", data, codebook, document)
+    write_var_snippet_and_response("hads-ikke-verd-leve", data, codebook, document)
+    write_var_snippet_and_response("hads-anhedoni", data, codebook, document)
+    write_var_snippet_and_response("hads-rastlos", data, codebook, document)
+    write_var_snippet_and_response("hads-irritabel", data, codebook, document)
+    write_var_snippet_and_response("hads-langsomt", data, codebook, document)
+    write_var_snippet_and_response("hads-bekymringer", data, codebook, document)
 
 
 
@@ -132,27 +188,27 @@ def write_work_related(data, codebook, document):
 
     document.add_heading('Arbeidshistorikk og utdanning')
 
-    write_var_text_report_and_response("utdannelse", data, codebook, document)
-    write_var_text_report_and_response("tid-i-arbeidslivet", data, codebook, document)
-    write_var_text_report_and_response("yrke", data, codebook, document)
-    write_var_text_report_and_response("arbeidsforhold", data, codebook, document)
-    write_var_text_report_and_response("stillingsprosent", data, codebook, document)
-    write_var_text_report_and_response("i-jobb-na", data, codebook, document, False)
+    write_var_snippet_and_response("utdannelse", data, codebook, document)
+    write_var_snippet_and_response("tid-i-arbeidslivet", data, codebook, document)
+    write_var_snippet_and_response("yrke", data, codebook, document)
+    write_var_snippet_and_response("arbeidsforhold", data, codebook, document)
+    write_var_snippet_and_response("stillingsprosent", data, codebook, document)
+    write_var_snippet_and_response("i-jobb-na", data, codebook, document, False)
 
     write_var_text_report_and_multi_response("sektor_1", data, codebook, document)
 
-    write_var_text_report_and_response("sm-aap", data, codebook, document, False)
+    write_var_snippet_and_response("sm-aap", data, codebook, document, False)
 
     write_var_text_report_and_multi_response("ytelser_1", data, codebook, document)
 
-    write_var_text_report_and_response("varighet-sm-siste-ar", data, codebook, document)
-    write_var_text_report_and_response("sokt-ufor", data, codebook, document)
-    write_var_text_report_and_response("erstatningssak", data, codebook, document)
-    write_var_text_report_and_response("arbeidsevne-generelt", data, codebook, document)
-    write_var_text_report_and_response("arbeidsevne-fysiske-krav", data, codebook, document)
-    write_var_text_report_and_response("arbeidsevne-mentale-krav", data, codebook, document)
-    write_var_text_report_and_response("estimat-rtw", data, codebook, document)
-    write_var_text_report_and_response("onsket-jobb", data, codebook, document)
+    write_var_snippet_and_response("varighet-sm-siste-ar", data, codebook, document)
+    write_var_snippet_and_response("sokt-ufor", data, codebook, document)
+    write_var_snippet_and_response("erstatningssak", data, codebook, document)
+    write_var_snippet_and_response("arbeidsevne-generelt", data, codebook, document)
+    write_var_snippet_and_response("arbeidsevne-fysiske-krav", data, codebook, document)
+    write_var_snippet_and_response("arbeidsevne-mentale-krav", data, codebook, document)
+    write_var_snippet_and_response("estimat-rtw", data, codebook, document)
+    write_var_snippet_and_response("onsket-jobb", data, codebook, document)
 
 
 
@@ -161,7 +217,7 @@ def write_response(var, data, codebook, document):
     document.add_paragraph(s + ".")
 
 
-def write_var_text_report_and_response(var, data, codebook, document, colon=True):
+def write_var_snippet_and_response(var, data, codebook, document, paragraph, colon=True):
     # skip if value is missing
     if(data[var] == ""):
         return
@@ -177,7 +233,7 @@ def write_var_text_report_and_response(var, data, codebook, document, colon=True
     response_code = data[var]
     s += codebook[var]["responses"][response_code]
 
-    document.add_paragraph(s)
+    paragraph.add_run("\n" + s)
 
 def write_var_text_and_response(var, data, codebook, document, colon=True):
     # skip if value is missing
