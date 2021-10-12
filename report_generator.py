@@ -33,19 +33,16 @@ def generate_report(data, codebook_path):
         demografi.add_run("Morsmål: " + data["morsmaal-tekst"])
         write_var_snippet_and_response("sprakvansker", data, codebook, document, demografi)
 
+    # Sivilstatus, barn, husholdning
+    write_var_snippet_and_response("sivilstatus", data, codebook, document, demografi)
+    demografi.add_run("\nBarn: " + data["barn"])
+    demografi.add_run("\nPersoner i husholdningen (i tillegg til pas): " + data["antall-i-husholdning"])
 
-    # Hvis utslag:
-        # Morsmål (hvis ikke norsk)
-        # Språkvansker
-    # Sivilstatus
-    # Antall barn
-    # Antall personer i husholdning
-
+    # OPPSUMMERING
     document.add_heading('Oppsummering')
-
-    # Viktigste problem
-
-    # Ønsket hjelp
+    oppsummering = document.add_paragraph("Viktigste problem: " + data["viktigste-problem"])
+    oppsummering.add_run("\nOppfølging pasienten tror vil være mest nyttig: " + data["type-hjelp"])    
+    
     
     # Ufør og erstatningssak
     
