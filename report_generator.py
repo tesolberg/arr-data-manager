@@ -1,7 +1,8 @@
 import json
 from docx import Document
 from docx.shared import Inches
-# from docx.shared import RGBColor
+from docx.shared import RGBColor
+from docx.shared import Pt
 
 # for testing
 import csv
@@ -10,6 +11,11 @@ import csv
 # dict av enkeltbesvarelse -> void + rapport i docx-format
 def generate_report(data, codebook_path):
     
+    # Sets colors
+    red = RGBColor(0xff, 0x2d, 0x00)
+    gray = RGBColor(0xbb, 0xbb, 0xbb)
+
+
     # loads codebook as dict
     with open(codebook_path, encoding="utf-8") as f:
         codebook = json.load(f)
@@ -19,11 +25,11 @@ def generate_report(data, codebook_path):
     document.add_heading('Pasientrapportert kartlegging - arbeidsrettet rehabilitering', 0)
     document.add_heading('Avdeling for fysikalsk medisin og forebygging, Sørlandet sykehus HF', 3)
 
-    # Demografi
+    ### INNLEDNING ###
     # Fnr
     demografi = document.add_paragraph("Fødselsnummer: " + data["fnr"])
     
-    # Dato
+    # Dato for utfylling
     demografi.add_run("\n")
     demografi.add_run("Dato utfylt: " + data["Opprettet"])
     
@@ -38,20 +44,26 @@ def generate_report(data, codebook_path):
     demografi.add_run("\nBarn: " + data["barn"])
     demografi.add_run("\nPersoner i husholdningen (i tillegg til pas): " + data["antall-i-husholdning"])
 
-    # OPPSUMMERING
+    ### OPPSUMMERING ###
     document.add_heading('Oppsummering')
     oppsummering = document.add_paragraph("Viktigste problem: " + data["viktigste-problem"])
     oppsummering.add_run("\nOppfølging pasienten tror vil være mest nyttig: " + data["type-hjelp"])    
     
-    
     # Ufør og erstatningssak
+    run = oppsummering.add_run("\nErstatningssak")    
+    run.font.color.rgb = red if (data["erstatningssak"] == "ja") else gray
+    oppsummering.add_run(" | ")
+    run = oppsummering.add_run("Uførsøknad")    
+    run.font.color.rgb = red if (data["sokt-ufor"] == "ja") else gray
     
     # Jobbstatus
-    
+
     # WPI
+    oppsummering.add_run("\nWPI: " + str((wpi_score(data))))
     
     # SSS
-    
+    oppsummering.add_run("\nSSS: " + str((sss_score(data, codebook))))
+
     # Fibro = (WPI >=7 & SSS >=5 || WPI >=4 & SSS >=9) & >=4 kroppsregioner & >=3 mnd
     
     # HSCL-25
@@ -277,6 +289,23 @@ def write_var_text_report_and_multi_response(var, data, codebook, document, colo
         document.add_paragraph(s)
 
 
+def wpi_score(data):
+    counter = 0
+    for key in data:
+        if (key[:21] == "fibro-smerteomraader_"):
+            if len(data[key]) > 0:
+                counter += 1
+    return counter
+
+def sss_score(data, codebook):
+    counter = 0
+    counter += int(codebook["fibro-utmattelse"]["responses"][data["fibro-utmattelse"]])
+    counter += int(codebook["fibro-utmattelse"]["responses"][data["fibro-kognisjon"]])
+    counter += int(codebook["fibro-utmattelse"]["responses"][data["fibro-trett"]])
+    counter += 1 if data["fibro-mage"] == "ja" else 0
+    counter += 1 if data["fibro-depresjon"] == "ja" else 0
+    counter += 1 if data["fibro-hodepine"] == "ja" else 0
+    return counter
 
 def main():
     row =  get_first_row("data/test-data.tsv")
