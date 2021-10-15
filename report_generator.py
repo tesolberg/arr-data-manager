@@ -1,7 +1,7 @@
 import json
 from docx import Document
 from docx.shared import Inches
-# from docx.shared import RGBColor
+from docx.shared import RGBColor
 
 # for testing
 import csv
