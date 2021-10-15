@@ -57,18 +57,43 @@ def generate_report(data, codebook_path):
     run.font.color.rgb = red if (data["sokt-ufor"] == "ja") else gray
     
     # Jobbstatus
+    yrke = codebook["yrke"]["responses"][data["yrke"]] + " - " + data["yrke-fritekst"]
+    if(data["arbeidsforhold"] == "ja"):
+        oppsummering.add_run("\nNåværende yrke: " + yrke)
+    else:
+        oppsummering.add_run("\nSiste hovedyrke (har ikke arbeidsforhold): " + yrke)
+    
+    jobbstatus = ""
+    if data["sm-aap"] == "nei": jobbstatus = "ikke sykemeldt"
+    elif data["sm-aap"] == "delvis-sm": jobbstatus = "delvis sykemeldt"
+    elif data["sm-aap"] == "fullt-sm": jobbstatus = "fullt sykemeldt"
+    elif data["sm-aap"] == "aap": jobbstatus = "AAP"
+    oppsummering.add_run(" (" + jobbstatus + ")")
+
 
     # WPI
-    oppsummering.add_run("\nWPI: " + str((wpi_score(data))))
+    oppsummering.add_run("\nWPI (0-19): " + str((wpi_score(data))))
     
     # SSS
-    oppsummering.add_run("\nSSS: " + str((sss_score(data, codebook))))
+    oppsummering.add_run("\nSSS (0-12): " + str((sss_score(data, codebook))))
 
+    # Antall smerteregioner
+    oppsummering.add_run("\nAntall smerteregioner: " + str(number_of_pain_regions(data)))
+    
     # Fibro = (WPI >=7 & SSS >=5 || WPI >=4 & SSS >=9) & >=4 kroppsregioner & >=3 mnd
-    
+    if(oppfyller_fibrokriterier(data)):
+        oppsummering.add_run("\nOppfyller kriterier for fibromyalgi")
+    else:
+        oppsummering.add_run("\nOppfyller ikke kriterier for fibromyalgi")
+
     # HSCL-25
-    
+    oppsummering.add_run("\nHSCL-25 (klinisk terskelverdi = 1,7): " + str(hscl_score(data)))
+
     # ISI
+    if (data["sovnproblemer"] == "nei"):
+        oppsummering.add_run("\nAngir ikke søvnproblemer")
+    else:
+        oppsummering.add_run("\nISI: " + str(isi_score(data)))
 
 
 
@@ -92,17 +117,7 @@ def generate_report(data, codebook_path):
     # # physical activity
     # write_physical_activity(data, codebook, document)
 
-    # # fear avoidance beliefs questionnaire
-    # write_fabq(data, codebook, document)
 
-    # # hads
-    # write_hads(data, codebook, document)
-
-    # # EQ5D-5L
-    # write_eq5d(data, codebook, document)
-
-    # # GSAQ
-    # write_gsaq(data, codebook, document)
 
     # # restspm
     # document.add_heading("Avsluttende spørsmål")
@@ -112,77 +127,6 @@ def generate_report(data, codebook_path):
     # saves document to file
     document.save('sample_report.docx')
 
-
-
-def write_eq5d(data, codebook, document):
-    document.add_heading("EQ5D")
-    write_response("eq5d-gange", data, codebook, document)
-    write_response("eq5d-stell", data, codebook, document)
-    write_response("eq5d-gjoremal", data, codebook, document)
-    write_response("eq5d-smerter", data, codebook, document)
-    write_response("eq5d-angst-dep", data, codebook, document)
-    
-
-def write_gsaq(data, codebook, document):
-    document.add_heading("Global sleep assessment questionnaire")
-    write_var_snippet_and_response("gsaq-innsovning", data, codebook, document)
-    write_var_snippet_and_response("gsaq-oppvakning", data, codebook, document)
-    write_var_snippet_and_response("gsaq-utvilt-dagtid", data, codebook, document)
-    write_var_snippet_and_response("gsaq-vansker-holde-vaken", data, codebook, document)
-    write_var_snippet_and_response("gsaq-dagtidfunksjon", data, codebook, document)
-    write_var_snippet_and_response("gsaq-jobb-akt-hinder-sovn", data, codebook, document)
-    write_var_snippet_and_response("gsaq-snorking", data, codebook, document)
-    write_var_snippet_and_response("gsaq-apne", data, codebook, document)
-    write_var_snippet_and_response("gsaq-restless-legs", data, codebook, document)
-    write_var_snippet_and_response("gsaq-rykninger", data, codebook, document)
-    write_var_snippet_and_response("gsaq-parasomnier", data, codebook, document)
-    write_var_snippet_and_response("gsaq-trist-engstelig", data, codebook, document)
-    
-    document.add_paragraph("")
-    p = document.add_paragraph("")
-    p.add_run("Faktorer som forstyrrer søvnen").italic = True
-    write_var_snippet_and_response("gsaq-smerter", data, codebook, document)
-    write_var_snippet_and_response("gsaq-kroppslige-plager", data, codebook, document)
-    write_var_snippet_and_response("gsaq-bekymringer", data, codebook, document)
-    write_var_snippet_and_response("gsaq-medikamenter", data, codebook, document)
-    
-
-
-def write_hads(data, codebook, document):
-    document.add_heading("Hospital anxiety depression scale")
-    write_var_snippet_and_response("hads-tidlig-oppvakning", data, codebook, document)
-    write_var_snippet_and_response("hads-panikk", data, codebook, document)
-    write_var_snippet_and_response("hads-trist", data, codebook, document)
-    write_var_snippet_and_response("hads-nervos", data, codebook, document)
-    write_var_snippet_and_response("hads-interessetap", data, codebook, document)
-    write_var_snippet_and_response("hads-hjertebank", data, codebook, document)
-    write_var_snippet_and_response("hads-svak-apetitt", data, codebook, document)
-    write_var_snippet_and_response("hads-redd", data, codebook, document)
-    write_var_snippet_and_response("hads-ikke-verd-leve", data, codebook, document)
-    write_var_snippet_and_response("hads-anhedoni", data, codebook, document)
-    write_var_snippet_and_response("hads-rastlos", data, codebook, document)
-    write_var_snippet_and_response("hads-irritabel", data, codebook, document)
-    write_var_snippet_and_response("hads-langsomt", data, codebook, document)
-    write_var_snippet_and_response("hads-bekymringer", data, codebook, document)
-
-
-
-def write_fabq(data, codebook, document):
-    document.add_heading('Fear avoidance beliefs questionnaire')
-    write_var_text_and_response("sm-arsak-fysakt", data, codebook, document)
-    write_var_text_and_response("fysakt-forverrer-sm", data, codebook, document)
-    write_var_text_and_response("fysakt-skadelig", data, codebook, document)
-    write_var_text_and_response("fysakt-utilradelig", data, codebook, document)
-    write_var_text_and_response("sm-arsak-jobb", data, codebook, document)
-    write_var_text_and_response("jobb-gjort-sm-verre", data, codebook, document)
-    write_var_text_and_response("erstatningskrav", data, codebook, document)
-    write_var_text_and_response("arbeid-for-tungt", data, codebook, document)
-    write_var_text_and_response("jobb-forverrer-sm", data, codebook, document)
-    write_var_text_and_response("jobb-kan-skade", data, codebook, document)
-    write_var_text_and_response("burde-ikke-jobbe", data, codebook, document)
-    write_var_text_and_response("klarer-ikke-jobbe", data, codebook, document)
-    write_var_text_and_response("ikke-rtw-innen-3mnd", data, codebook, document)
-    write_var_text_and_response("aldri-rtw", data, codebook, document)
 
 
 
@@ -288,6 +232,30 @@ def write_var_text_report_and_multi_response(var, data, codebook, document, colo
     if(len(response) > 0):
         document.add_paragraph(s)
 
+def hscl_score(data):
+    points = 0
+    for key in data:
+        if (key[0:4] == "hscl"):
+            val = data[key]
+            if val == "ikke-i-det-hele-tatt": points += 1
+            elif val == "litt": points += 2
+            elif val == "en-god-del": points += 3
+            elif val == "svaert-mye": points += 4
+            else: print("error, hscl response")
+    return points / 25
+
+def isi_score(data):
+    points = 0
+    for key in data:
+        if (key[0:3] == "isi"):
+            val = data[key]
+            if val == "veldig-tilfreds" or val == "ingen": continue
+            elif val == "milde" or val == "tilfreds" or val == "litt": points += 1
+            elif val == "moderate" or val == "verken" or val == "noe": points += 2
+            elif val == "alvorlige" or val == "utilfreds" or val == "ganske-mye": points += 3
+            elif val == "veldig-alvorlige" or val == "veldig-utilfreds" or val == "veldig" or val == "veldig-mye": points += 4
+            else: print("error, isi response: " + val)
+    return points / 25
 
 def wpi_score(data):
     counter = 0
@@ -306,6 +274,40 @@ def sss_score(data, codebook):
     counter += 1 if data["fibro-depresjon"] == "ja" else 0
     counter += 1 if data["fibro-hodepine"] == "ja" else 0
     return counter
+
+def number_of_pain_regions(data):
+    # samle alle fibrokoder i en array
+    smerteomraader = []
+    for key in data:
+        if (key[:21] == "fibro-smerteomraader_"):
+            smerteomraader.append(data[key])
+
+    counter = 0
+
+    # Øvre venstre
+    if "skulder-ven" in smerteomraader or "overarm-ven" in smerteomraader or "underarm-ven" in smerteomraader:
+        counter += 1
+    # Øvre høyre
+    if "skulder-hoy" in smerteomraader or "overarm-hoy" in smerteomraader or "underarm-hoy" in smerteomraader:
+        counter += 1
+    # Nedre venstre
+    if "hofte-ven" in smerteomraader or "legg-fot-ven" in smerteomraader or "laar-kne-ven" in smerteomraader:
+        counter += 1
+    # Nedre høyre
+    if "hofte-hoy" in smerteomraader or "legg-fot-hoy" in smerteomraader or "laar-kne-hoy" in smerteomraader:
+        counter += 1
+    # Midtregion
+    if "ovre-rygg" in smerteomraader or "korsrygg" in smerteomraader or "nakke-hals" in smerteomraader:
+        counter += 1
+    
+    return counter
+
+
+def oppfyller_fibrokriterier(data):
+    wpi_and_sss = (wpi_score(data) >= 7 and sss_score(data, codebook) >= 5) or (wpi_score(data) >= 4 and sss_score(data, codebook) >= 9)
+    mer_enn_1_aar = data["plager-mer-enn-et-aar"] == "ja" or int(data["plager-mnd"]) >= 3 
+    return wpi_and_sss and mer_enn_1_aar and (number_of_pain_regions(data) >= 4)
+
 
 def main():
     row =  get_first_row("data/test-data.tsv")
