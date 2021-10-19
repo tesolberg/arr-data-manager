@@ -43,7 +43,11 @@ def generate_report(data, codebook_path):
     demografi.add_run("\nBarn: " + data["barn"])
     demografi.add_run("\nPersoner i husholdningen (i tillegg til pas): " + data["antall-i-husholdning"])
 
+
+    ####################
     ### OPPSUMMERING ###
+    ####################
+
     document.add_heading('Oppsummering')
     oppsummering = document.add_paragraph("Viktigste problem: " + data["viktigste-problem"])
     oppsummering.add_run("\nOppfølging pasienten tror vil være mest nyttig: " + data["type-hjelp"])    
@@ -69,7 +73,6 @@ def generate_report(data, codebook_path):
     elif data["sm-aap"] == "aap": jobbstatus = "AAP"
     oppsummering.add_run(" (" + jobbstatus + ")")
 
-
     # WPI
     oppsummering.add_run("\nWPI (0-19): " + str((wpi_score(data))))
     
@@ -94,14 +97,22 @@ def generate_report(data, codebook_path):
     else:
         oppsummering.add_run("\nISI: " + str(isi_score(data)))
 
+    oppsummering.add_run("\nHSCL-25 (klinisk terskelverdi = 1,7): " + str(hscl_score(data)))
 
 
-    # Smerte
-    # Smerte (10- punkts skala etc.)
-    # Verste
-    # Beste
-    # Gjsn
+    ### SMERTEKARTLEGGING ###
+    document.add_page_break()
+    document.add_heading('Smerter')
+
+    p = document.add_paragraph("Smerter siste uken (verste, beste, gjennomsnitt): " + data["plager-verste"] \
+        + "/" + data["plager-beste"] + "/" + data["plager-gjsn"])
+    
     # Varighet smerter
+    if(data["plager-mer-enn-et-aar"] == "ja"):
+        p.add_run("\nVarighet i måneder: " + data["plager-aar"])
+    else:
+        p.add_run("\nVarighet i år: " + data["plager-mnd"])
+
 
     # Fibroskjema
     # Utmattelse, kognisjon og trett (fargekodet)
@@ -109,6 +120,7 @@ def generate_report(data, codebook_path):
     # Oppramsing av smerteområder
 
 
+    ### ARBEID OG YTELSER ###
 
     # # work related
     # write_work_related(data, codebook, document)

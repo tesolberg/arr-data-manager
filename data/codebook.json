@@ -74,12 +74,12 @@
     "var_text": "Har du hatt smertene i ett år eller mer?"
   },
   "plager-mnd": {
-    "var_text_report": "",
+    "var_text_report": "Varighet smerter (mnd)",
     "responses": {},
     "var_text": "Hvor mange måneder har du hatt smertene?"
   },
   "plager-aar": {
-    "var_text_report": "",
+    "var_text_report": "Varighet smerter (år)",
     "responses": {},
     "var_text": "Hvor mange år har du hatt smertene?"
   },
