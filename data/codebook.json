@@ -927,7 +927,7 @@
     "var_text": "Har du forsøkt noen annen behandling før du ble henvist hit?"
   },
   "annen-tidligere-beh": {
-    "var_text_report": "Beskrivelse av annen tidligere behandling",
+    "var_text_report": "Annen tidligere behandling",
     "responses": {},
     "var_text": "Beskriv annen tidligere behandling"
   },
@@ -1326,7 +1326,7 @@
     "var_text": "Hvilken jobb håper du å komme tilbake til?"
   },
   "mosjon": {
-    "var_text_report": "",
+    "var_text_report": "Mosjon (30 min eller mer) siste to uker",
     "responses": {
       "en-eller-sjeldnere": "Sjeldnere enn 1 gang per uke eller aldri",
       "en-til-to": "1 til 2 ganger per uke",
@@ -1336,17 +1336,17 @@
     "var_text": "Tenk på de siste to ukene. Hvor ofte mosjonerte du i minst 30 minutter sammenhengende?"
   },
   "hoyde": {
-    "var_text_report": "",
+    "var_text_report": "Høyde (cm)",
     "responses": {},
     "var_text": "Høyde (cm)"
   },
   "vekt": {
-    "var_text_report": "",
+    "var_text_report": "Vekt (kg)",
     "responses": {},
     "var_text": "Vekt (kg)"
   },
   "kosthold": {
-    "var_text_report": "",
+    "var_text_report": "Egenvurdering kosthold",
     "responses": {
       "veldig-godt": "Veldig godt",
       "godt": "Godt",
@@ -1356,7 +1356,7 @@
     "var_text": "Hvordan vurderer du ditt eget kosthold?"
   },
   "maaltidsrytme": {
-    "var_text_report": "",
+    "var_text_report": "Egenvurdering måltidsrytme",
     "responses": {
       "veldig-god": "Veldig god",
       "god": "God",
@@ -1366,7 +1366,7 @@
     "var_text": "Hvordan vurderer du din måltidsrytme?"
   },
   "vurderer-endre_1": {
-    "var_text_report": "",
+    "var_text_report": "Områder pasienten vurderer endring",
     "responses": {
       "kosthold": "Jeg vurderer å endre på kosthold",
       "maaltidsrytme": "Jeg vurderer å endre på måltidsrytme"

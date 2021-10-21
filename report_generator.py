@@ -36,10 +36,18 @@ def generate_report(data, codebook_path):
 
     ### FYSISK AKTIVITET, HØYDE, VEKT, KOSTHOLD
     # document.add_page_break() 
-    document.add_heading("Mosjon, høyde,  vekt og kosthold")
-    p = document.add_paragraph("")
-    write_physical_activity(data, codebook, p)
+    # write_exercise_and_more(data, codebook, document)
 
+    ### HSCL-25 + overbelastning ###
+    # document.add_page_break() 
+    # write_hscl25(data, codebook, document)
+
+    ### ISI ###
+    p = document.add_paragraph("")
+    if (data["sovnproblemer"] == "nei"):
+        p.add_run("\nAngir ikke søvnproblemer")
+    else:
+        write_isi(data, codebook, document)
 
     # # restspm
     # document.add_heading("Avsluttende spørsmål")
@@ -174,11 +182,6 @@ def write_pain_variables(data, codebook, document):
         write_var_snippet_and_var_code("annen-tidligere-beh", data, codebook, p)
 
 
-def write_physical_activity(data, codebook, paragraph):
-    write_var_text_and_response("mosjon", data, codebook, paragraph)
-
-
-
 def write_work_related(data, codebook, document):
 
     document.add_heading('Arbeidshistorikk og utdanning')
@@ -214,6 +217,35 @@ def write_work_related(data, codebook, document):
     write_var_snippet_and_response("onsket-jobb", data, codebook, p)
 
 
+def write_exercise_and_more(data, codebook, document):
+    document.add_heading("Mosjon, høyde,  vekt og kosthold")
+    p = document.add_paragraph("")
+    write_var_snippet_and_response("mosjon", data, codebook, p)
+    write_var_snippet_and_var_code("hoyde", data, codebook, p)
+    write_var_snippet_and_var_code("vekt", data, codebook, p)
+    write_var_snippet_and_response("kosthold", data, codebook, p)
+    write_var_snippet_and_response("maaltidsrytme", data, codebook, p)
+    write_var_text_report_and_multi_response("vurderer-endre_1", data, codebook, p)
+
+
+def write_hscl25(data, codebook, document):
+    document.add_heading('Hopkins symptom checklist 25')
+    p = document.add_paragraph("")
+    first = True
+    for key in data:
+        if key[0:4] == "hscl":
+            if first:
+                first = False
+                write_var_text_and_response(key, data, codebook, p, True, False)
+            write_var_text_and_response(key, data, codebook, p)
+    
+    p.add_run("\n")
+    write_var_snippet_and_response("overbelastning", data, codebook, p)
+
+
+def write_isi(data, codebook, document):
+    document.add_heading('Insomnia Severity Scale')
+    p = document.add_paragraph("")
 
 def write_response(var, data, codebook, document):
     s = codebook[var]["responses"][data[var]]
@@ -254,12 +286,12 @@ def write_var_snippet_and_response(var, data, codebook, paragraph, colon=True, n
 
     paragraph.add_run(s)
 
-def write_var_text_and_response(var, data, codebook, paragraph, colon=True):
+def write_var_text_and_response(var, data, codebook, paragraph, colon=True, newLine = True):
     # skip if value is missing
     if(data[var] == ""):
         return
 
-    s = "\n"
+    s = "\n" if newLine else ""
     s += codebook[var]["var_text"]
     
     if(colon):
