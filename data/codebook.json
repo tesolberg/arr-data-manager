@@ -138,7 +138,7 @@
     "var_text": "Hodepine"
   },
   "fibro-smerteomraader_1": {
-    "var_text_report": "",
+    "var_text_report": "Smerteområder",
     "responses": {
       "skulder-ven": "Skulder, venstre",
       "skulder-hoy": "Skulder, høyre",
@@ -927,12 +927,12 @@
     "var_text": "Har du forsøkt noen annen behandling før du ble henvist hit?"
   },
   "annen-tidligere-beh": {
-    "var_text_report": "",
+    "var_text_report": "Beskrivelse av annen tidligere behandling",
     "responses": {},
     "var_text": "Beskriv annen tidligere behandling"
   },
   "utdannelse": {
-    "var_text_report": "",
+    "var_text_report": "Utdannelse",
     "responses": {
       "ikke-grunnskole": "Ikke fullført 7 - 10-årig grunnskole/folkeskole",
       "grunnskole": "7 - 10-årig grunnskole/folkeskole",
@@ -944,7 +944,7 @@
     "var_text": "Hva er den høyeste utdannelsen du har fullført?"
   },
   "tid-i-arbeidslivet": {
-    "var_text_report": "",
+    "var_text_report": "Tid i arbeidslivet",
     "responses": {
       "1": "1 år eller mindre",
       "2-5": "2 - 5 år",
@@ -955,7 +955,7 @@
     "var_text": "Hvor mange år har du vært i arbeidslivet tilsammen?"
   },
   "yrke": {
-    "var_text_report": "",
+    "var_text_report": "Yrke",
     "responses": {
       "student": "Student eller skoleelev",
       "laerling": "Lærling eller på arbeidsopplæring",
@@ -974,12 +974,12 @@
     "var_text": "Hva er nåværende yrke, eller hva var ditt siste hovedyrke?"
   },
   "yrke-fritekst": {
-    "var_text_report": "",
+    "var_text_report": "Yrke, fritekst",
     "responses": {},
     "var_text": "Hva jobber du som?"
   },
   "arbeidsforhold": {
-    "var_text_report": "",
+    "var_text_report": "Arbeidsforhold i dag",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -987,7 +987,7 @@
     "var_text": "Har du for tiden et arbeidsforhold?"
   },
   "stillingsprosent": {
-    "var_text_report": "",
+    "var_text_report": "Stillingsprosent",
     "responses": {
       "1-25": "1 - 25%",
       "26-50": "26 - 50%",
@@ -1000,7 +1000,7 @@
     "var_text": "Hvor stor stillingsprosent har du i jobben din?"
   },
   "i-jobb-na": {
-    "var_text_report": "",
+    "var_text_report": "I jobb i dag",
     "responses": {
       "fullt": "Jeg jobber fullt eller mer enn stillingsprosenten jeg har",
       "redusert": "Jeg jobber en redusert del av den stillingsprosenten jeg har",
@@ -1009,7 +1009,7 @@
     "var_text": "Hvor mye jobber du i den stillingsprosenten du har?"
   },
   "sektor_1": {
-    "var_text_report": "",
+    "var_text_report": "Sektor",
     "responses": {
       "privat": "Privat sektor",
       "offentlig": "Offentlig sektor",
@@ -1049,7 +1049,7 @@
     "var_text": "Hvilken type virksomhet(er) arbeider du i?"
   },
   "sm-aap": {
-    "var_text_report": "",
+    "var_text_report": "Sykemeldingsstatus",
     "responses": {
       "nei": "Nei, jeg er ikke sykemeldt og mottar ikke arbeidsavklaringspenger",
       "delvis-sm": "Ja, delvis sykemeldt",
@@ -1059,7 +1059,7 @@
     "var_text": "Er du sykemeldt eller mottar du arbeidsavklaringspenger?"
   },
   "oppfolgingsplan": {
-    "var_text_report": "",
+    "var_text_report": "Oppfølgingsplan",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -1067,7 +1067,7 @@
     "var_text": "Har du utarbeidet oppfølgingsplan sammen med din arbeidsgiver?"
   },
   "aktivitetsplan": {
-    "var_text_report": "",
+    "var_text_report": "Aktivitetsplan",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -1075,12 +1075,12 @@
     "var_text": "Har du utarbeidet aktivitetsplan sammen med din NAV-veileder?"
   },
   "aarsak-sm-app": {
-    "var_text_report": "",
+    "var_text_report": "Pasientens tanker om årsak til sykemelding",
     "responses": {},
     "var_text": "Hva er årsak til at du er sykemeldt/mottar arbeidsavklaringspenger?"
   },
   "samarbeid-nav": {
-    "var_text_report": "",
+    "var_text_report": "Vurdering av samarbeid med NAV",
     "responses": {
       "v-bra": "Veldig bra",
       "bra": "Bra",
@@ -1092,7 +1092,7 @@
     "var_text": "Hvordan opplever du samarbeidet med NAV?"
   },
   "tidl-tiltak": {
-    "var_text_report": "",
+    "var_text_report": "Tidligere arbeidsavklaringstiltak",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -1100,7 +1100,7 @@
     "var_text": "Har du tidligere deltatt i tiltak for å avklare din arbeidsevne?"
   },
   "rapport-avklaring": {
-    "var_text_report": "",
+    "var_text_report": "Rapport fra tidligere tiltak",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -1108,7 +1108,7 @@
     "var_text": "Foreligger det rapport(er) derfra?"
   },
   "ytelser_1": {
-    "var_text_report": "",
+    "var_text_report": "Ytelser",
     "responses": {
       "sykepenger": "Sykepenger (fra arbeidsgiver eller NAV)",
       "aap": "Arbeidsavklaringspenger (AAP)",
@@ -1220,7 +1220,7 @@
     "var_text": "Mottar du noen av disse ytelsene? (kan velge flere)"
   },
   "varighet-sm-siste-ar": {
-    "var_text_report": "",
+    "var_text_report": "Varighet av sykemelding siste år",
     "responses": {
       "0": "Jeg har ikke vært sykemeldt siste år",
       "mindre-to-uker": "Mindre enn 2 uker",
@@ -1232,7 +1232,7 @@
     "var_text": "Hvor lenge har du tilsammen vært helt eller delvis sykemeldt de siste 12 månedene?"
   },
   "okonomi": {
-    "var_text_report": "",
+    "var_text_report": "Økonomiske bekymringer",
     "responses": {
       "god": "Ikke bekymret",
       "middels": "Litt bekymret",
@@ -1242,7 +1242,7 @@
     "var_text": "Er du bekymret for økonomien din?"
   },
   "sokt-ufor": {
-    "var_text_report": "",
+    "var_text_report": "Søkt ufør",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -1250,7 +1250,7 @@
     "var_text": "Har du søkt eller planlegger du å søke om uføretrygd?"
   },
   "erstatningssak": {
-    "var_text_report": "",
+    "var_text_report": "Pågående erstatningssak",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
@@ -1258,7 +1258,7 @@
     "var_text": "Har du en uavklart eller pågående forsikrings/erstatningssak knyttet til plagene dine?"
   },
   "arbeidsevne-generelt": {
-    "var_text_report": "",
+    "var_text_report": "Generell arbeidsevne (0 verst, 10 best)",
     "responses": {
       "0": "0",
       "1": "1",
@@ -1275,7 +1275,7 @@
     "var_text": "Du skal nå forsøke å vurdere din nåværende arbeidsevne sammenliknet med da den var på sitt beste. Vi går ut i fra at din arbeidsevne på sitt beste verdsettes med 10 poeng. Hvor mange poeng vil du gi til din nåværende arbeidsevne?"
   },
   "arbeidsevne-fysiske-krav": {
-    "var_text_report": "",
+    "var_text_report": "Arbeidsevne sett opp mot fysiske krav",
     "responses": {
       "meget-darlig": "Meget dårlig",
       "ganske-darlig": "Ganske dårlig",
@@ -1286,7 +1286,7 @@
     "var_text": "Hvordan vurderer du din egen arbeidsevne sett opp mot fysisk krav i jobben (gå, stå, løfte etc)?"
   },
   "arbeidsevne-mentale-krav": {
-    "var_text_report": "",
+    "var_text_report": "Arbeidsevne sett opp mot mentale krav",
     "responses": {
       "meget-darlig": "Meget dårlig",
       "ganske-darlig": "Ganske dårlig",
@@ -1297,7 +1297,7 @@
     "var_text": "Hvordan vurderer du din egen arbeidsevne sett opp mot mentale krav i jobben (konsentrasjon, planlegging etc)?"
   },
   "estimat-rtw": {
-    "var_text_report": "",
+    "var_text_report": "Estimert tid til tilbake i jobb",
     "responses": {
       "under-2-uker": "Umiddelbart eller i løpet av 2 uker",
       "innen-1-mnd": "Innen 1 måned",
@@ -1312,12 +1312,12 @@
     "var_text": "Hvor lang tid tror du at det tar før du er tilbake i arbeid?"
   },
   "endringer-jobbsit-rtw": {
-    "var_text_report": "",
+    "var_text_report": "Antagelser om nødvendige endringer for retur",
     "responses": {},
     "var_text": "Hvis du ser bort i fra endring i smertesituasjonen, hvilke endringer i arbeidssituasjonen skal til for at du med dine plager gradvis kan gå tilbake i jobb?"
   },
   "onsket-jobb": {
-    "var_text_report": "",
+    "var_text_report": "Ønsket jobb",
     "responses": {
       "sist-jobb": "Jobben jeg har i dag/jobben jeg hadde sist",
       "ny-jobb-samme-yrke": "Ny jobb innen samme yrke",

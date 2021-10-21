@@ -18,7 +18,7 @@ def generate_report(data, codebook_path):
     # creates new document and adds heading
     document = Document()
     document.add_heading('Pasientrapportert kartlegging - arbeidsrettet rehabilitering', 0)
-    document.add_heading('Avdeling for fysikalsk medisin og forebygging, Sørlandet sykehus HF', 3)
+    document.add_heading('Avdeling for fysikalsk medisin og forebygging, Sørlandet sykehus HF', 1)
 
     ### INNLEDNING ###    
     # write_intro(data, codebook, document)
@@ -28,18 +28,17 @@ def generate_report(data, codebook_path):
     
     ### SMERTEKARTLEGGING ###
     # document.add_page_break()
-    write_pain_responses(data, codebook, document)
-
-
-
+    # write_pain_variables(data, codebook, document)
 
     ### ARBEID OG YTELSER ###
-
-    # # work related
+    # document.add_page_break()
     # write_work_related(data, codebook, document)
 
-    # # physical activity
-    # write_physical_activity(data, codebook, document)
+    ### FYSISK AKTIVITET, HØYDE, VEKT, KOSTHOLD
+    # document.add_page_break() 
+    document.add_heading("Mosjon, høyde,  vekt og kosthold")
+    p = document.add_paragraph("")
+    write_physical_activity(data, codebook, p)
 
 
     # # restspm
@@ -60,13 +59,13 @@ def write_intro(data, codebook, document):
     demografi.add_run("Dato utfylt: " + data["Opprettet"])
     
     # Morsmål og lese-/skrivevansker
-    demografi.add_run("\n")
+    demografi.add_run("\n\n")
     if (data["morsmaal"] == "annet"):
-        demografi.add_run("Morsmål: " + data["morsmaal-tekst"])
-        write_var_snippet_and_response("sprakvansker", data, codebook, document, demografi)
+        demografi.add_run("Morsmål: " + data["morsmaal-tekst"].capitalize())
+        write_var_snippet_and_response("sprakvansker", data, codebook, demografi)
 
     # Sivilstatus, barn, husholdning
-    write_var_snippet_and_response("sivilstatus", data, codebook, document, demografi)
+    write_var_snippet_and_response("sivilstatus", data, codebook, demografi)
     demografi.add_run("\nBarn: " + data["barn"])
     demografi.add_run("\nPersoner i husholdningen (i tillegg til pas): " + data["antall-i-husholdning"])
 
@@ -126,10 +125,11 @@ def write_summary(data, codebook, document):
     else:
         oppsummering.add_run("\nISI: " + str(isi_score(data)))
 
-    oppsummering.add_run("\nHSCL-25 (klinisk terskelverdi = 1,7): " + str(hscl_score(data)))
 
+def write_pain_variables(data, codebook, document):
+    
+    gray = RGBColor(0xbb, 0xbb, 0xbb)
 
-def write_pain_responses(data, codebook, document):
     document.add_heading('Smerter')
 
     p = document.add_paragraph("Smerter siste uken (verste, beste, gjennomsnitt): " + data["plager-verste"] \
@@ -137,52 +137,81 @@ def write_pain_responses(data, codebook, document):
     
     # Varighet smerter
     if(data["plager-mer-enn-et-aar"] == "ja"):
-        p.add_run("\nVarighet i måneder: " + data["plager-aar"])
+        p.add_run("\nVarighet: " + data["plager-aar"] + " måneder")
     else:
-        p.add_run("\nVarighet i år: " + data["plager-mnd"])
+        p.add_run("\nVarighet: " + data["plager-mnd"] + " år")
 
     # Fibroskjema
-    write_var_snippet_and_var_code("fibro-utmattelse", data, codebook, p)
+    document.add_heading('Fibromyalgiskjema', 3)
+    p = document.add_paragraph("Utmattelse: " + data["fibro-utmattelse"].capitalize())
     write_var_snippet_and_var_code("fibro-kognisjon", data, codebook, p)
     write_var_snippet_and_var_code("fibro-trett", data, codebook, p)
     write_var_text_and_response("fibro-mage", data, codebook, p)
+    write_var_text_and_response("fibro-depresjon", data, codebook, p)
+    write_var_text_and_response("fibro-hodepine", data, codebook, p)
+    write_var_text_report_and_multi_response("fibro-smerteomraader_1", data, codebook, p)
 
-    # Utmattelse, kognisjon og trett (fargekodet)
-    # Grå/svart på IBS, dep, hodepine
-    # Oppramsing av smerteområder
+    document.add_heading('Tanker om smertene', 3)
+    p = document.add_paragraph("")
+    run = p.add_run("Svart = 'stemmer'. Grå = 'stemmer ikke'")
+    run.font.italic = True
+    keys = []
+    for key in data:
+        if key[0:6] == "plager":
+            keys.append(key)
+    for key in keys[6:]:
+        run = p.add_run("\n" + codebook[key]["var_text"])
+        if(data[key] == "stemmer-ikke"):
+            run.font.color.rgb = gray
 
-def write_physical_activity(data, codebook, document):
-    document.add_heading('Fysisk aktivitet')
-    s = str(data["fysakt-timer"]) + " time(r) og " + str(data["fysakt-min"]) + " minutter moderat fysisk aktivitet siste uke."
-    document.add_paragraph(s)
+    p = document.add_paragraph("")
+    p.add_run("Pasientens tanker om årsak til plagene: " + data["aarsak"])
+
+    document.add_heading('Tidligere behandling', 3)
+    p = document.add_paragraph("")
+    write_var_text_report_and_multi_response("tidligere-behandling_1", data, codebook, p, False, False)
+    if len(data["annen-tidligere-beh"]) > 0:
+        write_var_snippet_and_var_code("annen-tidligere-beh", data, codebook, p)
+
+
+def write_physical_activity(data, codebook, paragraph):
+    write_var_text_and_response("mosjon", data, codebook, paragraph)
 
 
 
 def write_work_related(data, codebook, document):
 
     document.add_heading('Arbeidshistorikk og utdanning')
+    p = document.add_paragraph("")
 
-    write_var_snippet_and_response("utdannelse", data, codebook, document)
-    write_var_snippet_and_response("tid-i-arbeidslivet", data, codebook, document)
-    write_var_snippet_and_response("yrke", data, codebook, document)
-    write_var_snippet_and_response("arbeidsforhold", data, codebook, document)
-    write_var_snippet_and_response("stillingsprosent", data, codebook, document)
-    write_var_snippet_and_response("i-jobb-na", data, codebook, document, False)
+    write_var_snippet_and_response("utdannelse", data, codebook, p, True, False)
+    write_var_snippet_and_response("tid-i-arbeidslivet", data, codebook, p)
+    write_var_snippet_and_response("yrke", data, codebook, p)
+    write_var_snippet_and_var_code("yrke-fritekst", data, codebook, p)    
+    write_var_snippet_and_response("arbeidsforhold", data, codebook, p)
+    write_var_snippet_and_response("stillingsprosent", data, codebook, p)
+    write_var_snippet_and_response("i-jobb-na", data, codebook, p, False)
 
-    write_var_text_report_and_multi_response("sektor_1", data, codebook, document)
+    write_var_text_report_and_multi_response("sektor_1", data, codebook, p)
 
-    write_var_snippet_and_response("sm-aap", data, codebook, document, False)
+    write_var_snippet_and_response("sm-aap", data, codebook, p, False)
 
-    write_var_text_report_and_multi_response("ytelser_1", data, codebook, document)
+    write_var_snippet_and_response("oppfolgingsplan", data, codebook, p)
+    write_var_snippet_and_response("aktivitetsplan", data, codebook, p)
+    write_var_snippet_and_var_code("aarsak-sm-app", data, codebook, p, True, True)
+    write_var_snippet_and_response("tidl-tiltak", data, codebook, p)
+    write_var_snippet_and_response("rapport-avklaring", data, codebook, p)
 
-    write_var_snippet_and_response("varighet-sm-siste-ar", data, codebook, document)
-    write_var_snippet_and_response("sokt-ufor", data, codebook, document)
-    write_var_snippet_and_response("erstatningssak", data, codebook, document)
-    write_var_snippet_and_response("arbeidsevne-generelt", data, codebook, document)
-    write_var_snippet_and_response("arbeidsevne-fysiske-krav", data, codebook, document)
-    write_var_snippet_and_response("arbeidsevne-mentale-krav", data, codebook, document)
-    write_var_snippet_and_response("estimat-rtw", data, codebook, document)
-    write_var_snippet_and_response("onsket-jobb", data, codebook, document)
+    write_var_text_report_and_multi_response("ytelser_1", data, codebook, p)
+
+    write_var_snippet_and_response("varighet-sm-siste-ar", data, codebook, p)
+    write_var_snippet_and_response("sokt-ufor", data, codebook, p)
+    write_var_snippet_and_response("erstatningssak", data, codebook, p)
+    write_var_snippet_and_response("arbeidsevne-generelt", data, codebook, p)
+    write_var_snippet_and_response("arbeidsevne-fysiske-krav", data, codebook, p)
+    write_var_snippet_and_response("arbeidsevne-mentale-krav", data, codebook, p)
+    write_var_snippet_and_response("estimat-rtw", data, codebook, p)
+    write_var_snippet_and_response("onsket-jobb", data, codebook, p)
 
 
 
@@ -207,12 +236,12 @@ def write_var_snippet_and_var_code(var, data, codebook, paragraph, colon=True, c
 
     paragraph.add_run("\n" + s)
 
-def write_var_snippet_and_response(var, data, codebook, document, paragraph, colon=True):
+def write_var_snippet_and_response(var, data, codebook, paragraph, colon=True, newLine = True):
     # skip if value is missing
     if(data[var] == ""):
         return
 
-    s = ""
+    s = "\n" if newLine else ""
     s += codebook[var]["var_text_report"]
     
     if(colon):
@@ -223,7 +252,7 @@ def write_var_snippet_and_response(var, data, codebook, document, paragraph, col
     response_code = data[var]
     s += codebook[var]["responses"][response_code]
 
-    paragraph.add_run("\n" + s)
+    paragraph.add_run(s)
 
 def write_var_text_and_response(var, data, codebook, paragraph, colon=True):
     # skip if value is missing
@@ -245,12 +274,12 @@ def write_var_text_and_response(var, data, codebook, paragraph, colon=True):
 
 
 
-def write_var_text_report_and_multi_response(var, data, codebook, document, colon=True):
-    s = ""
+def write_var_text_report_and_multi_response(var, data, codebook, p, colon=True, leading_newline = True):
+    s = "\n" if leading_newline else ""
     s += codebook[var]["var_text_report"]
     if(colon):
         s += ": "
-    else:
+    elif len(codebook[var]["var_text_report"]) > 0:
         s += " "
 
     response = ""
@@ -262,12 +291,12 @@ def write_var_text_report_and_multi_response(var, data, codebook, document, colo
             if(len(response) == 0):
                 response += codebook[respons_var]["responses"][data[respons_var]]
             else:
-                response += ", " + codebook[respons_var]["responses"][data[respons_var]].lower()
+                response += "; " + codebook[respons_var]["responses"][data[respons_var]].lower()
 
     s += response
 
     if(len(response) > 0):
-        document.add_paragraph(s)
+        p.add_run(s)
 
 def hscl_score(data):
     points = 0
