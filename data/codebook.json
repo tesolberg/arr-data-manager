@@ -84,7 +84,7 @@
     "var_text": "Hvor mange år har du hatt smertene?"
   },
   "fibro-utmattelse": {
-    "var_text_report": "",
+    "var_text_report": "Utmattelse",
     "responses": {
       "ingen": "0",
       "lett": "1",
@@ -94,7 +94,7 @@
     "var_text": "Utmattelse"
   },
   "fibro-kognisjon": {
-    "var_text_report": "",
+    "var_text_report": "Problemer med å tenke og huske",
     "responses": {
       "ingen": "0",
       "lett": "1",
@@ -104,7 +104,7 @@
     "var_text": "Problemer med å tenke og huske"
   },
   "fibro-trett": {
-    "var_text_report": "",
+    "var_text_report": "Tretthet",
     "responses": {
       "ingen": "0",
       "lett": "1",

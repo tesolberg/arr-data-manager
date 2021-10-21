@@ -1,5 +1,6 @@
 import json
 from docx import Document
+import docx
 from docx.shared import Inches
 from docx.shared import RGBColor
 
@@ -10,11 +11,6 @@ import csv
 # dict av enkeltbesvarelse -> void + rapport i docx-format
 def generate_report(data, codebook_path):
     
-    # Sets colors
-    red = RGBColor(0xff, 0x2d, 0x00)
-    gray = RGBColor(0xbb, 0xbb, 0xbb)
-
-
     # loads codebook as dict
     with open(codebook_path, encoding="utf-8") as f:
         codebook = json.load(f)
@@ -24,7 +20,38 @@ def generate_report(data, codebook_path):
     document.add_heading('Pasientrapportert kartlegging - arbeidsrettet rehabilitering', 0)
     document.add_heading('Avdeling for fysikalsk medisin og forebygging, Sørlandet sykehus HF', 3)
 
-    ### INNLEDNING ###
+    ### INNLEDNING ###    
+    # write_intro(data, codebook, document)
+
+    ### OPPSUMMERING ###
+    # write_summary(data, codebook, document)
+    
+    ### SMERTEKARTLEGGING ###
+    # document.add_page_break()
+    write_pain_responses(data, codebook, document)
+
+
+
+
+    ### ARBEID OG YTELSER ###
+
+    # # work related
+    # write_work_related(data, codebook, document)
+
+    # # physical activity
+    # write_physical_activity(data, codebook, document)
+
+
+    # # restspm
+    # document.add_heading("Avsluttende spørsmål")
+    # write_var_snippet_and_response("helse-samlet", data, codebook, document)
+    # write_var_snippet_and_response("godt-nok-utredet", data, codebook, document)
+
+    # saves document to file
+    document.save('sample_report.docx')
+
+
+def write_intro(data, codebook, document):
     # Fnr
     demografi = document.add_paragraph("Fødselsnummer: " + data["fnr"])
     
@@ -44,9 +71,11 @@ def generate_report(data, codebook_path):
     demografi.add_run("\nPersoner i husholdningen (i tillegg til pas): " + data["antall-i-husholdning"])
 
 
-    ####################
-    ### OPPSUMMERING ###
-    ####################
+def write_summary(data, codebook, document):
+    
+    # Sets colors
+    red = RGBColor(0xff, 0x2d, 0x00)
+    gray = RGBColor(0xbb, 0xbb, 0xbb)
 
     document.add_heading('Oppsummering')
     oppsummering = document.add_paragraph("Viktigste problem: " + data["viktigste-problem"])
@@ -100,8 +129,7 @@ def generate_report(data, codebook_path):
     oppsummering.add_run("\nHSCL-25 (klinisk terskelverdi = 1,7): " + str(hscl_score(data)))
 
 
-    ### SMERTEKARTLEGGING ###
-    document.add_page_break()
+def write_pain_responses(data, codebook, document):
     document.add_heading('Smerter')
 
     p = document.add_paragraph("Smerter siste uken (verste, beste, gjennomsnitt): " + data["plager-verste"] \
@@ -113,33 +141,15 @@ def generate_report(data, codebook_path):
     else:
         p.add_run("\nVarighet i år: " + data["plager-mnd"])
 
-
     # Fibroskjema
+    write_var_snippet_and_var_code("fibro-utmattelse", data, codebook, p)
+    write_var_snippet_and_var_code("fibro-kognisjon", data, codebook, p)
+    write_var_snippet_and_var_code("fibro-trett", data, codebook, p)
+    write_var_text_and_response("fibro-mage", data, codebook, p)
+
     # Utmattelse, kognisjon og trett (fargekodet)
     # Grå/svart på IBS, dep, hodepine
     # Oppramsing av smerteområder
-
-
-    ### ARBEID OG YTELSER ###
-
-    # # work related
-    # write_work_related(data, codebook, document)
-
-    # # physical activity
-    # write_physical_activity(data, codebook, document)
-
-
-
-    # # restspm
-    # document.add_heading("Avsluttende spørsmål")
-    # write_var_snippet_and_response("helse-samlet", data, codebook, document)
-    # write_var_snippet_and_response("godt-nok-utredet", data, codebook, document)
-
-    # saves document to file
-    document.save('sample_report.docx')
-
-
-
 
 def write_physical_activity(data, codebook, document):
     document.add_heading('Fysisk aktivitet')
@@ -180,6 +190,22 @@ def write_response(var, data, codebook, document):
     s = codebook[var]["responses"][data[var]]
     document.add_paragraph(s + ".")
 
+def write_var_snippet_and_var_code(var, data, codebook, paragraph, colon=True, capitalization = True):
+    # skip if value is missing
+    if(data[var] == ""):
+        return
+
+    s = ""
+    s += codebook[var]["var_text_report"]
+    
+    if(colon):
+        s += ": "
+    else:
+        s += " "
+    
+    s += data[var].capitalize()
+
+    paragraph.add_run("\n" + s)
 
 def write_var_snippet_and_response(var, data, codebook, document, paragraph, colon=True):
     # skip if value is missing
@@ -199,12 +225,12 @@ def write_var_snippet_and_response(var, data, codebook, document, paragraph, col
 
     paragraph.add_run("\n" + s)
 
-def write_var_text_and_response(var, data, codebook, document, colon=True):
+def write_var_text_and_response(var, data, codebook, paragraph, colon=True):
     # skip if value is missing
     if(data[var] == ""):
         return
 
-    s = ""
+    s = "\n"
     s += codebook[var]["var_text"]
     
     if(colon):
@@ -215,7 +241,7 @@ def write_var_text_and_response(var, data, codebook, document, colon=True):
     response_code = data[var]
     s += codebook[var]["responses"][response_code]
 
-    document.add_paragraph(s)
+    paragraph.add_run(s)
 
 
 
