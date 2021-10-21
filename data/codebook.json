@@ -1326,7 +1326,7 @@
     "var_text": "Hvilken jobb håper du å komme tilbake til?"
   },
   "mosjon": {
-    "var_text_report": "Mosjon (30 min eller mer) siste to uker",
+    "var_text_report": "Mosjon (30 min eller mer)",
     "responses": {
       "en-eller-sjeldnere": "Sjeldnere enn 1 gang per uke eller aldri",
       "en-til-to": "1 til 2 ganger per uke",
@@ -1632,7 +1632,7 @@
     "var_text": "Føler at du ikke er noe verd"
   },
   "overbelastning": {
-    "var_text_report": "",
+    "var_text_report": "Opplevd overbelastning",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"

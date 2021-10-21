@@ -18,29 +18,25 @@ def generate_report(data, codebook_path):
     # creates new document and adds heading
     document = Document()
     document.add_heading('Pasientrapportert kartlegging - arbeidsrettet rehabilitering', 0)
-    document.add_heading('Avdeling for fysikalsk medisin og forebygging, Sørlandet sykehus HF', 1)
+    document.add_heading('Avdeling for fysikalsk medisin og forebygging, Sørlandet sykehus HF', 2)
 
     ### INNLEDNING ###    
-    # write_intro(data, codebook, document)
+    write_intro(data, codebook, document)
 
     ### OPPSUMMERING ###
-    # write_summary(data, codebook, document)
+    write_summary(data, codebook, document)
     
     ### SMERTEKARTLEGGING ###
-    # document.add_page_break()
-    # write_pain_variables(data, codebook, document)
+    write_pain_variables(data, codebook, document)
 
     ### ARBEID OG YTELSER ###
-    # document.add_page_break()
-    # write_work_related(data, codebook, document)
+    write_work_related(data, codebook, document)
 
     ### FYSISK AKTIVITET, HØYDE, VEKT, KOSTHOLD
-    # document.add_page_break() 
-    # write_exercise_and_more(data, codebook, document)
+    write_exercise_and_more(data, codebook, document)
 
     ### HSCL-25 + overbelastning ###
-    # document.add_page_break() 
-    # write_hscl25(data, codebook, document)
+    write_hscl25(data, codebook, document)
 
     ### ISI ###
     p = document.add_paragraph("")
@@ -60,14 +56,15 @@ def generate_report(data, codebook_path):
 
 def write_intro(data, codebook, document):
     # Fnr
-    demografi = document.add_paragraph("Fødselsnummer: " + data["fnr"])
+    p = document.add_paragraph("Fødselsnummer: " + data["fnr"])
     
     # Dato for utfylling
-    demografi.add_run("\n")
-    demografi.add_run("Dato utfylt: " + data["Opprettet"])
+    p.add_run("\n")
+    p.add_run("Dato utfylt: " + data["Opprettet"])
     
+    document.add_heading("Demografi", 1)
+    demografi = document.add_paragraph("")
     # Morsmål og lese-/skrivevansker
-    demografi.add_run("\n\n")
     if (data["morsmaal"] == "annet"):
         demografi.add_run("Morsmål: " + data["morsmaal-tekst"].capitalize())
         write_var_snippet_and_response("sprakvansker", data, codebook, demografi)
@@ -220,7 +217,7 @@ def write_work_related(data, codebook, document):
 def write_exercise_and_more(data, codebook, document):
     document.add_heading("Mosjon, høyde,  vekt og kosthold")
     p = document.add_paragraph("")
-    write_var_snippet_and_response("mosjon", data, codebook, p)
+    write_var_snippet_and_response("mosjon", data, codebook, p, True, False)
     write_var_snippet_and_var_code("hoyde", data, codebook, p)
     write_var_snippet_and_var_code("vekt", data, codebook, p)
     write_var_snippet_and_response("kosthold", data, codebook, p)
@@ -246,10 +243,15 @@ def write_hscl25(data, codebook, document):
 def write_isi(data, codebook, document):
     document.add_heading('Insomnia Severity Scale')
     p = document.add_paragraph("")
+    for key in data:
+        if key[0:3] == "isi":
+            write_var_text_and_response(key, data, codebook, p)
+
 
 def write_response(var, data, codebook, document):
     s = codebook[var]["responses"][data[var]]
     document.add_paragraph(s + ".")
+
 
 def write_var_snippet_and_var_code(var, data, codebook, paragraph, colon=True, capitalization = True):
     # skip if value is missing
