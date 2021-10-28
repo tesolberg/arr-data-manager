@@ -9,7 +9,7 @@ import csv
 
 
 # dict av enkeltbesvarelse -> void + rapport i docx-format
-def generate_report(data, codebook_path):
+def generate_report(data, codebook_path, outputPath):
     
     # loads codebook as dict
     with open(codebook_path, encoding="utf-8") as f:
@@ -51,7 +51,7 @@ def generate_report(data, codebook_path):
     # write_var_snippet_and_response("godt-nok-utredet", data, codebook, document)
 
     # saves document to file
-    document.save('sample_report.docx')
+    document.save(outputPath)
 
 
 def write_intro(data, codebook, document):
@@ -116,7 +116,7 @@ def write_summary(data, codebook, document):
     oppsummering.add_run("\nAntall smerteregioner: " + str(number_of_pain_regions(data)))
     
     # Fibro = (WPI >=7 & SSS >=5 || WPI >=4 & SSS >=9) & >=4 kroppsregioner & >=3 mnd
-    if(oppfyller_fibrokriterier(data)):
+    if(oppfyller_fibrokriterier(data, codebook)):
         oppsummering.add_run("\nOppfyller kriterier for fibromyalgi")
     else:
         oppsummering.add_run("\nOppfyller ikke kriterier for fibromyalgi")
@@ -403,7 +403,7 @@ def number_of_pain_regions(data):
     return counter
 
 
-def oppfyller_fibrokriterier(data):
+def oppfyller_fibrokriterier(data, codebook):
     wpi_and_sss = (wpi_score(data) >= 7 and sss_score(data, codebook) >= 5) or (wpi_score(data) >= 4 and sss_score(data, codebook) >= 9)
     mer_enn_1_aar = data["plager-mer-enn-et-aar"] == "ja" or int(data["plager-mnd"]) >= 3 
     return wpi_and_sss and mer_enn_1_aar and (number_of_pain_regions(data) >= 4)
