@@ -1,7 +1,5 @@
 import json
 from docx import Document
-import docx
-from docx.shared import Inches
 from docx.shared import RGBColor
 
 # for testing
@@ -9,7 +7,7 @@ import csv
 
 
 # dict av enkeltbesvarelse -> void + rapport i docx-format
-def generate_report(data, codebook_path, outputPath):
+def generate_report(data, codebook_path, outputPath, respondentID):
     
     # loads codebook as dict
     with open(codebook_path, encoding="utf-8") as f:
@@ -21,7 +19,7 @@ def generate_report(data, codebook_path, outputPath):
     document.add_heading('Avdeling for fysikalsk medisin og forebygging, Sørlandet sykehus HF', 2)
 
     ### INNLEDNING ###    
-    write_intro(data, codebook, document)
+    write_intro(data, codebook, document, respondentID)
 
     ### OPPSUMMERING ###
     write_summary(data, codebook, document)
@@ -54,9 +52,9 @@ def generate_report(data, codebook_path, outputPath):
     document.save(outputPath)
 
 
-def write_intro(data, codebook, document):
+def write_intro(data, codebook, document, respondentID):
     # Fnr
-    p = document.add_paragraph("Fødselsnummer: " + data["fnr"])
+    p = document.add_paragraph("Respondent-ID: " + str(respondentID))
     
     # Dato for utfylling
     p.add_run("\n")
@@ -410,14 +408,15 @@ def oppfyller_fibrokriterier(data, codebook):
 
 
 def main():
-    row =  get_first_row("data/test-data.tsv")
-    generate_report(row, "data/codebook.json")
+        print("Main function/test ikke implementert")
+    # row =  get_first_row("data/test-data.tsv")
+    # generate_report(row, "data/codebook.json")
 
-def get_first_row(path):
-    with open(path, newline="") as csvfile:
-        reader = csv.DictReader(csvfile, dialect="excel-tab")
-        row = reader.__next__()
-        return row
+# def get_first_row(path):
+#     with open(path, newline="") as csvfile:
+#         reader = csv.DictReader(csvfile, dialect="excel-tab")
+#         row = reader.__next__()
+#         return row
 
 if __name__ == "__main__":
     main()
