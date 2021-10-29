@@ -352,10 +352,10 @@ def isi_score(data):
             if val == "veldig-tilfreds" or val == "ingen": continue
             elif val == "milde" or val == "tilfreds" or val == "litt": points += 1
             elif val == "moderate" or val == "verken" or val == "noe": points += 2
-            elif val == "alvorlige" or val == "utilfreds" or val == "ganske-mye": points += 3
+            elif val == "alvorlige" or val == "utilfreds" or val == "ganske-mye" or val == "ganske" or val == "mye": points += 3
             elif val == "veldig-alvorlige" or val == "veldig-utilfreds" or val == "veldig" or val == "veldig-mye": points += 4
             else: print("error, isi response: " + val)
-    return points / 25
+    return points
 
 def wpi_score(data):
     counter = 0
