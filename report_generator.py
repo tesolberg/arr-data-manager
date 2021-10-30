@@ -49,7 +49,8 @@ def generate_report(data, codebook_path, outputPath, respondentID):
     # write_var_snippet_and_response("godt-nok-utredet", data, codebook, document)
 
     # saves document to file
-    document.save(outputPath)
+    document.save(outputPath + str(respondentID) + ".docx")
+    print("Generated report for respondent " + str(respondentID))
 
 
 def write_intro(data, codebook, document, respondentID):

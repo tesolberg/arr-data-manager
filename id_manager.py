@@ -1,9 +1,12 @@
 import csv
+import os
 
 def get_id_code(fnr):
     
+    p = get_path_to_keys() + "\\koblingsnokkel.csv"
+
     # åpne fil og sjekk for eksisterende oppføring -> returner oppføring
-    with open("koblingsnokkel/koblingsnokkel.csv", newline="") as csvfile:
+    with open(p, newline="") as csvfile:
         reader = csv.DictReader(csvfile)
         
         for row in reader:
@@ -14,18 +17,20 @@ def get_id_code(fnr):
     # fant ikke oppføring -> legg inn ny    
     key = get_next_code()
     s = "\n" + fnr + "," + str(key)
-    f = open("koblingsnokkel/koblingsnokkel.csv", "a")
+    f = open(p, "a")
     f.write(s)
     return key
 
 def get_next_code():
     
+    p = get_path_to_keys() + "\\neste-kode.txt"
+
     nextCode = 0
     
-    with open("koblingsnokkel/neste-kode.txt", newline="") as f:
+    with open(p, newline="") as f:
         nextCode = int(f.readline()) + 1
 
-    f = open("koblingsnokkel/neste-kode.txt", "w")
+    f = open(p, "w")
     f.write(str(nextCode))
     f.close()
     
@@ -34,7 +39,9 @@ def get_next_code():
 
 def id_to_fnr(id):    
     
-    with open("koblingsnokkel/koblingsnokkel.csv", newline="") as csvfile:
+    p = get_path_to_keys() + "\\koblingsnokkel.csv"
+    
+    with open(p, newline="") as csvfile:
         reader = csv.DictReader(csvfile)
     
         for row in reader:
@@ -42,3 +49,8 @@ def id_to_fnr(id):
                 return row["fnr"]
         
         print("Fant ingen oppføring med id-kode: " + id)
+
+
+def get_path_to_keys():
+    path_arr = os.path.dirname(os.getcwd())
+    return path_arr + "\\koblingsnokkel\\"

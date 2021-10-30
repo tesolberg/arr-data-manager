@@ -3,11 +3,13 @@ from os.path import isfile, join
 import csv
 import report_generator as rg
 import id_manager
+import os
 
 # Sets paths
-newSubmissionsPath = "data/nye-besvarelser"
-reportExportPath = "export"
-
+path_arr = os.path.dirname(os.getcwd())
+path_durable = os.path.dirname(os.path.dirname(os.getcwd()))
+newSubmissionsPath = path_arr + "\\nye-besvarelser\\"
+reportExportPath = path_durable + "\\file-export\\"
 
 def main():
     # hent alle filnavn i nye-besvarelse-mappen
@@ -16,6 +18,8 @@ def main():
     # Genererer respondent-IDer og rapporter
     generate_reports(fileNames)
 
+    # Flytter alle nye besvarelser til "i-forlop"-mappen
+    move_files((fileNames))
 
 
 def generate_reports(fileNames):
@@ -31,14 +35,13 @@ def generate_reports(fileNames):
                 respondentID = id_manager.get_id_code(data["fnr"])
                 
                 # generates report
-                rg.generate_report(data, "kodebok/codebook.json", "export/" + fileName[:-3] + "docx", respondentID)
+                rg.generate_report(data, "kodebok/codebook.json", reportExportPath, respondentID)
 
 
-
-# TODO
-# lag oppføring i koblingsnøkkelen ut i fra fnr
-# lag rapport med koblingsnøkkel
-# flytt filen til aktive-forlop-mappen
+def move_files(fileNames):
+    for fileName in fileNames:
+        if(fileName[0:1] != "."):   # guards against .ds_store
+            os.rename(newSubmissionsPath + "/" + fileName, path_arr + "/i-forlop/" + fileName)
 
 
 
