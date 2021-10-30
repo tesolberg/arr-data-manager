@@ -409,15 +409,8 @@ def oppfyller_fibrokriterier(data, codebook):
 
 
 def main():
-        print("Main function/test ikke implementert")
-    # row =  get_first_row("data/test-data.tsv")
-    # generate_report(row, "data/codebook.json")
+        print("Main function ikke implementert")
 
-# def get_first_row(path):
-#     with open(path, newline="") as csvfile:
-#         reader = csv.DictReader(csvfile, dialect="excel-tab")
-#         row = reader.__next__()
-#         return row
 
 if __name__ == "__main__":
     main()

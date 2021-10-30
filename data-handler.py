@@ -21,6 +21,9 @@ def main():
     # Flytter alle nye besvarelser til "i-forlop"-mappen
     move_files((fileNames))
 
+    i = input("Prosessering fullført. Ønskter du å hente fødselsnummer fra respondent-ID? (y/n + enter)\n")
+    if i == "y":
+        import finnfnr
 
 def generate_reports(fileNames):
     for fileName in fileNames:
