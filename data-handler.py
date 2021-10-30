@@ -19,11 +19,19 @@ def main():
     generate_reports(fileNames)
 
     # Flytter alle nye besvarelser til "i-forlop"-mappen
+    # TODO Lage egen mappe for besvarelser og egen for anettes
     move_files((fileNames))
 
     i = input("Prosessering fullført. Ønskter du å hente fødselsnummer fra respondent-ID? (y/n + enter)\n")
     if i == "y":
         import finnfnr
+
+    # TODO Kvalitetsregisteret
+    # Ta alle nye besvarelser fra Anette
+    # Se etter kartlegging -> merge hvis den finner
+    # Anonymiser
+    # Legg inn som ny rad i registeret
+
 
 def generate_reports(fileNames):
     for fileName in fileNames:
