@@ -6,12 +6,15 @@ import id_manager
 import os
 
 # Sets paths
+print(os.getcwd())
 path_arr = os.path.dirname(os.getcwd())
 path_durable = os.path.dirname(os.path.dirname(os.getcwd()))
-newSubmissionsPath = path_arr + "\\nye-besvarelser\\"
-reportExportPath = path_durable + "\\file-export\\"
+newSubmissionsPath = path_arr + "/nye-besvarelser/"
+reportExportPath = path_durable + "/file-export/"
 
 def main():
+    testMode = False
+
     # hent alle filnavn i nye-besvarelse-mappen
     fileNames = [f for f in listdir(newSubmissionsPath) if isfile(join(newSubmissionsPath, f))]
 
@@ -20,11 +23,12 @@ def main():
 
     # Flytter alle nye besvarelser til "i-forlop"-mappen
     # TODO Lage egen mappe for besvarelser og egen for anettes
-    move_files((fileNames))
+    if not testMode:
+        move_files((fileNames))
 
-    i = input("Prosessering fullført. Ønskter du å hente fødselsnummer fra respondent-ID? (y/n + enter)\n")
-    if i == "y":
-        import finnfnr
+        i = input("Prosessering fullført. Ønskter du å hente fødselsnummer fra respondent-ID? (y/n + enter)\n")
+        if i == "y":
+            import finnfnr
 
     # TODO Kvalitetsregisteret
     # Ta alle nye besvarelser fra Anette

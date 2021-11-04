@@ -77,7 +77,7 @@ def write_intro(data, codebook, document, respondentID):
 def write_summary(data, codebook, document):
     
     # Sets colors
-    red = RGBColor(0xff, 0x2d, 0x00)
+    black = RGBColor(0x00, 0x00, 0x00)
     gray = RGBColor(0xbb, 0xbb, 0xbb)
 
     document.add_heading('Oppsummering')
@@ -86,10 +86,24 @@ def write_summary(data, codebook, document):
     
     # Ufør og erstatningssak
     run = oppsummering.add_run("\nErstatningssak")    
-    run.font.color.rgb = red if (data["erstatningssak"] == "ja") else gray
+    if data["erstatningssak"] == "ja":
+        run.font.italic = True
+    else:
+        run.font.color.rgb = gray
+
     oppsummering.add_run(" | ")
+    
     run = oppsummering.add_run("Uførsøknad")    
-    run.font.color.rgb = red if (data["sokt-ufor"] == "ja") else gray
+    if data["sokt-ufor"] == "ja":
+        run.font.italic = True
+    else:
+        run.font.color.rgb = gray
+    
+    # run = oppsummering.add_run("\nErstatningssak")    
+    # run.font.color.rgb = red if (data["erstatningssak"] == "ja") else gray
+    # oppsummering.add_run(" | ")
+    # run = oppsummering.add_run("Uførsøknad")    
+    # run.font.color.rgb = red if (data["sokt-ufor"] == "ja") else gray
     
     # Jobbstatus
     yrke = codebook["yrke"]["responses"][data["yrke"]] + " - " + data["yrke-fritekst"]
@@ -214,11 +228,13 @@ def write_work_related(data, codebook, document):
 
 
 def write_exercise_and_more(data, codebook, document):
-    document.add_heading("Mosjon, høyde,  vekt og kosthold")
+    document.add_heading("Mosjon, bmi og kosthold")
     p = document.add_paragraph("")
-    write_var_snippet_and_response("mosjon", data, codebook, p, True, False)
-    write_var_snippet_and_var_code("hoyde", data, codebook, p)
-    write_var_snippet_and_var_code("vekt", data, codebook, p)
+    vekt = int(data["vekt"])
+    hoyde = float(data["hoyde"]) / 100
+    bmi = vekt / (hoyde * hoyde)
+    p.add_run(f"BMI: {bmi:.1f}")
+    write_var_snippet_and_response("mosjon", data, codebook, p, True)
     write_var_snippet_and_response("kosthold", data, codebook, p)
     write_var_snippet_and_response("maaltidsrytme", data, codebook, p)
     write_var_text_report_and_multi_response("vurderer-endre_1", data, codebook, p)

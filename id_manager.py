@@ -3,7 +3,7 @@ import os
 
 def get_id_code(fnr):
     
-    p = get_path_to_keys() + "\\koblingsnokkel.csv"
+    p = get_path_to_keys() + "/koblingsnokkel.csv"
 
     # åpne fil og sjekk for eksisterende oppføring -> returner oppføring
     with open(p, newline="") as csvfile:
@@ -23,7 +23,7 @@ def get_id_code(fnr):
 
 def get_next_code():
     
-    p = get_path_to_keys() + "\\neste-kode.txt"
+    p = get_path_to_keys() + "/neste-kode.txt"
 
     nextCode = 0
     
@@ -39,7 +39,7 @@ def get_next_code():
 
 def id_to_fnr(id):    
     
-    p = get_path_to_keys() + "\\koblingsnokkel.csv"
+    p = get_path_to_keys() + "/koblingsnokkel.csv"
     
     with open(p, newline="") as csvfile:
         reader = csv.DictReader(csvfile)
@@ -53,4 +53,4 @@ def id_to_fnr(id):
 
 def get_path_to_keys():
     path_arr = os.path.dirname(os.getcwd())
-    return path_arr + "\\koblingsnokkel\\"
+    return path_arr + "/koblingsnokkel/"
