@@ -4,6 +4,7 @@ import csv
 import report_generator as rg
 import id_manager
 import os
+import sys
 
 # Sets paths
 print(os.getcwd())
@@ -13,7 +14,8 @@ newSubmissionsPath = path_arr + "/nye-besvarelser/"
 reportExportPath = path_durable + "/file-export/"
 
 def main():
-    testMode = False
+    
+    testMode = True if sys.argv[1] == "test" else False
 
     # hent alle filnavn i nye-besvarelse-mappen
     fileNames = [f for f in listdir(newSubmissionsPath) if isfile(join(newSubmissionsPath, f))]
