@@ -130,9 +130,9 @@ def write_summary(data, codebook, document):
     
     # Fibro = (WPI >=7 & SSS >=5 || WPI >=4 & SSS >=9) & >=4 kroppsregioner & >=3 mnd
     if(oppfyller_fibrokriterier(data, codebook)):
-        oppsummering.add_run("\nOppfyller kriterier for fibromyalgi")
+        oppsummering.add_run("\Positivt svar på samlede kriterier for utbredte smerter")
     else:
-        oppsummering.add_run("\nOppfyller ikke kriterier for fibromyalgi")
+        oppsummering.add_run("\nNegativt svar på samlede kriterier for utbredte smerter")
 
     # HSCL-25
     oppsummering.add_run("\nHSCL-25 (klinisk terskelverdi = 1,7): " + str(hscl_score(data)))
