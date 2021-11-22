@@ -1,5 +1,6 @@
 import csv
 import os
+from datetime import date
 
 def get_id_code(fnr):
     
@@ -16,7 +17,8 @@ def get_id_code(fnr):
 
     # fant ikke oppføring -> legg inn ny    
     key = get_next_code()
-    s = "\n" + fnr + "," + str(key)
+    today = date.today()
+    s = "\n" + fnr + "," + str(key) + "," + today.strftime("%d/%m/%Y")
     f = open(p, "a")
     f.write(s)
     return key

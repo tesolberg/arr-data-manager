@@ -15,16 +15,36 @@ reportExportPath = path_durable + "/file-export/"
 
 def main():
     
+    # setter testmode variabel
     testMode = True if sys.argv[1] == "test" else False
 
     # hent alle filnavn i nye-besvarelse-mappen
     fileNames = [f for f in listdir(newSubmissionsPath) if isfile(join(newSubmissionsPath, f))]
 
-    # Genererer respondent-IDer og rapporter
-    generate_reports(fileNames)
+    # iterer over besvarelsene
+    for fileName in fileNames:
+        if(fileName[0:1] != "."):   # guard against .ds_store        
+            with open(newSubmissionsPath + "/" + fileName, newline="") as csvfile:    
+                
+                # convert tsv file into dict
+                reader = csv.DictReader(csvfile, dialect="excel-tab")
+                data = reader.__next__()
+
+                # gets respondentID
+                respondentID = id_manager.get_id_code(data["fnr"])
+                
+                # identifiser type besvarelse
+                formID = data["formId"]
+
+                # utfør prosess ut i fra type besvarelse
+                if formID == "221073":   # T0 - Kartlegging før poliklinikk
+                    # generer rapport til DIPS
+                    rg.generate_report(data, "kodebok/codebook.json", reportExportPath, respondentID)
+                    # legg inn data i kvalitetsregister
+                
+
 
     # Flytter alle nye besvarelser til "i-forlop"-mappen
-    # TODO Lage egen mappe for besvarelser og egen for anettes
     if not testMode:
         move_files((fileNames))
 
@@ -39,29 +59,13 @@ def main():
     # Legg inn som ny rad i registeret
 
 
-def generate_reports(fileNames):
-    for fileName in fileNames:
-        if(fileName[0:1] != "."):   # guards against .ds_store
-            with open(newSubmissionsPath + "/" + fileName, newline="") as csvfile:
-                
-                # convert tsv file into dict
-                reader = csv.DictReader(csvfile, dialect="excel-tab")
-                data = reader.__next__()
-
-                # gets respondentID
-                respondentID = id_manager.get_id_code(data["fnr"])
-                
-                # generates report
-                rg.generate_report(data, "kodebok/codebook.json", reportExportPath, respondentID)
-
-
 def move_files(fileNames):
     for fileName in fileNames:
         if(fileName[0:1] != "."):   # guards against .ds_store
-            os.rename(newSubmissionsPath + "/" + fileName, path_arr + "/i-forlop/" + fileName)
+            os.rename(newSubmissionsPath + "/" + fileName, path_arr + "/ferdig-behandlet/" + fileName)
 
-
-
+        
+    
 
 if __name__ == "__main__":
     main()
