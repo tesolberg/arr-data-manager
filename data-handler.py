@@ -16,7 +16,9 @@ reportExportPath = path_durable + "/file-export/"
 def main():
     
     # setter testmode variabel
-    testMode = True if sys.argv[1] == "test" else False
+    testMode = False
+    if len(sys.argv) > 1:
+        testMode = True if sys.argv[1] == "test" else False
 
     # hent alle filnavn i nye-besvarelse-mappen
     fileNames = [f for f in listdir(newSubmissionsPath) if isfile(join(newSubmissionsPath, f))]
