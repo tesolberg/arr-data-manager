@@ -99,12 +99,6 @@ def write_summary(data, codebook, document):
     else:
         run.font.color.rgb = gray
     
-    # run = oppsummering.add_run("\nErstatningssak")    
-    # run.font.color.rgb = red if (data["erstatningssak"] == "ja") else gray
-    # oppsummering.add_run(" | ")
-    # run = oppsummering.add_run("Uførsøknad")    
-    # run.font.color.rgb = red if (data["sokt-ufor"] == "ja") else gray
-    
     # Jobbstatus
     yrke = codebook["yrke"]["responses"][data["yrke"]] + " - " + data["yrke-fritekst"]
     if(data["arbeidsforhold"] == "ja"):
@@ -218,6 +212,7 @@ def write_work_related(data, codebook, document):
     write_var_text_report_and_multi_response("ytelser_1", data, codebook, p)
 
     write_var_snippet_and_response("varighet-sm-siste-ar", data, codebook, p)
+    write_var_snippet_and_response("okonomi", data, codebook, p)
     write_var_snippet_and_response("sokt-ufor", data, codebook, p)
     write_var_snippet_and_response("erstatningssak", data, codebook, p)
     write_var_snippet_and_response("arbeidsevne-generelt", data, codebook, p)
