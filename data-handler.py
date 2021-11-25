@@ -26,7 +26,7 @@ def main():
     # iterer over besvarelsene
     for fileName in fileNames:
         if(fileName[0:1] != "."):   # guard against .ds_store        
-            with open(newSubmissionsPath + "/" + fileName, newline="") as csvfile:    
+            with open(newSubmissionsPath + "/" + fileName, newline="", encoding="utf-8") as csvfile:    
                 
                 # convert tsv file into dict
                 reader = csv.DictReader(csvfile, dialect="excel-tab")

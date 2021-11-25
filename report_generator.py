@@ -15,8 +15,8 @@ def generate_report(data, codebook_path, outputPath, respondentID):
 
     # creates new document and adds heading
     document = Document()
-    document.add_heading('Pasientrapportert kartlegging - arbeidsrettet rehabilitering', 0)
-    document.add_heading('Avdeling for fysikalsk medisin og forebygging, Sørlandet sykehus HF', 2)
+    document.add_heading('Pasientrapportert kartlegging - arbeidsrettet rehabilitering', 1)
+    document.add_heading('Avdeling for fysikalsk medisin og forebygging, Sørlandet sykehus HF', 3)
 
     ### INNLEDNING ###    
     write_intro(data, codebook, document, respondentID)
@@ -36,10 +36,11 @@ def generate_report(data, codebook_path, outputPath, respondentID):
     ### HSCL-25 + overbelastning ###
     write_hscl25(data, codebook, document)
 
-    ### ISI ###
-    p = document.add_paragraph("")
+    ### ISI ### TODO: Refaktorer
     if (data["sovnproblemer"] == "nei"):
-        p.add_run("\nAngir ikke søvnproblemer")
+        document.add_heading('Søvn', 2)
+        p = document.add_paragraph("")
+        p.add_run("Angir ikke søvnproblemer")
     else:
         write_isi(data, codebook, document)
 
@@ -61,15 +62,16 @@ def write_intro(data, codebook, document, respondentID):
     p.add_run("\n")
     p.add_run("Dato utfylt: " + data["Opprettet"])
     
-    document.add_heading("Demografi", 1)
+    document.add_heading("Demografi", 2)
     demografi = document.add_paragraph("")
     # Morsmål og lese-/skrivevansker
     if (data["morsmaal"] == "annet"):
         demografi.add_run("Morsmål: " + data["morsmaal-tekst"].capitalize())
         write_var_snippet_and_response("sprakvansker", data, codebook, demografi)
+        demografi.add_run("\n")
 
     # Sivilstatus, barn, husholdning
-    write_var_snippet_and_response("sivilstatus", data, codebook, demografi)
+    write_var_snippet_and_response("sivilstatus", data, codebook, demografi, True, False)
     demografi.add_run("\nBarn: " + data["barn"])
     demografi.add_run("\nPersoner i husholdningen (i tillegg til pas): " + data["antall-i-husholdning"])
 
@@ -80,7 +82,7 @@ def write_summary(data, codebook, document):
     black = RGBColor(0x00, 0x00, 0x00)
     gray = RGBColor(0xbb, 0xbb, 0xbb)
 
-    document.add_heading('Oppsummering')
+    document.add_heading('Oppsummering', 2)
     oppsummering = document.add_paragraph("Viktigste problem: " + data["viktigste-problem"])
     oppsummering.add_run("\nOppfølging pasienten tror vil være mest nyttig: " + data["type-hjelp"])    
     
@@ -142,7 +144,7 @@ def write_pain_variables(data, codebook, document):
     
     gray = RGBColor(0xbb, 0xbb, 0xbb)
 
-    document.add_heading('Smerter')
+    document.add_heading('Smerter', 2)
 
     p = document.add_paragraph("Smerter siste uken (verste, beste, gjennomsnitt): " + data["plager-verste"] \
         + "/" + data["plager-beste"] + "/" + data["plager-gjsn"])
@@ -154,7 +156,7 @@ def write_pain_variables(data, codebook, document):
         p.add_run("\nVarighet: " + data["plager-mnd"] + " år")
 
     # Fibroskjema
-    document.add_heading('Fibromyalgiskjema', 3)
+    document.add_heading('Fibromyalgiskjema', 4)
     p = document.add_paragraph("Utmattelse: " + data["fibro-utmattelse"].capitalize())
     write_var_snippet_and_var_code("fibro-kognisjon", data, codebook, p)
     write_var_snippet_and_var_code("fibro-trett", data, codebook, p)
@@ -163,7 +165,7 @@ def write_pain_variables(data, codebook, document):
     write_var_text_and_response("fibro-hodepine", data, codebook, p)
     write_var_text_report_and_multi_response("fibro-smerteomraader_1", data, codebook, p)
 
-    document.add_heading('Tanker om smertene', 3)
+    document.add_heading('Tanker om smertene', 4)
     p = document.add_paragraph("")
     run = p.add_run("Svart = 'stemmer'. Grå = 'stemmer ikke'")
     run.font.italic = True
@@ -179,7 +181,7 @@ def write_pain_variables(data, codebook, document):
     p = document.add_paragraph("")
     p.add_run("Pasientens tanker om årsak til plagene: " + data["aarsak"])
 
-    document.add_heading('Tidligere behandling', 3)
+    document.add_heading('Tidligere behandling', 4)
     p = document.add_paragraph("")
     write_var_text_report_and_multi_response("tidligere-behandling_1", data, codebook, p, False, False)
     if len(data["annen-tidligere-beh"]) > 0:
@@ -188,7 +190,7 @@ def write_pain_variables(data, codebook, document):
 
 def write_work_related(data, codebook, document):
 
-    document.add_heading('Arbeidshistorikk og utdanning')
+    document.add_heading('Arbeidshistorikk og utdanning', 2)
     p = document.add_paragraph("")
 
     write_var_snippet_and_response("utdannelse", data, codebook, p, True, False)
@@ -223,7 +225,7 @@ def write_work_related(data, codebook, document):
 
 
 def write_exercise_and_more(data, codebook, document):
-    document.add_heading("Mosjon, bmi og kosthold")
+    document.add_heading("Mosjon, bmi og kosthold", 2)
     p = document.add_paragraph("")
     vekt = int(data["vekt"])
     hoyde = float(data["hoyde"]) / 100
@@ -236,7 +238,7 @@ def write_exercise_and_more(data, codebook, document):
 
 
 def write_hscl25(data, codebook, document):
-    document.add_heading('Hopkins symptom checklist 25')
+    document.add_heading('Hopkins symptom checklist 25', 2)
     p = document.add_paragraph("")
     first = True
     for key in data:
@@ -244,18 +246,24 @@ def write_hscl25(data, codebook, document):
             if first:
                 first = False
                 write_var_text_and_response(key, data, codebook, p, True, False)
-            write_var_text_and_response(key, data, codebook, p)
+            else:
+                write_var_text_and_response(key, data, codebook, p)
     
     p.add_run("\n")
     write_var_snippet_and_response("overbelastning", data, codebook, p)
 
 
 def write_isi(data, codebook, document):
-    document.add_heading('Insomnia Severity Scale')
+    document.add_heading('Insomnia Severity Scale', 2)
     p = document.add_paragraph("")
+    first = True
     for key in data:
         if key[0:3] == "isi":
-            write_var_text_and_response(key, data, codebook, p)
+            if first:
+                first = False
+                write_var_text_and_response(key, data, codebook, p, newLine=False)
+            else:
+                write_var_text_and_response(key, data, codebook, p)
 
 
 def write_response(var, data, codebook, document):
