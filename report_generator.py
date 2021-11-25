@@ -183,7 +183,7 @@ def write_pain_variables(data, codebook, document):
 
     document.add_heading('Tidligere behandling', 4)
     p = document.add_paragraph("")
-    write_var_text_report_and_multi_response("tidligere-behandling_1", data, codebook, p, False, False)
+    write_var_text_report_and_multi_response("tidligere-behandling_1", data, codebook, p, colon=True, separator=", ", leading_newline=False)
     if len(data["annen-tidligere-beh"]) > 0:
         write_var_snippet_and_var_code("annen-tidligere-beh", data, codebook, p)
 
@@ -326,7 +326,7 @@ def write_var_text_and_response(var, data, codebook, paragraph, colon=True, newL
 
 
 
-def write_var_text_report_and_multi_response(var, data, codebook, p, colon=True, leading_newline = True):
+def write_var_text_report_and_multi_response(var, data, codebook, p, colon=True, leading_newline = True, separator = "; "):
     s = "\n" if leading_newline else ""
     s += codebook[var]["var_text_report"]
     if(colon):
@@ -343,7 +343,7 @@ def write_var_text_report_and_multi_response(var, data, codebook, p, colon=True,
             if(len(response) == 0):
                 response += codebook[respons_var]["responses"][data[respons_var]]
             else:
-                response += "; " + codebook[respons_var]["responses"][data[respons_var]].lower()
+                response += separator + codebook[respons_var]["responses"][data[respons_var]].lower()
 
     s += response
 

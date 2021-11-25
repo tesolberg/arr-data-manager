@@ -711,7 +711,7 @@
     "var_text": "Hva tror du er årsak til plagene dine?"
   },
   "tidligere-behandling_1": {
-    "var_text_report": "",
+    "var_text_report": "Pasienten har hatt",
     "responses": {
       "fysio-trening": "Trening hos fysioterapeut",
       "fysio-passiv": "Passiv behandling hos fysioterapeut (massasje, varmepakning el)",
