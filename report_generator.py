@@ -126,7 +126,7 @@ def write_summary(data, codebook, document):
     
     # Fibro = (WPI >=7 & SSS >=5 || WPI >=4 & SSS >=9) & >=4 kroppsregioner & >=3 mnd
     if(oppfyller_fibrokriterier(data, codebook)):
-        oppsummering.add_run("\Positivt svar på samlede kriterier for utbredte smerter")
+        oppsummering.add_run("\nPositivt svar på samlede kriterier for utbredte smerter")
     else:
         oppsummering.add_run("\nNegativt svar på samlede kriterier for utbredte smerter")
 

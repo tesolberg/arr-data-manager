@@ -1000,7 +1000,7 @@
     "var_text": "Hvor stor stillingsprosent har du i jobben din?"
   },
   "i-jobb-na": {
-    "var_text_report": "I jobb i dag",
+    "var_text_report": "I jobb i dag?",
     "responses": {
       "fullt": "Jeg jobber fullt eller mer enn stillingsprosenten jeg har",
       "redusert": "Jeg jobber en redusert del av den stillingsprosenten jeg har",
