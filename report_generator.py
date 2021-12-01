@@ -76,6 +76,9 @@ def write_intro(data, codebook, document, respondentID):
     demografi.add_run("\nPersoner i husholdningen (i tillegg til pas): " + data["antall-i-husholdning"])
 
 
+####################
+### OPPSUMMERING ###
+####################
 def write_summary(data, codebook, document):
     
     # Sets colors
@@ -84,6 +87,7 @@ def write_summary(data, codebook, document):
 
     document.add_heading('Oppsummering', 2)
     oppsummering = document.add_paragraph("Viktigste problem: " + data["viktigste-problem"])
+    oppsummering.add_run("\nPasientens tanker om årsak til plagene: " + data["aarsak"])
     oppsummering.add_run("\nOppfølging pasienten tror vil være mest nyttig: " + data["type-hjelp"])    
     
     # Ufør og erstatningssak
@@ -131,29 +135,42 @@ def write_summary(data, codebook, document):
         oppsummering.add_run("\nNegativt svar på samlede kriterier for utbredte smerter")
 
     # HSCL-25
-    oppsummering.add_run("\nHSCL-25 (klinisk terskelverdi = 1,7): " + str(hscl_score(data)))
+    oppsummering.add_run("\nHSCL-25 (Over 1,7 indikerer vesentlige psykiske plager): " + str(hscl_score(data)))
 
     # ISI
     if (data["sovnproblemer"] == "nei"):
         oppsummering.add_run("\nAngir ikke søvnproblemer")
     else:
-        oppsummering.add_run("\nISI: " + str(isi_score(data)))
+        isi = isi_score(data)
+        expl = " (indikerer "
+        if(isi < 8):
+            expl = expl + "fravær av vesentlige søvnvansker)"
+        elif (isi <15):
+           expl = expl + "milde til moderate søvnvansker)"
+        elif (isi <22):
+           expl = expl + "moderate søvnvansker)"
+        else:
+           expl = expl + "alvorlige søvnvansker)"
+            
+        oppsummering.add_run("\nISI: " + str(isi) + expl)
 
 
+######################
+### PAIN VARIABELS ###
+######################
 def write_pain_variables(data, codebook, document):
-    
     gray = RGBColor(0xbb, 0xbb, 0xbb)
-
     document.add_heading('Smerter', 2)
 
+    # Best, verst, gjennomsnitt
     p = document.add_paragraph("Smerter siste uken (verste, beste, gjennomsnitt): " + data["plager-verste"] \
         + "/" + data["plager-beste"] + "/" + data["plager-gjsn"])
     
     # Varighet smerter
     if(data["plager-mer-enn-et-aar"] == "ja"):
-        p.add_run("\nVarighet: " + data["plager-aar"] + " måneder")
+        p.add_run("\nVarighet: " + data["plager-aar"] + " år")
     else:
-        p.add_run("\nVarighet: " + data["plager-mnd"] + " år")
+        p.add_run("\nVarighet: " + data["plager-mnd"] + " måneder")
 
     # Fibroskjema
     document.add_heading('Fibromyalgiskjema', 4)
