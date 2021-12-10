@@ -83,6 +83,7 @@ def write_summary(data, codebook, document):
     # Diverse
     document.add_heading('Oppsummering', 2)
     oppsummering = document.add_paragraph("Viktigste problem: " + data["viktigste-problem"])
+    oppsummering.add_run("\nPasientens tanker om årsak til plagene: " + data["aarsak"])
     oppsummering.add_run("\nOppfølging pasienten tror vil være mest nyttig: " + data["type-hjelp"])    
 
     # Erstatningssak og uførsøknad
@@ -120,7 +121,7 @@ def write_summary(data, codebook, document):
     
     # Fibro = (WPI >=7 & SSS >=5 || WPI >=4 & SSS >=9) & >=4 kroppsregioner & >=3 mnd
     if(oppfyller_fibrokriterier(data, codebook)):
-        oppsummering.add_run("\Positivt svar på samlede kriterier for utbredte smerter")
+        oppsummering.add_run("\nPositivt svar på samlede kriterier for utbredte smerter")
     else:
         oppsummering.add_run("\nNegativt svar på samlede kriterier for utbredte smerter")
 
@@ -145,23 +146,36 @@ def write_summary(data, codebook, document):
     if (data["sovnproblemer"] == "nei"):
         oppsummering.add_run("\nAngir ikke søvnproblemer")
     else:
-        oppsummering.add_run("\nISI: " + str(isi_score(data)))
+        isi = isi_score(data)
+        expl = " (indikerer "
+        if(isi < 8):
+            expl = expl + "fravær av vesentlige søvnvansker)"
+        elif (isi <15):
+           expl = expl + "milde til moderate søvnvansker)"
+        elif (isi <22):
+           expl = expl + "moderate søvnvansker)"
+        else:
+           expl = expl + "alvorlige søvnvansker)"
+            
+        oppsummering.add_run("\nISI: " + str(isi) + expl)
 
 
+######################
+### PAIN VARIABELS ###
+######################
 def write_pain_variables(data, codebook, document):
-    
     gray = RGBColor(0xbb, 0xbb, 0xbb)
-
     document.add_heading('Smerter', 2)
 
+    # Best, verst, gjennomsnitt
     p = document.add_paragraph("Smerter siste uken (verste, beste, gjennomsnitt): " + data["plager-verste"] \
         + "/" + data["plager-beste"] + "/" + data["plager-gjsn"])
     
     # Varighet smerter
     if(data["plager-mer-enn-et-aar"] == "ja"):
-        p.add_run("\nVarighet: " + data["plager-aar"] + " måneder")
+        p.add_run("\nVarighet: " + data["plager-aar"] + " år")
     else:
-        p.add_run("\nVarighet: " + data["plager-mnd"] + " år")
+        p.add_run("\nVarighet: " + data["plager-mnd"] + " måneder")
 
     # Fibroskjema
     document.add_heading('Fibromyalgiskjema', 4)
@@ -191,7 +205,7 @@ def write_pain_variables(data, codebook, document):
 
     document.add_heading('Tidligere behandling', 4)
     p = document.add_paragraph("")
-    write_var_text_report_and_multi_response("tidligere-behandling_1", data, codebook, p, False, False)
+    write_var_text_report_and_multi_response("tidligere-behandling_1", data, codebook, p, colon=True, separator=", ", leading_newline=False)
     if len(data["annen-tidligere-beh"]) > 0:
         write_var_snippet_and_var_code("annen-tidligere-beh", data, codebook, p)
 
@@ -222,6 +236,7 @@ def write_work_related(data, codebook, document):
     write_var_text_report_and_multi_response("ytelser_1", data, codebook, p)
 
     write_var_snippet_and_response("varighet-sm-siste-ar", data, codebook, p)
+    write_var_snippet_and_response("okonomi", data, codebook, p)
     write_var_snippet_and_response("sokt-ufor", data, codebook, p)
     write_var_snippet_and_response("erstatningssak", data, codebook, p)
     write_var_snippet_and_response("arbeidsevne-generelt", data, codebook, p)
@@ -333,7 +348,7 @@ def write_var_text_and_response(var, data, codebook, paragraph, colon=True, newL
 
 
 
-def write_var_text_report_and_multi_response(var, data, codebook, p, colon=True, leading_newline = True):
+def write_var_text_report_and_multi_response(var, data, codebook, p, colon=True, leading_newline = True, separator = "; "):
     s = "\n" if leading_newline else ""
     s += codebook[var]["var_text_report"]
     if(colon):
@@ -350,7 +365,7 @@ def write_var_text_report_and_multi_response(var, data, codebook, p, colon=True,
             if(len(response) == 0):
                 response += codebook[respons_var]["responses"][data[respons_var]]
             else:
-                response += "; " + codebook[respons_var]["responses"][data[respons_var]].lower()
+                response += separator + codebook[respons_var]["responses"][data[respons_var]].lower()
 
     s += response
 
