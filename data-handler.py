@@ -18,8 +18,11 @@ def main():
     # setter testmode variabel
     testMode = False
     if len(sys.argv) > 1:
-        testMode = True if sys.argv[1] == "test" else False
-
+        if (sys.argv[1] == "test"):
+            testMode = True
+        else:
+            print("Error: Invalid argument given to data handler: " + sys.argv[1])
+            return
     # hent alle filnavn i nye-besvarelse-mappen
     fileNames = [f for f in listdir(newSubmissionsPath) if isfile(join(newSubmissionsPath, f))]
 

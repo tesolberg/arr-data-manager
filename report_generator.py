@@ -256,17 +256,35 @@ def write_exercise_and_more(data, codebook, document):
 
 def write_hscl25(data, codebook, document):
     document.add_heading('Hopkins symptom checklist 25', 2)
-    p = document.add_paragraph("")
-    first = True
+
+    # samle alle keys for hscl
+    keys = []
     for key in data:
         if key[0:4] == "hscl":
-            if first:
-                first = False
-                write_var_text_and_response(key, data, codebook, p, True, False)
-            else:
-                write_var_text_and_response(key, data, codebook, p)
+            keys.append(key)
+
+    # generere overskrifter og avsnitt
+    document.add_heading("Respons: Svært mye", 3)
+    p3 = document.add_paragraph("")
+    document.add_heading("Respons: En god del", 3)
+    p2 = document.add_paragraph("")
+    document.add_heading("Respons: Litt", 3)
+    p1 = document.add_paragraph("")
+    document.add_heading("Respons: Ikke i det hele tatt", 3)
+    p0 = document.add_paragraph("")
     
-    p.add_run("\n")
+    # Fordele ledd på avsnitt etter respons
+    for key in keys:
+        if data[key] == "svaert-mye":
+            p3.add_run(codebook[key]["var_text"] + "\n")
+        elif data[key] == "en-god-del":
+            p2.add_run(codebook[key]["var_text"] + "\n")
+        elif data[key] == "litt":
+            p1.add_run(codebook[key]["var_text"] + "\n")
+        else:
+            p0.add_run(codebook[key]["var_text"] + "\n")
+
+    p = document.add_paragraph("")
     write_var_snippet_and_response("overbelastning", data, codebook, p)
 
 
