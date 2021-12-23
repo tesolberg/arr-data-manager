@@ -80,31 +80,23 @@ def write_intro(data, codebook, document, respondentID):
 ### OPPSUMMERING ###
 ####################
 def write_summary(data, codebook, document):
-    
-    # Sets colors
-    black = RGBColor(0x00, 0x00, 0x00)
-    gray = RGBColor(0xbb, 0xbb, 0xbb)
-
+    # Diverse
     document.add_heading('Oppsummering', 2)
     oppsummering = document.add_paragraph("Viktigste problem: " + data["viktigste-problem"])
     oppsummering.add_run("\nPasientens tanker om årsak til plagene: " + data["aarsak"])
     oppsummering.add_run("\nOppfølging pasienten tror vil være mest nyttig: " + data["type-hjelp"])    
-    
-    # Ufør og erstatningssak
-    run = oppsummering.add_run("\nErstatningssak")    
-    if data["erstatningssak"] == "ja":
-        run.font.italic = True
-    else:
-        run.font.color.rgb = gray
 
-    oppsummering.add_run(" | ")
-    
-    run = oppsummering.add_run("Uførsøknad")    
-    if data["sokt-ufor"] == "ja":
-        run.font.italic = True
+    # Erstatningssak og uførsøknad
+    if data["erstatningssak"] == "ja":
+        oppsummering.add_run("\nPågående erstatningssak")
     else:
-        run.font.color.rgb = gray
-    
+        oppsummering.add_run("\nIngen pågående erstatningssak")
+
+    if data["sokt-ufor"] == "ja":
+        oppsummering.add_run("\nVurderer å søke ufør/pågående søknad")
+    else:
+        oppsummering.add_run("\nVurderer ikke å søke ufør")
+
     # Jobbstatus
     yrke = codebook["yrke"]["responses"][data["yrke"]] + " - " + data["yrke-fritekst"]
     if(data["arbeidsforhold"] == "ja"):
@@ -119,11 +111,10 @@ def write_summary(data, codebook, document):
     elif data["sm-aap"] == "aap": jobbstatus = "AAP"
     oppsummering.add_run(" (" + jobbstatus + ")")
 
-    # WPI
+    # WPI og SSS
     oppsummering.add_run("\nWPI (0-19): " + str((wpi_score(data))))
-    
-    # SSS
     oppsummering.add_run("\nSSS (0-12): " + str((sss_score(data, codebook))))
+    oppsummering.add_run("\nSum SSS + WPI (0-31): " + str((sss_score(data, codebook) + wpi_score((data)))))
 
     # Antall smerteregioner
     oppsummering.add_run("\nAntall smerteregioner: " + str(number_of_pain_regions(data)))
@@ -135,7 +126,21 @@ def write_summary(data, codebook, document):
         oppsummering.add_run("\nNegativt svar på samlede kriterier for utbredte smerter")
 
     # HSCL-25
-    oppsummering.add_run("\nHSCL-25 (Over 1,7 indikerer vesentlige psykiske plager): " + str(hscl_score(data)))
+    oppsummering.add_run("\nHSCL-25: " + str(hscl_score(data)))
+    if (hscl_score(data) > 1.7):
+        oppsummering.add_run(" (indikerer vesentlige psykiske plager)")
+    else:
+        oppsummering.add_run(" (indikerer fravær av vesentlige psykiske plager)")
+        
+    if (data["hscl-selvmordstanker"] == "ikke-i-det-hele-tatt"):
+        oppsummering.add_run("\nAngir ingen tanker om å ta eget liv")
+    elif (data["hscl-selvmordstanker"] == "litt"):
+        oppsummering.add_run("\nAngir litt tanker om å ta eget liv")
+    elif (data["hscl-selvmordstanker"] == "en-god-del"):
+        oppsummering.add_run("\nAngir en god del tanker om å ta eget liv")
+    else:
+        oppsummering.add_run("\nAngir svært mye tanker om å ta eget liv")
+
 
     # ISI
     if (data["sovnproblemer"] == "nei"):
