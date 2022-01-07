@@ -1,3 +1,4 @@
+import sys
 import json
 
 def GenerateCodebook(codebook_path, report_labels_path=""):
@@ -109,13 +110,13 @@ def GenerateCodebook(codebook_path, report_labels_path=""):
                 active_var_responses[value_short] = value_long
 
     # skriver den fulle kodeboken til jsonfil
-    with open('data/codebook.json', 'w', encoding="utf8") as json_file:
+    with open('kodebok/codebook.json', 'w', encoding="utf8") as json_file:
         json.dump(data, json_file, indent=2,  ensure_ascii=False)
 
     # skriver alle variabelkodene : "" til jsonfil (som så kan fylles inn der det er ønskelig
     # at respondentens svar i rapporten prefixes med noe annet enn spørsmålsteksten 
     # fra spørreskjemaet)
-    with open('data/codebook_var_labels_clean.json', 'w', encoding="utf8") as f:
+    with open('kodebok/codebook_var_labels_clean.json', 'w', encoding="utf8") as f:
         f.write("{\n")
         
         dict_len = len(data)
@@ -133,7 +134,14 @@ def GenerateCodebook(codebook_path, report_labels_path=""):
 
 
 def main():
-    GenerateCodebook("data/codebook-221073-2021-10-09.sps", "data/variable-snippets-report.json")
+    if len(sys.argv) > 1:
+        if (sys.argv[1] == "kun-kodebok"):
+            GenerateCodebook("kodebok/codebook-239360-2022-01-06.sps")
+        else:
+            print("Feil: Invalid argument gitt til codebook.py: " + sys.argv[1] + ". Mente du 'kun-kodebok'?")
+            return
+    else:
+        GenerateCodebook("kodebok/codebook-239360-2022-01-06.sps", "kodebok/variable-snippets-report.json")
 
 
 if __name__ == "__main__":

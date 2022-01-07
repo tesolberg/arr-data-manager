@@ -711,7 +711,7 @@
     "var_text": "Hva tror du er årsak til plagene dine?"
   },
   "tidligere-behandling_1": {
-    "var_text_report": "Pasienten har hatt",
+    "var_text_report": "",
     "responses": {
       "fysio-trening": "Trening hos fysioterapeut",
       "fysio-passiv": "Passiv behandling hos fysioterapeut (massasje, varmepakning el)",
@@ -1000,7 +1000,7 @@
     "var_text": "Hvor stor stillingsprosent har du i jobben din?"
   },
   "i-jobb-na": {
-    "var_text_report": "I jobb i dag?",
+    "var_text_report": "I jobb i dag",
     "responses": {
       "fullt": "Jeg jobber fullt eller mer enn stillingsprosenten jeg har",
       "redusert": "Jeg jobber en redusert del av den stillingsprosenten jeg har",
@@ -1381,263 +1381,105 @@
     },
     "var_text": "Vurderer du å endre på ditt kosthold eller din måltidsrytme?"
   },
-  "hscl-skremt-uten-grunn": {
+  "scl-plutselig-frykt": {
     "var_text_report": "",
     "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
+      "ikke-plaget": "Ikke plaget",
+      "litt-plaget": "Litt plaget",
+      "ganske-mye": "Ganske mye",
+      "veldig-mye": "Veldig mye"
     },
-    "var_text": "Plutselig skremt uten grunn"
+    "var_text": "Plutselig frykt uten grunn"
   },
-  "hscl-engstelig": {
+  "scl-redd": {
     "var_text_report": "",
     "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
+      "ikke-plaget": "Ikke plaget",
+      "litt-plaget": "Litt plaget",
+      "ganske-mye": "Ganske mye",
+      "veldig-mye": "Veldig mye"
     },
-    "var_text": "Føler deg engstelig"
+    "var_text": "Føler deg redd eller engstelig"
   },
-  "hscl-svimmel": {
+  "scl-matt": {
     "var_text_report": "",
     "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
+      "ikke-plaget": "Ikke plaget",
+      "litt-plaget": "Litt plaget",
+      "ganske-mye": "Ganske mye",
+      "veldig-mye": "Veldig mye"
     },
-    "var_text": "Føler deg svimmel eller kraftløs"
+    "var_text": "Matthet eller svimmelhet"
   },
-  "hscl-nervoes": {
+  "scl-anspent": {
     "var_text_report": "",
     "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
+      "ikke-plaget": "Ikke plaget",
+      "litt-plaget": "Litt plaget",
+      "ganske-mye": "Ganske mye",
+      "veldig-mye": "Veldig mye"
     },
-    "var_text": "Nervøs eller urolig"
+    "var_text": "Føler deg anspent eller oppjaget"
   },
-  "hscl-hjertebank": {
+  "scl-kandre": {
     "var_text_report": "",
     "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
+      "ikke-plaget": "Ikke plaget",
+      "litt-plaget": "Litt plaget",
+      "ganske-mye": "Ganske mye",
+      "veldig-mye": "Veldig mye"
     },
-    "var_text": "Hjertebank"
+    "var_text": "Lett for å klandre deg selv"
   },
-  "hscl-skjelving": {
+  "scl-sovn": {
     "var_text_report": "",
     "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
+      "ikke-plaget": "Ikke plaget",
+      "litt-plaget": "Litt plaget",
+      "ganske-mye": "Ganske mye",
+      "veldig-mye": "Veldig mye"
     },
-    "var_text": "Skjelving"
+    "var_text": "Søvnproblemer"
   },
-  "hscl-anspent": {
+  "scl-unyttig": {
     "var_text_report": "",
     "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
+      "ikke-plaget": "Ikke plaget",
+      "litt-plaget": "Litt plaget",
+      "ganske-mye": "Ganske mye",
+      "veldig-mye": "Veldig mye"
     },
-    "var_text": "Føler deg anspent eller opphisset"
+    "var_text": "Følelse av å være unyttig, lite verdt"
   },
-  "hscl-hodepine": {
+  "scl-nedtrykt": {
     "var_text_report": "",
     "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
+      "ikke-plaget": "Ikke plaget",
+      "litt-plaget": "Litt plaget",
+      "ganske-mye": "Ganske mye",
+      "veldig-mye": "Veldig mye"
     },
-    "var_text": "Hodepine"
+    "var_text": "Nedtrykt, tungsindig eller trist"
   },
-  "hscl-panikk": {
+  "scl-slit": {
     "var_text_report": "",
     "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
+      "ikke-plaget": "Ikke plaget",
+      "litt-plaget": "Litt plaget",
+      "ganske-mye": "Ganske mye",
+      "veldig-mye": "Veldig mye"
     },
-    "var_text": "Anfall av redsel eller panikk"
+    "var_text": "Følelse av at alt er et slit"
   },
-  "hscl-urolig": {
+  "scl-haaplos": {
     "var_text_report": "",
     "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
-    },
-    "var_text": "Rastløshet, kan ikke sitte rolig"
-  },
-  "hscl-slapp": {
-    "var_text_report": "",
-    "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
-    },
-    "var_text": "Føler deg slapp og uten energi"
-  },
-  "hscl-anklager": {
-    "var_text_report": "",
-    "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
-    },
-    "var_text": "Anklager deg selv for ting"
-  },
-  "hscl-graat": {
-    "var_text_report": "",
-    "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
-    },
-    "var_text": "Har lett for å gråte"
-  },
-  "hscl-tap-seksuell": {
-    "var_text_report": "",
-    "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
-    },
-    "var_text": "Tap av seksuell interesse/opplevelse"
-  },
-  "hscl-lav-apetitt": {
-    "var_text_report": "",
-    "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
-    },
-    "var_text": "Dårlig appetitt"
-  },
-  "hscl-sovn": {
-    "var_text_report": "",
-    "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
-    },
-    "var_text": "Vanskelig for å sove"
-  },
-  "hscl-haaploshet": {
-    "var_text_report": "",
-    "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
+      "ikke-plaget": "Ikke plaget",
+      "litt-plaget": "Litt plaget",
+      "ganske-mye": "Ganske mye",
+      "veldig-mye": "Veldig mye"
     },
     "var_text": "Følelse av håpløshet med tanke på fremtiden"
-  },
-  "hscl-nedfor": {
-    "var_text_report": "",
-    "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
-    },
-    "var_text": "Føler deg nedfor"
-  },
-  "hscl-ensom": {
-    "var_text_report": "",
-    "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
-    },
-    "var_text": "Føler deg ensom"
-  },
-  "hscl-selvmordstanker": {
-    "var_text_report": "",
-    "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
-    },
-    "var_text": "Har tanker om å ta ditt eget liv"
-  },
-  "hscl-fanget": {
-    "var_text_report": "",
-    "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
-    },
-    "var_text": "Følelse av å være fanget"
-  },
-  "hscl-bekymringer": {
-    "var_text_report": "",
-    "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
-    },
-    "var_text": "Bekymrer deg for mye"
-  },
-  "hscl-interessetap": {
-    "var_text_report": "",
-    "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
-    },
-    "var_text": "Føler ikke interesse for noe"
-  },
-  "hscl-anstrengelse": {
-    "var_text_report": "",
-    "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
-    },
-    "var_text": "Føler at alt krever stor anstrengelse"
-  },
-  "hscl-verdiloshet": {
-    "var_text_report": "",
-    "responses": {
-      "ikke-i-det-hele-tatt": "Ikke i det hele tatt",
-      "litt": "Litt",
-      "en-god-del": "En god del",
-      "svaert-mye": "Svært mye"
-    },
-    "var_text": "Føler at du ikke er noe verd"
-  },
-  "overbelastning": {
-    "var_text_report": "Opplevd overbelastning",
-    "responses": {
-      "ja": "Ja",
-      "nei": "Nei"
-    },
-    "var_text": "Opplever du overbelastning/stress i en slik grad at det påvirker deg negativt i dagliglivet?"
   },
   "sovnproblemer": {
     "var_text_report": "",

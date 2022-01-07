@@ -30,13 +30,13 @@ def generate_report(data, codebook_path, outputPath, respondentID):
     ### ARBEID OG YTELSER ###
     write_work_related(data, codebook, document)
 
-    ### FYSISK AKTIVITET, HØYDE, VEKT, KOSTHOLD
+    ### FYSISK AKTIVITET, HØYDE, VEKT, KOSTHOLD ###
     write_exercise_and_more(data, codebook, document)
 
-    ### HSCL-25 + overbelastning ###
-    write_hscl25(data, codebook, document)
+    ### SCL-10 ###
+    write_scl(data, codebook, document)
 
-    ### ISI ### TODO: Refaktorer
+    ### ISI ###
     if (data["sovnproblemer"] == "nei"):
         document.add_heading('Søvn', 2)
         p = document.add_paragraph("")
@@ -44,10 +44,6 @@ def generate_report(data, codebook_path, outputPath, respondentID):
     else:
         write_isi(data, codebook, document)
 
-    # # restspm
-    # document.add_heading("Avsluttende spørsmål")
-    # write_var_snippet_and_response("helse-samlet", data, codebook, document)
-    # write_var_snippet_and_response("godt-nok-utredet", data, codebook, document)
 
     # saves document to file
     document.save(outputPath + str(respondentID) + ".docx")
@@ -125,9 +121,9 @@ def write_summary(data, codebook, document):
     else:
         oppsummering.add_run("\nNegativt svar på samlede kriterier for utbredte smerter")
 
-    # HSCL-25
-    oppsummering.add_run("\nHSCL-25: " + str(hscl_score(data)))
-    if (hscl_score(data) > 1.7):
+    # SCL-10
+    oppsummering.add_run("\nSCL-10: " + str(scl_score(data)))
+    if (scl_score(data) > 1.7):
         oppsummering.add_run(" (indikerer vesentlige psykiske plager)")
     else:
         oppsummering.add_run(" (indikerer fravær av vesentlige psykiske plager)")
@@ -259,38 +255,35 @@ def write_exercise_and_more(data, codebook, document):
     write_var_text_report_and_multi_response("vurderer-endre_1", data, codebook, p)
 
 
-def write_hscl25(data, codebook, document):
-    document.add_heading('Hopkins symptom checklist 25', 2)
+def write_scl(data, codebook, document):
+    document.add_heading('Symptom checklist 10', 2)
 
     # samle alle keys for hscl
     keys = []
     for key in data:
-        if key[0:4] == "hscl":
+        if key[0:3] == "scl":
             keys.append(key)
 
     # generere overskrifter og avsnitt
-    document.add_heading("Respons: Svært mye", 3)
+    document.add_heading("Respons: Veldig mye", 3)
     p3 = document.add_paragraph("")
-    document.add_heading("Respons: En god del", 3)
+    document.add_heading("Respons: Ganske mye", 3)
     p2 = document.add_paragraph("")
-    document.add_heading("Respons: Litt", 3)
+    document.add_heading("Respons: Litt plaget", 3)
     p1 = document.add_paragraph("")
-    document.add_heading("Respons: Ikke i det hele tatt", 3)
+    document.add_heading("Respons: Ikke plaget", 3)
     p0 = document.add_paragraph("")
     
     # Fordele ledd på avsnitt etter respons
     for key in keys:
-        if data[key] == "svaert-mye":
+        if data[key] == "veldig-mye":
             p3.add_run(codebook[key]["var_text"] + "\n")
-        elif data[key] == "en-god-del":
+        elif data[key] == "ganske-mye":
             p2.add_run(codebook[key]["var_text"] + "\n")
-        elif data[key] == "litt":
+        elif data[key] == "litt-plaget":
             p1.add_run(codebook[key]["var_text"] + "\n")
         else:
             p0.add_run(codebook[key]["var_text"] + "\n")
-
-    p = document.add_paragraph("")
-    write_var_snippet_and_response("overbelastning", data, codebook, p)
 
 
 def write_isi(data, codebook, document):
@@ -390,17 +383,17 @@ def write_var_text_report_and_multi_response(var, data, codebook, p, colon=True,
     if(len(response) > 0):
         p.add_run(s)
 
-def hscl_score(data):
+def scl_score(data):
     points = 0
     for key in data:
-        if (key[0:4] == "hscl"):
+        if (key[0:3] == "scl"):
             val = data[key]
-            if val == "ikke-i-det-hele-tatt": points += 1
-            elif val == "litt": points += 2
-            elif val == "en-god-del": points += 3
-            elif val == "svaert-mye": points += 4
-            else: print("error, hscl response")
-    return points / 25
+            if val == "ikke-plaget": points += 1
+            elif val == "litt-plaget": points += 2
+            elif val == "ganske-mye": points += 3
+            elif val == "veldig-mye": points += 4
+            else: print("error, scl response")
+    return points / 10
 
 def isi_score(data):
     points = 0
