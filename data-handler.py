@@ -13,6 +13,9 @@ path_durable = os.path.dirname(os.path.dirname(os.getcwd()))
 newSubmissionsPath = path_arr + "/nye-besvarelser/"
 reportExportPath = path_durable + "/file-export/"
 
+t0_formId = "221073" # T0 - Kartlegging før poliklinikk
+
+
 def main():
     
     # setter testmode variabel
@@ -38,15 +41,13 @@ def main():
                 # gets respondentID
                 respondentID = id_manager.get_id_code(data["fnr"])
                 
-                # identifiser type besvarelse
-                formID = data["formId"]
-
                 # utfør prosess ut i fra type besvarelse
-                if formID == "221073":   # T0 - Kartlegging før poliklinikk
+                if data["formId"] == t0_formId:
                     # generer rapport til DIPS
                     rg.generate_report(data, "kodebok/codebook.json", reportExportPath, respondentID)
                     # legg inn data i kvalitetsregister
-                
+                else:
+                    print("FormId" + data["formId"] +"ikke støttet")
 
 
     # Flytter alle nye besvarelser til "i-forlop"-mappen

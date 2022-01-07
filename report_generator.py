@@ -5,7 +5,6 @@ from docx.shared import RGBColor
 # for testing
 import csv
 
-
 # dict av enkeltbesvarelse -> void + rapport i docx-format
 def generate_report(data, codebook_path, outputPath, respondentID):
     
@@ -107,35 +106,30 @@ def write_summary(data, codebook, document):
     elif data["sm-aap"] == "aap": jobbstatus = "AAP"
     oppsummering.add_run(" (" + jobbstatus + ")")
 
+
     # WPI og SSS
     oppsummering.add_run("\nWPI (0-19): " + str((wpi_score(data))))
     oppsummering.add_run("\nSSS (0-12): " + str((sss_score(data, codebook))))
     oppsummering.add_run("\nSum SSS + WPI (0-31): " + str((sss_score(data, codebook) + wpi_score((data)))))
 
+
     # Antall smerteregioner
     oppsummering.add_run("\nAntall smerteregioner: " + str(number_of_pain_regions(data)))
     
+
     # Fibro = (WPI >=7 & SSS >=5 || WPI >=4 & SSS >=9) & >=4 kroppsregioner & >=3 mnd
     if(oppfyller_fibrokriterier(data, codebook)):
         oppsummering.add_run("\nPositivt svar på samlede kriterier for utbredte smerter")
     else:
         oppsummering.add_run("\nNegativt svar på samlede kriterier for utbredte smerter")
 
+
     # SCL-10
-    oppsummering.add_run("\nSCL-10: " + str(scl_score(data)))
+    oppsummering.add_run("\nSCL-10 (fra 1,0 = laveste skåre, til 4,0 = høyeste skåre): " + str(scl_score(data)))
     if (scl_score(data) > 1.7):
         oppsummering.add_run(" (indikerer vesentlige psykiske plager)")
     else:
         oppsummering.add_run(" (indikerer fravær av vesentlige psykiske plager)")
-        
-    if (data["hscl-selvmordstanker"] == "ikke-i-det-hele-tatt"):
-        oppsummering.add_run("\nAngir ingen tanker om å ta eget liv")
-    elif (data["hscl-selvmordstanker"] == "litt"):
-        oppsummering.add_run("\nAngir litt tanker om å ta eget liv")
-    elif (data["hscl-selvmordstanker"] == "en-god-del"):
-        oppsummering.add_run("\nAngir en god del tanker om å ta eget liv")
-    else:
-        oppsummering.add_run("\nAngir svært mye tanker om å ta eget liv")
 
 
     # ISI
