@@ -13,7 +13,7 @@ path_durable = os.path.dirname(os.path.dirname(os.getcwd()))
 newSubmissionsPath = path_arr + "/nye-besvarelser/"
 reportExportPath = path_durable + "/file-export/"
 
-t0_formId = "221073" # T0 - Kartlegging før poliklinikk
+t0_formId = "239360" # T0 - Kartlegging før poliklinikk
 
 
 def main():
