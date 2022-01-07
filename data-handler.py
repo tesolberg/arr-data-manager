@@ -47,7 +47,7 @@ def main():
                     rg.generate_report(data, "kodebok/codebook.json", reportExportPath, respondentID)
                     # legg inn data i kvalitetsregister
                 else:
-                    print("FormId" + data["formId"] +"ikke støttet")
+                    print("Feilmelding: FormId " + data["formId"] +" ikke støttet")
 
 
     # Flytter alle nye besvarelser til "i-forlop"-mappen

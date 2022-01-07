@@ -48,6 +48,9 @@ def generate_report(data, codebook_path, outputPath, respondentID):
     document.save(outputPath + str(respondentID) + ".docx")
     print("Generated report for respondent " + str(respondentID))
 
+    if(data["tilbakemeldinger"] != ""):
+        print("Respondent har gitt tilbakemelding: " + data["tilbakemeldinger"])
+
 
 def write_intro(data, codebook, document, respondentID):
     # Fnr
