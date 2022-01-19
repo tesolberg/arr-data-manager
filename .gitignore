@@ -142,3 +142,6 @@ cython_debug/
 
 # OS-X related
 .DS_Store
+
+#
+public-key/
