@@ -46,7 +46,7 @@ def generate_report(data, codebook_path, outputPath, respondentID):
 
     # saves document to file
     document.save(outputPath + str(respondentID) + ".docx")
-    print("Generated report for respondent " + str(respondentID))
+    print("Generated report for respondent " + str(respondentID) + " (" + data["fnr"][0:6] + " " + data["fnr"][6:] + ")")
 
     if(data["tilbakemeldinger"] != ""):
         print("Respondent har gitt tilbakemelding: " + data["tilbakemeldinger"])
@@ -198,7 +198,7 @@ def write_pain_variables(data, codebook, document):
 
     document.add_heading('Tidligere behandling', 4)
     p = document.add_paragraph("")
-    write_var_text_report_and_multi_response("tidligere-behandling_1", data, codebook, p, colon=True, separator=", ", leading_newline=False)
+    write_var_text_report_and_multi_response("tidligere-behandling_1", data, codebook, p, colon=False, separator=", ", leading_newline=False)
     if len(data["annen-tidligere-beh"]) > 0:
         write_var_snippet_and_var_code("annen-tidligere-beh", data, codebook, p)
 
