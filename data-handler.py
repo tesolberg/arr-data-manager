@@ -26,6 +26,7 @@ def main():
         else:
             print("Error: Invalid argument given to data handler: " + sys.argv[1])
             return
+            
     # hent alle filnavn i nye-besvarelse-mappen
     fileNames = [f for f in listdir(newSubmissionsPath) if isfile(join(newSubmissionsPath, f))]
 
