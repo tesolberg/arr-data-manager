@@ -4,19 +4,6 @@ import pgpy
 from pgpy.constants import PubKeyAlgorithm, KeyFlags, HashAlgorithm, SymmetricKeyAlgorithm, CompressionAlgorithm
 from os import rename, remove
 
-def fetch_new_submissions(privateKeyPath, encryptedSubmissionsPath, outputPath):
-
-    privkey = pgpy.PGPKey.from_file(privateKeyPath)
-
-    # iterer over filer i encryptedSubmissionsPath dir
-
-    # les inn den krypterte filen
-    encryptedMsg = pgpy.PGPMessage.from_file("file")
-    # dekrypter innholdet
-    # lagre innholdet i en ny fil i outputPath med samme filnavn
-    # slett den krypterte filen
-
-    return
 
 def create_key(privKeyPath, pubKeyPath):
     # we can start by generating a primary key. For this example, we'll use RSA, but it could be DSA or ECDSA as well
@@ -80,8 +67,8 @@ def decrypt_all_new_submissions(encryptedSubmissionsPath, decryptedSubmissionsPa
                 remove(encryptedSubmissionsPath + fileName)
 
 
-# encrypt_file("test/pubkey-test.txt", "test/test-data.tsv", "test/encryptet-data.txt")
+# TEST
+#encrypt_file("test/pubkey-test.txt", "test/test-data.tsv", "test/encryptet-data.txt")
 #decrypt_file("test/privkey-test.txt", "test/encryptet-data.txt", "test/decrypted-data.txt")
-
-# decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt", "test/encrypted-archive/")
-decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt")
+#decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt", "test/encrypted-archive/")
+#decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt")

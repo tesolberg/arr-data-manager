@@ -5,19 +5,24 @@ import report_generator as rg
 import id_manager
 import os
 import sys
+import crypto_manager as cm
 
-# Sets paths
+# Sets paths and constants
+t0_formId = "239360" # T0 - Kartlegging før poliklinikk
 print(os.getcwd())
 path_arr = os.path.dirname(os.getcwd())
 path_durable = os.path.dirname(os.path.dirname(os.getcwd()))
-newSubmissionsPath = path_arr + "/nye-besvarelser/"
+newEncryptedSubmissionPath = path_durable + "/nettskjema-submissions/AD2B8C96C9415576/239360/"
+newDecryptedSubmissionsPath = path_arr + "/nye-besvarelser/"
 reportExportPath = path_durable + "/file-export/"
+privKeyPath = path_durable + "/gpg-keys/p1691-key1@tsd.usit.no-private-key.asc"
 
-t0_formId = "239360" # T0 - Kartlegging før poliklinikk
 
 
 def main():
     
+    cm.decrypt_all_new_submissions(newEncryptedSubmissionPath, newDecryptedSubmissionsPath, privKeyPath)
+
     # setter testmode variabel
     testMode = False
     if len(sys.argv) > 1:
@@ -28,12 +33,12 @@ def main():
             return
             
     # hent alle filnavn i nye-besvarelse-mappen
-    fileNames = [f for f in listdir(newSubmissionsPath) if isfile(join(newSubmissionsPath, f))]
+    fileNames = [f for f in listdir(newDecryptedSubmissionsPath) if isfile(join(newDecryptedSubmissionsPath, f))]
 
     # iterer over besvarelsene
     for fileName in fileNames:
         if(fileName[0:1] != "."):   # guard against .ds_store        
-            with open(newSubmissionsPath + "/" + fileName, newline="", encoding="utf-8") as csvfile:    
+            with open(newDecryptedSubmissionsPath + "/" + fileName, newline="", encoding="utf-8") as csvfile:    
                 
                 # convert tsv file into dict
                 reader = csv.DictReader(csvfile, dialect="excel-tab")
@@ -69,7 +74,7 @@ def main():
 def move_files(fileNames):
     for fileName in fileNames:
         if(fileName[0:1] != "."):   # guards against .ds_store
-            os.rename(newSubmissionsPath + "/" + fileName, path_arr + "/ferdig-behandlet/" + fileName)
+            os.rename(newDecryptedSubmissionsPath + "/" + fileName, path_arr + "/ferdig-behandlet/" + fileName)
 
         
     
