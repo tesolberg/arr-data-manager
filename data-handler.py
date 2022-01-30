@@ -12,7 +12,7 @@ t0_formId = "239360" # T0 - Kartlegging før poliklinikk
 print(os.getcwd())
 path_arr = os.path.dirname(os.getcwd())
 path_durable = os.path.dirname(os.path.dirname(os.getcwd()))
-newEncryptedSubmissionPath = path_durable + "/nettskjema-submissions/AD2B8C96C9415576/239360/"
+newEncryptedSubmissionsPath = path_durable + "/nettskjema-submissions/AD2B8C96C9415576/239360/"
 newDecryptedSubmissionsPath = path_arr + "/nye-besvarelser/"
 reportExportPath = path_durable + "/file-export/"
 privKeyPath = path_durable + "/gpg-keys/p1691-key1@tsd.usit.no-private-key.asc"
@@ -21,7 +21,7 @@ privKeyPath = path_durable + "/gpg-keys/p1691-key1@tsd.usit.no-private-key.asc"
 
 def main():
     
-    cm.decrypt_all_new_submissions(newEncryptedSubmissionPath, newDecryptedSubmissionsPath, privKeyPath)
+    cm.decrypt_all_new_submissions(newEncryptedSubmissionsPath, newDecryptedSubmissionsPath, privKeyPath)
 
     # setter testmode variabel
     testMode = False
