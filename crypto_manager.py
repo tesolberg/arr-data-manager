@@ -52,23 +52,34 @@ def decrypt_file(privKeyPath, pathToEncrypted, pathToPlainText):
     f.close()
 
 
-def decrypt_all_new_submissions(encryptedSubmissionsPath, decryptedSubmissionsPath, privKeyPath, encryptedArchivePath = ""):    
+def decrypt_all_new_submissions(encryptedSubmissionsPath, decryptedSubmissionsPath, privKeyPath, encryptedArchivePath = "", moveFiles = True):    
     fileNames = [f for f in listdir(encryptedSubmissionsPath) if isfile(join(encryptedSubmissionsPath, f))]
 
+    newSubmissions = False
+
     # iterer over krypterte besvarelser
+    print('*** DECRYPTING ***')
     for fileName in fileNames:
-        if(fileName[0:1] != "."):   # guard against .ds_store        
-            decrypt_file(privKeyPath, encryptedSubmissionsPath + fileName, decryptedSubmissionsPath + fileName)
+        if(fileName[0:1] != "." and fileName[-7:] == "csv.asc"):   # guard against .ds_store + select csv only        
+            decrypt_file(privKeyPath, encryptedSubmissionsPath + fileName, decryptedSubmissionsPath + fileName[0:-4])
             print("Decrypted new user submission: " + fileName)
 
-            if (encryptedArchivePath != ""):
-                rename(encryptedSubmissionsPath + fileName, encryptedArchivePath + fileName)
-            else:
-                remove(encryptedSubmissionsPath + fileName)
+            if moveFiles:
+                if (encryptedArchivePath != ""):
+                    rename(encryptedSubmissionsPath + fileName, encryptedArchivePath + fileName)
+                else:
+                    remove(encryptedSubmissionsPath + fileName)
+
+            newSubmissions = True
+    
+    if not newSubmissions:
+        print('No new submissions to decrypt\n')
+    else:
+        print('\n')
 
 
 # TEST
-#encrypt_file("test/pubkey-test.txt", "test/test-data.tsv", "test/encryptet-data.txt")
+#encrypt_file("test-files/pgp-keys/pubkey-test.txt", "test-files/18609090.csv", "test-files/encrypted-data/18609090.csv")
 #decrypt_file("test/privkey-test.txt", "test/encryptet-data.txt", "test/decrypted-data.txt")
 #decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt", "test/encrypted-archive/")
 #decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt")

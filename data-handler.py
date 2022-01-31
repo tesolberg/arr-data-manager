@@ -6,40 +6,40 @@ import id_manager
 import os
 import sys
 import crypto_manager as cm
-
-# Sets paths and constants
-t0_formId = "239360" # T0 - Kartlegging før poliklinikk
-print(os.getcwd())
-path_arr = os.path.dirname(os.getcwd())
-path_durable = os.path.dirname(os.path.dirname(os.getcwd()))
-newEncryptedSubmissionsPath = path_durable + "/nettskjema-submissions/AD2B8C96C9415576/239360/"
-newDecryptedSubmissionsPath = path_arr + "/nye-besvarelser/"
-reportExportPath = path_durable + "/file-export/"
-privKeyPath = path_durable + "/gpg-keys/p1691-key1@tsd.usit.no-private-key.asc"
-
+import configparser
 
 
 def main():
     
-    cm.decrypt_all_new_submissions(newEncryptedSubmissionsPath, newDecryptedSubmissionsPath, privKeyPath)
+    config = configparser.ConfigParser()
+    config.read('config.ini')
 
-    # setter testmode variabel
-    testMode = False
-    if len(sys.argv) > 1:
-        if (sys.argv[1] == "test"):
-            testMode = True
-        else:
-            print("Error: Invalid argument given to data handler: " + sys.argv[1])
-            return
+    if config.getboolean('general', 'devmode'):
+        print('Running in development mode\n')
+    else:
+        print('Running in production mode\n')
+
+    cm.decrypt_all_new_submissions(
+        config['paths']['newencryptedsubmissionspath'], 
+        config['paths']['newdecryptedsubmissionspath'], 
+        config['paths']['privkeypath'],
+        config['paths']['encryptedarchivepath'],
+        not config.getboolean('general', 'devmode'))
             
     # hent alle filnavn i nye-besvarelse-mappen
-    fileNames = [f for f in listdir(newDecryptedSubmissionsPath) if isfile(join(newDecryptedSubmissionsPath, f))]
+    p = config['paths']['newdecryptedsubmissionspath']
+    fileNames = [f for f in listdir(p) if isfile(join(p, f))]
+
+    print('*** GENERATING REPORTS ***')
+    newReports = False
 
     # iterer over besvarelsene
     for fileName in fileNames:
         if(fileName[0:1] != "."):   # guard against .ds_store        
-            with open(newDecryptedSubmissionsPath + "/" + fileName, newline="", encoding="utf-8") as csvfile:    
+            with open(config['paths']['newdecryptedsubmissionspath'] + fileName, newline="", encoding="utf-8") as csvfile:    
                 
+                newReports = True
+
                 # convert tsv file into dict
                 reader = csv.DictReader(csvfile, dialect="excel-tab")
                 data = reader.__next__()
@@ -48,21 +48,27 @@ def main():
                 respondentID = id_manager.get_id_code(data["fnr"])
                 
                 # utfør prosess ut i fra type besvarelse
-                if data["formId"] == t0_formId:
+                if data["formId"] == config['formIDs']['t0_formid']:
                     # generer rapport til DIPS
-                    rg.generate_report(data, "kodebok/codebook.json", reportExportPath, respondentID)
+                    rg.generate_report(data, "kodebok/codebook.json", config['paths']['reportexportpath'], respondentID)
                     # legg inn data i kvalitetsregister
                 else:
                     print("Feilmelding: FormId " + data["formId"] +" ikke støttet")
 
 
+    if not newReports:
+        print('No new reports generated')
+
     # Flytter alle nye besvarelser til "i-forlop"-mappen
-    if not testMode:
-        move_files((fileNames))
+    if not config.getboolean('general', 'devmode'):
+        move_files(fileNames, config)
 
         i = input("Prosessering fullført. Ønskter du å hente fødselsnummer fra respondent-ID? (y/n + enter)\n")
         if i == "y":
             import finnfnr
+    else:
+        print('\n*** PROSESS FULLFØRT ***')
+
 
     # TODO Kvalitetsregisteret
     # Ta alle nye besvarelser fra Anette
@@ -71,10 +77,10 @@ def main():
     # Legg inn som ny rad i registeret
 
 
-def move_files(fileNames):
+def move_files(fileNames, config):
     for fileName in fileNames:
         if(fileName[0:1] != "."):   # guards against .ds_store
-            os.rename(newDecryptedSubmissionsPath + "/" + fileName, path_arr + "/ferdig-behandlet/" + fileName)
+            os.rename(config['paths']['newdecryptedsubmissionspath'] + fileName, config['paths']['processedsubmissionspath'] + fileName)
 
         
     
