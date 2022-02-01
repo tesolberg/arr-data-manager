@@ -5,6 +5,8 @@ import pgpy
 from pgpy.constants import PubKeyAlgorithm, KeyFlags, HashAlgorithm, SymmetricKeyAlgorithm, CompressionAlgorithm
 from os import rename, remove
 
+#!/usr/bin/env python
+# -*- coding: cp1252 -*-
 
 def create_key(privKeyPath, pubKeyPath):
     # we can start by generating a primary key. For this example, we'll use RSA, but it could be DSA or ECDSA as well
@@ -46,8 +48,17 @@ def encrypt_file(pubKeyPath, pathToPlainText, pathToEncrypted):
 def decrypt_file(privKeyPath, pathToEncrypted, pathToPlainText):
     privKey, _ = pgpy.PGPKey.from_file(privKeyPath)
     cryptomsg = pgpy.PGPMessage.from_file(pathToEncrypted)
-    plaintext = str(privKey.decrypt(cryptomsg).message)
-    s = plaintext.decode()
+    plaintext = privKey.decrypt(cryptomsg).message
+    
+    pm = privKey.decrypt(cryptomsg)
+    print(pm.message)
+
+    print(type(plaintext))
+
+    if type(plaintext) is str:
+        s = plaintext
+    else:
+        s = plaintext.decode()
 
     f = open(pathToPlainText, "w", encoding="utf-8")
     f.write(s)

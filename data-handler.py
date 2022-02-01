@@ -44,7 +44,6 @@ def main():
                 reader = csv.DictReader(csvfile, dialect="excel-tab")
                 data = reader.__next__()
 
-                print(data)
                 # gets respondentID
                 respondentID = id_manager.get_id_code(data["fnr"])
                 
