@@ -1,4 +1,5 @@
 from os import listdir
+import os
 from os.path import isfile, join
 import pgpy
 from pgpy.constants import PubKeyAlgorithm, KeyFlags, HashAlgorithm, SymmetricKeyAlgorithm, CompressionAlgorithm
@@ -47,7 +48,7 @@ def decrypt_file(privKeyPath, pathToEncrypted, pathToPlainText):
     cryptomsg = pgpy.PGPMessage.from_file(pathToEncrypted)
     plaintext = privKey.decrypt(cryptomsg).message
     
-    f = open(pathToPlainText, "w")
+    f = open(pathToPlainText, "w", encoding="utf-8")
     f.write(str(plaintext))
     f.close()
 

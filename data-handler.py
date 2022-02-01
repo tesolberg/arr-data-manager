@@ -36,7 +36,7 @@ def main():
     # iterer over besvarelsene
     for fileName in fileNames:
         if(fileName[0:1] != "."):   # guard against .ds_store        
-            with open(config['paths']['newdecryptedsubmissionspath'] + fileName, newline="", encoding="utf-8") as csvfile:    
+            with open(config['paths']['newdecryptedsubmissionspath'] + fileName, newline="", encoding="utf-8-sig") as csvfile:    
                 
                 newReports = True
 
@@ -44,6 +44,7 @@ def main():
                 reader = csv.DictReader(csvfile, dialect="excel-tab")
                 data = reader.__next__()
 
+                print(data)
                 # gets respondentID
                 respondentID = id_manager.get_id_code(data["fnr"])
                 
