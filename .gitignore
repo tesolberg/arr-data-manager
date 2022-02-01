@@ -9,6 +9,9 @@ __pycache__/
 # Rapporter generert av scriptet
 *.docx
 
+# Config
+*.ini
+
 # Distribution / packaging
 .Python
 build/
