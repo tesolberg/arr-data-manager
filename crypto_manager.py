@@ -46,10 +46,11 @@ def encrypt_file(pubKeyPath, pathToPlainText, pathToEncrypted):
 def decrypt_file(privKeyPath, pathToEncrypted, pathToPlainText):
     privKey, _ = pgpy.PGPKey.from_file(privKeyPath)
     cryptomsg = pgpy.PGPMessage.from_file(pathToEncrypted)
-    plaintext = privKey.decrypt(cryptomsg).message
-    
+    plaintext = str(privKey.decrypt(cryptomsg).message)
+    s = plaintext.decode()
+
     f = open(pathToPlainText, "w", encoding="utf-8")
-    f.write(str(plaintext))
+    f.write(s)
     f.close()
 
 
