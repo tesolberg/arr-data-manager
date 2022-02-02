@@ -14,9 +14,9 @@ def main():
     config.read('config.ini')
 
     if config.getboolean('general', 'devmode'):
-        print('Running in development mode\n')
+        print('\nRunning in development mode\n')
     else:
-        print('Running in production mode\n')
+        print('\nRunning in production mode\n')
 
     cm.decrypt_all_new_submissions(
         config['paths']['newencryptedsubmissionspath'], 

@@ -49,11 +49,6 @@ def decrypt_file(privKeyPath, pathToEncrypted, pathToPlainText):
     privKey, _ = pgpy.PGPKey.from_file(privKeyPath)
     cryptomsg = pgpy.PGPMessage.from_file(pathToEncrypted)
     plaintext = privKey.decrypt(cryptomsg).message
-    
-    pm = privKey.decrypt(cryptomsg)
-    print(pm.message)
-
-    print(type(plaintext))
 
     if type(plaintext) is str:
         s = plaintext
@@ -88,7 +83,7 @@ def decrypt_all_new_submissions(encryptedSubmissionsPath, decryptedSubmissionsPa
     if not newSubmissions:
         print('No new submissions to decrypt\n')
     else:
-        print('\n')
+        print('')
 
 
 # TEST

@@ -2,8 +2,8 @@ import csv
 import os
 from datetime import date
 
-linkKeyPath = "/koblingsnøkkel/koblingsnøkkel.csv"
-nextCodePath = "koblingsnøkkel/neste-kode.txt"
+linkKeyPath = "./koblingsnokkel/koblingsnokkel.csv"
+nextCodePath = "./koblingsnokkel/neste-kode.txt"
 
 def get_id_code(fnr):
 
