@@ -13,7 +13,7 @@ __pycache__/
 *.ini
 
 # Koblingsnøkkel
-koblingsnøkkel/
+koblingsnokkel/
 
 # Distribution / packaging
 .Python
