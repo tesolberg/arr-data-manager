@@ -4,7 +4,6 @@ import csv
 import report_generator as rg
 import id_manager
 import os
-import sys
 import crypto_manager as cm
 import configparser
 
