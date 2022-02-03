@@ -6,7 +6,6 @@ from pgpy.constants import PubKeyAlgorithm, KeyFlags, HashAlgorithm, SymmetricKe
 from os import rename, remove
 
 
-
 def create_key(privKeyPath, pubKeyPath):
     # we can start by generating a primary key. For this example, we'll use RSA, but it could be DSA or ECDSA as well
     key = pgpy.PGPKey.new(PubKeyAlgorithm.RSAEncryptOrSign, 4096)
@@ -34,20 +33,26 @@ def create_key(privKeyPath, pubKeyPath):
 def encrypt_file(pubKeyPath, pathToPlainText, pathToEncrypted):
     pubkey, _  = pgpy.PGPKey.from_file(pubKeyPath)
 
-    f = open(pathToPlainText, "r")
-    plainText = pgpy.PGPMessage.new(f.read())
+    f = open(pathToPlainText, "r", encoding="utf-8")
+    data = f.read()
+    plainText = pgpy.PGPMessage.new(data)
+    f.close()
 
     encrypted_msg = pubkey.encrypt(plainText)
     
     f = open(pathToEncrypted, "w")
     f.write(str(encrypted_msg))
     f.close()
+
+    print('File encrypted: ' + pathToPlainText)
     
 
 def decrypt_file(privKeyPath, pathToEncrypted, pathToPlainText):
     privKey, _ = pgpy.PGPKey.from_file(privKeyPath)
     cryptomsg = pgpy.PGPMessage.from_file(pathToEncrypted)
     plaintext = privKey.decrypt(cryptomsg).message
+
+    print("Dekryptert objekt er: " + str(type(plaintext)))
 
     if type(plaintext) is str:
         s = plaintext
@@ -65,11 +70,11 @@ def decrypt_all_new_submissions(encryptedSubmissionsPath, decryptedSubmissionsPa
     newSubmissions = False
 
     # iterer over krypterte besvarelser
-    print('*** DECRYPTING ***')
+    print('*** DECRYPTERER ***')
     for fileName in fileNames:
         if(fileName[0:1] != "." and fileName[-7:] == "csv.asc"):   # guard against .ds_store + select csv only        
             decrypt_file(privKeyPath, encryptedSubmissionsPath + fileName, decryptedSubmissionsPath + fileName[0:-4])
-            print("Decrypted new user submission: " + fileName)
+            print("Dekryptert ny besvarelse: " + fileName)
 
             if moveFiles:
                 if (encryptedArchivePath != ""):
@@ -80,13 +85,13 @@ def decrypt_all_new_submissions(encryptedSubmissionsPath, decryptedSubmissionsPa
             newSubmissions = True
     
     if not newSubmissions:
-        print('No new submissions to decrypt\n')
+        print('Ingen nye besvarelser ble dekryptert\n')
     else:
         print('')
 
 
 # TEST
-# encrypt_file("test-files/pgp-keys/public-key-test.txt", "test-files/testsvar-2.csv", "test-files/encrypted-data/testsvar-2.csv")
+# encrypt_file("test-files/pgp-keys/pubkey-test.txt", "test-files/18609090-test-1.txt", "test-files/encrypted-data/testbesvarelse-1.csv.asc")
 # decrypt_file("test/privkey-test.txt", "test/encryptet-data.txt", "test/decrypted-data.txt")
 # decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt", "test/encrypted-archive/")
 # decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt")
