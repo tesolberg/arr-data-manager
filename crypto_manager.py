@@ -5,8 +5,7 @@ import pgpy
 from pgpy.constants import PubKeyAlgorithm, KeyFlags, HashAlgorithm, SymmetricKeyAlgorithm, CompressionAlgorithm
 from os import rename, remove
 
-#!/usr/bin/env python
-# -*- coding: cp1252 -*-
+
 
 def create_key(privKeyPath, pubKeyPath):
     # we can start by generating a primary key. For this example, we'll use RSA, but it could be DSA or ECDSA as well
