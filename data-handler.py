@@ -6,6 +6,8 @@ import id_manager
 import os
 import crypto_manager as cm
 import configparser
+import qualreg
+import shutil
 
 
 def main():
@@ -14,9 +16,9 @@ def main():
     config.read('config.ini')
 
     if config.getboolean('general', 'devmode'):
-        print('\nRunning in development mode\n')
+        print('\nKjører i utviklermodus\n')
     else:
-        print('\nRunning in production mode\n')
+        print('\Kjører i produksjonsmodus\n')
 
     cm.decrypt_all_new_submissions(
         config['paths']['newencryptedsubmissionspath'], 
@@ -29,7 +31,7 @@ def main():
     p = config['paths']['newdecryptedsubmissionspath']
     fileNames = [f for f in listdir(p) if isfile(join(p, f))]
 
-    print('*** GENERATING REPORTS ***')
+    print('*** GENERERER RAPPORTER ***')
     newReports = False
 
     # iterer over besvarelsene
@@ -56,13 +58,16 @@ def main():
 
 
     if not newReports:
-        print('No new reports generated')
+        print('Ingen nye rapporter generert')
 
-    # Flytter alle nye besvarelser til "i-forlop"-mappen
+    # Flytter nye besvarelser til "i-forlop"-mappen/prosesserte rapporter
+    move_files(fileNames, config)
+
+    # Flytter alle filer i 
+    qualreg.scrub_and_transfer_all()
+
     if not config.getboolean('general', 'devmode'):
-        move_files(fileNames, config)
-
-        i = input("Prosessering fullført. Ønskter du å hente fødselsnummer fra respondent-ID? (y/n + enter)\n")
+        i = input("\nProsessering fullført. Ønskter du å hente fødselsnummer fra respondent-ID? (y/n + enter)\n")
         if i == "y":
             import finnfnr
     else:
@@ -79,9 +84,13 @@ def main():
 def move_files(fileNames, config):
     for fileName in fileNames:
         if(fileName[0:1] != "."):   # guards against .ds_store
-            os.rename(config['paths']['newdecryptedsubmissionspath'] + fileName, config['paths']['processedsubmissionspath'] + fileName)
+            src = config['paths']['newdecryptedsubmissionspath'] + fileName
+            dst = config['paths']['processedsubmissionspath'] + fileName
 
-        
+            if config.getboolean('general', 'devmode'):
+                shutil.copyfile(src, dst)
+            else:
+                os.replace(src, dst )
     
 
 if __name__ == "__main__":

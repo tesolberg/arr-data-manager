@@ -52,7 +52,7 @@ def decrypt_file(privKeyPath, pathToEncrypted, pathToPlainText):
     cryptomsg = pgpy.PGPMessage.from_file(pathToEncrypted)
     plaintext = privKey.decrypt(cryptomsg).message
 
-    print("Decrypted object is: " + str(type(plaintext)))
+    print("Dekryptert objekt er: " + str(type(plaintext)))
 
     if type(plaintext) is str:
         s = plaintext
@@ -70,11 +70,11 @@ def decrypt_all_new_submissions(encryptedSubmissionsPath, decryptedSubmissionsPa
     newSubmissions = False
 
     # iterer over krypterte besvarelser
-    print('*** DECRYPTING ***')
+    print('*** DECRYPTERER ***')
     for fileName in fileNames:
         if(fileName[0:1] != "." and fileName[-7:] == "csv.asc"):   # guard against .ds_store + select csv only        
             decrypt_file(privKeyPath, encryptedSubmissionsPath + fileName, decryptedSubmissionsPath + fileName[0:-4])
-            print("Decrypted new user submission: " + fileName)
+            print("Dekryptert ny besvarelse: " + fileName)
 
             if moveFiles:
                 if (encryptedArchivePath != ""):
@@ -85,7 +85,7 @@ def decrypt_all_new_submissions(encryptedSubmissionsPath, decryptedSubmissionsPa
             newSubmissions = True
     
     if not newSubmissions:
-        print('No new submissions to decrypt\n')
+        print('Ingen nye besvarelser ble dekryptert\n')
     else:
         print('')
 
