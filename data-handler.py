@@ -66,12 +66,7 @@ def main():
     # Flytter alle filer i 
     qualreg.scrub_and_transfer_all()
 
-    if not config.getboolean('general', 'devmode'):
-        i = input("\nProsessering fullført. Ønskter du å hente fødselsnummer fra respondent-ID? (y/n + enter)\n")
-        if i == "y":
-            import finnfnr
-    else:
-        print('\n*** PROSESS FULLFØRT ***')
+    print('\n*** PROSESS FULLFØRT ***')
 
 
     # TODO Kvalitetsregisteret

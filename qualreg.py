@@ -19,12 +19,13 @@ def scrub_and_transfer(submission):
     data.insert(1, "respondentId", respondentID)
 
     # fjerner fnr
-    data.at[0,"fnr"] = "---"
+    # data.at[0,"fnr"] = "---"
+    data = data.drop("fnr", axis=1)
 
     # sjekket at register finnes. Hvis det ikke gjør det -> lag nytt register baset på besvarelse
     regPath = config["paths"]["t0registrypath"] # TODO: sjekk på rett register opp mot formId i stedet for hard coded
     if(not os.path.isfile(regPath)):
-        print("Registry not found. Creating new registrey based on submission.")
+        print("Register ble ikke funnet. Oppretter nytt register basert på besvarelsen")
         data.to_csv(regPath, sep="\t", index=False)
     else:
         registry = pd.read_csv(regPath, sep="\t")
