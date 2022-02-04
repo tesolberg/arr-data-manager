@@ -18,6 +18,14 @@ def scrub_and_transfer(submission):
     respondentID = id_manager.get_id_code(fnr)
     data.insert(1, "respondentId", respondentID)
 
+    thirdToLast = fnr[-3:-2]
+    mann = int(thirdToLast) % 2 > 0
+    if(mann):
+        data.insert(2, "kjonn", "mann")
+    else:
+        data.insert(2, "kjonn", "kvinne")
+
+
     # fjerner fnr
     # data.at[0,"fnr"] = "---"
     data = data.drop("fnr", axis=1)
