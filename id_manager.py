@@ -22,7 +22,7 @@ def get_id_code(fnr):
     s = "\n" + fnr + "," + str(key) + "," + today.strftime("%d/%m/%Y")
     f = open(linkKeyPath, "a")
     f.write(s)
-    return key
+    return str(key)
 
 def get_next_code():
     
