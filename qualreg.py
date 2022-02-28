@@ -25,6 +25,7 @@ def scrub_and_transfer(submission):
     else:
         data.insert(2, "kjonn", "kvinne")
 
+    # TODO: Legge til alder
 
     # fjerner fnr
     # data.at[0,"fnr"] = "---"
