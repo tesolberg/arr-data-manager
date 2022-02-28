@@ -91,7 +91,7 @@ def decrypt_all_new_submissions(encryptedSubmissionsPath, decryptedSubmissionsPa
 
 
 # TEST
-# encrypt_file("test-files/pgp-keys/pubkey-test.txt", "test-files/18609090-test-1.txt", "test-files/encrypted-data/testbesvarelse-1.csv.asc")
+encrypt_file("test-files/pgp-keys/public-key-test.txt", "test-files/testsvar-2.csv", "test-files/encrypted-data/testbesvarelse-2.csv.asc")
 # decrypt_file("test/privkey-test.txt", "test/encryptet-data.txt", "test/decrypted-data.txt")
 # decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt", "test/encrypted-archive/")
 # decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt")

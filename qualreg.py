@@ -3,7 +3,9 @@ import pandas as pd
 import configparser
 import id_manager
 import os
+from datetime import date
 
+ 
 # Henter besvarelse fra fil, fjerner fnr, legger inn respondetID og overfører data til gitt csv-fil
 def scrub_and_transfer(submission):
     
@@ -26,6 +28,7 @@ def scrub_and_transfer(submission):
         data.insert(2, "kjonn", "kvinne")
 
     # TODO: Legge til alder
+    data.insert(3, "alder", age(fnr))
 
     # fjerner fnr
     # data.at[0,"fnr"] = "---"
@@ -71,5 +74,19 @@ def scrub_and_transfer_all():
     if not newSubmissions:
         print("Ingen nye besvarelser ble overført til kvalitetsregisteret")
 
+
+def age(fnr):
+
+    year = int(fnr[4:6])
+    this_year_last_two_digits = date.today().year - 2000
+    year = 1900 + year if year > this_year_last_two_digits else 2000 + year
+
+    birthdate = date(year,int(fnr[2:4]),int(fnr[0:2]))
+
+    today = date.today()
+    age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+    return str(age)
+
 ### TEST ###
 # scrub_and_transfer("test-files/decrypted-data/testbesvarelse-1.csv")
+

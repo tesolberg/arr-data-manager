@@ -82,7 +82,9 @@ def write_summary(data, codebook, document):
     document.add_heading('Oppsummering', 2)
     oppsummering = document.add_paragraph("Viktigste problem: " + data["viktigste-problem"])
     oppsummering.add_run("\nPasientens tanker om årsak til plagene: " + data["aarsak"])
-    oppsummering.add_run("\nOppfølging pasienten tror vil være mest nyttig: " + data["type-hjelp"])    
+    oppsummering.add_run("\nOppfølging pasienten tror vil være mest nyttig: " + data["type-hjelp"])
+    oppsummering.add_run("\nEndringer i jobbsituasjon pasienten har tro på: " + data["endringer-jobbsit-rtw"])
+       
 
     # Erstatningssak og uførsøknad
     if data["erstatningssak"] == "ja":
@@ -130,9 +132,9 @@ def write_summary(data, codebook, document):
     # SCL-10
     oppsummering.add_run("\nSCL-10 (fra 1,0 = laveste skåre, til 4,0 = høyeste skåre): " + str(scl_score(data)))
     if (scl_score(data) > 1.7):
-        oppsummering.add_run(" (indikerer vesentlige psykiske plager)")
+        oppsummering.add_run(" (indikerer psykiske plager)")
     else:
-        oppsummering.add_run(" (indikerer fravær av vesentlige psykiske plager)")
+        oppsummering.add_run(" (indikerer fravær av psykiske plager)")
 
 
     # ISI
