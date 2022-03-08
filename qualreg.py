@@ -17,6 +17,10 @@ def scrub_and_transfer(submission):
 
     # legger inn respondentID
     fnr = str(data.iloc[0]["fnr"])
+
+    if(len(fnr) < 11):
+        fnr = "0" + fnr
+
     respondentID = id_manager.get_id_code(fnr)
     data.insert(1, "respondentId", respondentID)
 
@@ -86,6 +90,7 @@ def age(fnr):
     today = date.today()
     age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
     return str(age)
+
 
 ### TEST ###
 # scrub_and_transfer("test-files/decrypted-data/testbesvarelse-1.csv")
