@@ -18,6 +18,7 @@ def scrub_and_transfer(submission):
     # legger inn respondentID
     fnr = str(data.iloc[0]["fnr"])
 
+    print(fnr)
     if(len(fnr) < 11):
         fnr = "0" + fnr
 

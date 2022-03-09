@@ -20,7 +20,8 @@ def main():
     else:
         print('\Kjører i produksjonsmodus\n')
 
-    cm.decrypt_all_new_submissions(
+    # TODO: Dekryptere filer fra alle spørreskjemaene
+    cm.decrypt_submissions_in_folder(
         config['paths']['newencryptedsubmissionspath'], 
         config['paths']['newdecryptedsubmissionspath'], 
         config['paths']['privkeypath'],
@@ -53,7 +54,7 @@ def main():
                     # generer rapport til DIPS
                     rg.generate_report(data, "kodebok/codebook.json", config['paths']['reportexportpath'], respondentID)
                     # legg inn data i kvalitetsregister
-                else:
+                else: # TODO: Legge til behandling av legepolregistreringsskjema
                     print("Feilmelding: FormId " + data["formId"] +" ikke støttet")
 
 

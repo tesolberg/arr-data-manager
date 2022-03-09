@@ -64,7 +64,7 @@ def decrypt_file(privKeyPath, pathToEncrypted, pathToPlainText):
     f.close()
 
 
-def decrypt_all_new_submissions(encryptedSubmissionsPath, decryptedSubmissionsPath, privKeyPath, encryptedArchivePath = "", moveFiles = True):    
+def decrypt_submissions_in_folder(encryptedSubmissionsPath, decryptedSubmissionsPath, privKeyPath, encryptedArchivePath = "", moveFiles = True):    
     fileNames = [f for f in listdir(encryptedSubmissionsPath) if isfile(join(encryptedSubmissionsPath, f))]
 
     newSubmissions = False
@@ -91,7 +91,7 @@ def decrypt_all_new_submissions(encryptedSubmissionsPath, decryptedSubmissionsPa
 
 
 # TEST
-encrypt_file("test-files/pgp-keys/public-key-test.txt", "test-files/testsvar-2.csv", "test-files/encrypted-data/testbesvarelse-2.csv.asc")
+# encrypt_file("test-files/pgp-keys/pubkey-test.txt", "test-files/testbesvarelse-2.csv", "test-files/encrypted-data/testbesvarelse-1.csv.asc")
 # decrypt_file("test/privkey-test.txt", "test/encryptet-data.txt", "test/decrypted-data.txt")
 # decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt", "test/encrypted-archive/")
 # decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt")
