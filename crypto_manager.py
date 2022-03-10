@@ -68,7 +68,6 @@ def decrypt_submissions_in_folder(origin, destination, privKeyPath, archivePath 
     newSubmissions = False
 
     # iterer over krypterte besvarelser
-    print('*** DEKRYPTERER ***')
     for fileName in fileNames:
         if(fileName[0:1] != "." and fileName[-7:] == "csv.asc"):   # guard against .ds_store + select csv only        
             decrypt_file(privKeyPath, origin + fileName, destination + fileName[0:-4])
@@ -89,7 +88,10 @@ def decrypt_submissions_in_folder(origin, destination, privKeyPath, archivePath 
 
 
 # TEST
-# encrypt_file("test-files/pgp-keys/pubkey-test.txt", "test-files/testbesvarelse-2.csv", "test-files/encrypted-data/testbesvarelse-1.csv.asc")
+# encrypt_file("test-files/pgp-keys/public-key-test.txt", "test-files/kryptert-legepol/17578501.csv", "test-files/kryptert-legepol/17578501.csv.asc")
+# encrypt_file("test-files/pgp-keys/public-key-test.txt", "test-files/kryptert-legepol/19578507.csv", "test-files/kryptert-legepol/19578507.csv.asc")
+# encrypt_file("test-files/pgp-keys/public-key-test.txt", "test-files/kryptert-legepol/19578975.csv", "test-files/kryptert-legepol/19578975.csv.asc")
+
 # decrypt_file("test/privkey-test.txt", "test/encryptet-data.txt", "test/decrypted-data.txt")
 # decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt", "test/encrypted-archive/")
 # decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt")

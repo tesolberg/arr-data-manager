@@ -38,8 +38,18 @@ def scrub_and_transfer(submission):
     # data.at[0,"fnr"] = "---"
     data = data.drop("fnr", axis=1)
 
+    # setter korrekt registersti ut i fra skjema ID
+    formID = str(data["formId"][0])
+    regPath = ""
+    if formID == config["formIDs"]["t1_formid"]:
+        regPath = config["paths"]["t1registrypath"]
+    elif formID == config["formIDs"]["legepol_formid"]:
+        regPath = config["paths"]["legepolregistrypath"]
+    else:
+        print("FormID " + formID + " ikke støttet.")
+        return
+
     # sjekket at register finnes. Hvis det ikke gjør det -> lag nytt register baset på besvarelse
-    regPath = config["paths"]["t1registrypath"] # TODO: sjekk på rett register opp mot formId i stedet for hard coded
     if(not os.path.isfile(regPath)):
         print("Register ble ikke funnet. Oppretter nytt register basert på besvarelsen")
         data.to_csv(regPath, sep="\t", index=False)

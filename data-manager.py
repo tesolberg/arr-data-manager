@@ -12,26 +12,62 @@ import shutil
 
 def main():
     
+    # leser inn config-filen
     config = configparser.ConfigParser()
     config.read('config.ini')
 
+    # printer programmets aktive modus
     if config.getboolean('general', 'devmode'):
         print('\nKjører i utviklermodus\n')
     else:
         print('\nKjører i produksjonsmodus\n')
 
-    # TODO: Dekryptere filer fra alle spørreskjemaene og over i én samlemappe
+    # dekrypterer alle besvarelser og legger dem i nye-besvarelser-mappen
+    decrypt_all_submissions(config)
+            
+    # henter alle filnavn i nye-besvarelse-mappen
+    p = config['paths']['decryptedsubmissionspath']
+    fileNames = [f for f in listdir(p) if isfile(join(p, f))]
+
+    # genererer rapporter
+    generate_reports(config, fileNames)
+
+    # Flytter nye besvarelser til "i-forlop"-mappen/prosesserte besvarelser
+    move_files(fileNames, config)
+
+    # Flytter alle prosesserte besvarelser over til kvalitetsregister
+    qualreg.scrub_and_transfer_all()
+
+    print('\n*** PROSESS FULLFØRT ***')
+
+
+    # TODO Kvalitetsregisteret
+    # Ta alle nye besvarelser fra Anette
+    # Se etter kartlegging -> merge hvis den finner
+    # Anonymiser
+    # Legg inn som ny rad i registeret
+
+
+def decrypt_all_submissions(config):    
+    # Dekrypterer T1
+    print('*** DEKRYPTERER ***')
+
     cm.decrypt_submissions_in_folder(
         config['paths']['encrypted-t1-path'], 
         config['paths']['decryptedsubmissionspath'], 
         config['paths']['privkeypath'],
         config['paths']['encryptedarchivepath'],
         not config.getboolean('general', 'devmode'))
-            
-    # hent alle filnavn i nye-besvarelse-mappen
-    p = config['paths']['decryptedsubmissionspath']
-    fileNames = [f for f in listdir(p) if isfile(join(p, f))]
 
+    # Dekrypterer legepol (sparer ikke på krypterte)
+    cm.decrypt_submissions_in_folder(
+        config['paths']['encrypted-legepol-path'], 
+        config['paths']['decryptedsubmissionspath'], 
+        config['paths']['privkeypath'],
+        moveFiles= not config.getboolean('general', 'devmode'))
+
+
+def generate_reports(config, fileNames):
     print('*** GENERERER RAPPORTER ***')
     newReports = False
 
@@ -60,21 +96,6 @@ def main():
 
     if not newReports:
         print('Ingen nye rapporter generert')
-
-    # Flytter nye besvarelser til "i-forlop"-mappen/prosesserte rapporter
-    move_files(fileNames, config)
-
-    # Flytter alle filer i 
-    qualreg.scrub_and_transfer_all()
-
-    print('\n*** PROSESS FULLFØRT ***')
-
-
-    # TODO Kvalitetsregisteret
-    # Ta alle nye besvarelser fra Anette
-    # Se etter kartlegging -> merge hvis den finner
-    # Anonymiser
-    # Legg inn som ny rad i registeret
 
 
 def move_files(fileNames, config):

@@ -17,3 +17,5 @@ reportexportpath = /Users/tesolberg/Prosjekter/arr-data-manager/test-files/repor
 encryptedarchivepath = /Users/tesolberg/Prosjekter/arr-data-manager/test-files/encrypted-archive/
 processedsubmissionspath = /Users/tesolberg/Prosjekter/arr-data-manager/test-files/processed-submissions/
 t1registrypath = /Users/tesolberg/Prosjekter/arr-data-manager/test-files/kvalitetsregister/t1register.csv
+t2registrypath = /Users/tesolberg/Prosjekter/arr-data-manager/test-files/kvalitetsregister/t2register.csv
+legepolregistrypath = /Users/tesolberg/Prosjekter/arr-data-manager/test-files/kvalitetsregister/legepolregister.csv
