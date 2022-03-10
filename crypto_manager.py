@@ -52,8 +52,6 @@ def decrypt_file(privKeyPath, pathToEncrypted, pathToPlainText):
     cryptomsg = pgpy.PGPMessage.from_file(pathToEncrypted)
     plaintext = privKey.decrypt(cryptomsg).message
 
-    print("Dekryptert objekt er: " + str(type(plaintext)))
-
     if type(plaintext) is str:
         s = plaintext
     else:
@@ -64,23 +62,23 @@ def decrypt_file(privKeyPath, pathToEncrypted, pathToPlainText):
     f.close()
 
 
-def decrypt_submissions_in_folder(encryptedSubmissionsPath, decryptedSubmissionsPath, privKeyPath, encryptedArchivePath = "", moveFiles = True):    
-    fileNames = [f for f in listdir(encryptedSubmissionsPath) if isfile(join(encryptedSubmissionsPath, f))]
+def decrypt_submissions_in_folder(origin, destination, privKeyPath, archivePath = "", moveFiles = True):    
+    fileNames = [f for f in listdir(origin) if isfile(join(origin, f))]
 
     newSubmissions = False
 
     # iterer over krypterte besvarelser
-    print('*** DECRYPTERER ***')
+    print('*** DEKRYPTERER ***')
     for fileName in fileNames:
         if(fileName[0:1] != "." and fileName[-7:] == "csv.asc"):   # guard against .ds_store + select csv only        
-            decrypt_file(privKeyPath, encryptedSubmissionsPath + fileName, decryptedSubmissionsPath + fileName[0:-4])
+            decrypt_file(privKeyPath, origin + fileName, destination + fileName[0:-4])
             print("Dekryptert ny besvarelse: " + fileName)
 
             if moveFiles:
-                if (encryptedArchivePath != ""):
-                    rename(encryptedSubmissionsPath + fileName, encryptedArchivePath + fileName)
+                if (archivePath != ""):
+                    rename(origin + fileName, archivePath + fileName)
                 else:
-                    remove(encryptedSubmissionsPath + fileName)
+                    remove(origin + fileName)
 
             newSubmissions = True
     
