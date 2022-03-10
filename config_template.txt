@@ -3,13 +3,17 @@ devmode = True
 saveencrypted = True
 
 [formIDs]
-t0_formid = 239360
+t1_formid = 239360
+t2_formid = 0
+legepol_formid = 223198
 
 [paths]
-privkeypath = C:/Users/tor_e/Projects/arr-data-manager/test-files/pgp-keys/privkey-test.txt
-newencryptedsubmissionspath = C:/Users/tor_e/Projects/arr-data-manager/test-files/encrypted-data/
-newdecryptedsubmissionspath = C:/Users/tor_e/Projects/arr-data-manager/test-files/decrypted-data/
-reportexportpath = C:/Users/tor_e/Projects/arr-data-manager/test-files/reports/
-encryptedarchivepath = C:/Users/tor_e/Projects/arr-data-manager/test-files/encrypted-archive/
-processedsubmissionspath = C:/Users/tor_e/Projects/arr-data-manager/test-files/processed-submissions/
-t0registrypath = C:/Users/tor_e/Projects/arr-data-manager/test-files/kvalitetsregister/registerT0.csv
+privkeypath =  /Users/tesolberg/Prosjekter/arr-data-manager/test-files/pgp-keys/private-key-test.txt 
+encrypted-t1-path = /Users/tesolberg/Prosjekter/arr-data-manager/test-files/kryptert-t1/
+encrypted-t2-path = /Users/tesolberg/Prosjekter/arr-data-manager/test-files/kryptert-t2/
+encrypted-legepol-path = /Users/tesolberg/Prosjekter/arr-data-manager/test-files/kryptert-legepol/
+decryptedsubmissionspath = /Users/tesolberg/Prosjekter/arr-data-manager/test-files/decrypted-data/
+reportexportpath = /Users/tesolberg/Prosjekter/arr-data-manager/test-files/reports/
+encryptedarchivepath = /Users/tesolberg/Prosjekter/arr-data-manager/test-files/encrypted-archive/
+processedsubmissionspath = /Users/tesolberg/Prosjekter/arr-data-manager/test-files/processed-submissions/
+t1registrypath = /Users/tesolberg/Prosjekter/arr-data-manager/test-files/kvalitetsregister/t1register.csv

@@ -18,27 +18,27 @@ def main():
     if config.getboolean('general', 'devmode'):
         print('\nKjører i utviklermodus\n')
     else:
-        print('\Kjører i produksjonsmodus\n')
+        print('\nKjører i produksjonsmodus\n')
 
-    # TODO: Dekryptere filer fra alle spørreskjemaene
+    # TODO: Dekryptere filer fra alle spørreskjemaene og over i én samlemappe
     cm.decrypt_submissions_in_folder(
-        config['paths']['newencryptedsubmissionspath'], 
-        config['paths']['newdecryptedsubmissionspath'], 
+        config['paths']['encrypted-t1-path'], 
+        config['paths']['decryptedsubmissionspath'], 
         config['paths']['privkeypath'],
         config['paths']['encryptedarchivepath'],
         not config.getboolean('general', 'devmode'))
             
     # hent alle filnavn i nye-besvarelse-mappen
-    p = config['paths']['newdecryptedsubmissionspath']
+    p = config['paths']['decryptedsubmissionspath']
     fileNames = [f for f in listdir(p) if isfile(join(p, f))]
 
     print('*** GENERERER RAPPORTER ***')
     newReports = False
 
-    # iterer over besvarelsene
+    # iterer over besvarelsene og genererer rapporter
     for fileName in fileNames:
         if(fileName[0:1] != "."):   # guard against .ds_store        
-            with open(config['paths']['newdecryptedsubmissionspath'] + fileName, newline="", encoding="utf-8-sig") as csvfile:    
+            with open(config['paths']['decryptedsubmissionspath'] + fileName, newline="", encoding="utf-8-sig") as csvfile:    
                 
                 newReports = True
 
@@ -50,7 +50,7 @@ def main():
                 respondentID = id_manager.get_id_code(data["fnr"])
                 
                 # utfør prosess ut i fra type besvarelse
-                if data["formId"] == config['formIDs']['t0_formid']:
+                if data["formId"] == config['formIDs']['t1_formid']:
                     # generer rapport til DIPS
                     rg.generate_report(data, "kodebok/codebook.json", config['paths']['reportexportpath'], respondentID)
                     # legg inn data i kvalitetsregister
@@ -80,7 +80,7 @@ def main():
 def move_files(fileNames, config):
     for fileName in fileNames:
         if(fileName[0:1] != "."):   # guards against .ds_store
-            src = config['paths']['newdecryptedsubmissionspath'] + fileName
+            src = config['paths']['decryptedsubmissionspath'] + fileName
             dst = config['paths']['processedsubmissionspath'] + fileName
 
             if config.getboolean('general', 'devmode'):
