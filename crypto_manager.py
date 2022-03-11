@@ -62,7 +62,7 @@ def decrypt_file(privKeyPath, pathToEncrypted, pathToPlainText):
     f.close()
 
 
-def decrypt_submissions_in_folder(origin, destination, privKeyPath, archivePath = "", moveFiles = True):    
+def decrypt_submissions_in_folder(origin, destination, privKeyPath, archivePath = "", removeEncrypted = True):    
     fileNames = [f for f in listdir(origin) if isfile(join(origin, f))]
 
     newSubmissions = False
@@ -73,7 +73,7 @@ def decrypt_submissions_in_folder(origin, destination, privKeyPath, archivePath 
             decrypt_file(privKeyPath, origin + fileName, destination + fileName[0:-4])
             print("Dekryptert ny besvarelse: " + fileName)
 
-            if moveFiles:
+            if removeEncrypted:
                 if (archivePath != ""):
                     rename(origin + fileName, archivePath + fileName)
                 else:

@@ -57,14 +57,14 @@ def decrypt_all_submissions(config):
         config['paths']['decryptedsubmissionspath'], 
         config['paths']['privkeypath'],
         config['paths']['encryptedarchivepath'],
-        not config.getboolean('general', 'devmode'))
+        removeEncrypted= config.getboolean('general', 'removeencrypted'))
 
     # Dekrypterer legepol (sparer ikke på krypterte)
     cm.decrypt_submissions_in_folder(
         config['paths']['encrypted-legepol-path'], 
         config['paths']['decryptedsubmissionspath'], 
         config['paths']['privkeypath'],
-        moveFiles= not config.getboolean('general', 'devmode'))
+        removeEncrypted= config.getboolean('general', 'removeencrypted'))
 
 
 def generate_reports(config, fileNames):
@@ -104,10 +104,10 @@ def move_files(fileNames, config):
             src = config['paths']['decryptedsubmissionspath'] + fileName
             dst = config['paths']['processedsubmissionspath'] + fileName
 
-            if config.getboolean('general', 'devmode'):
+            if config.getboolean('general', 'keepdecrypted'):
                 shutil.copyfile(src, dst)
             else:
-                os.replace(src, dst )
+                os.replace(src, dst)
     
 
 if __name__ == "__main__":

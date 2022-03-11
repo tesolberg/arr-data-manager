@@ -1,6 +1,8 @@
 [general]
 devmode = True
-saveencrypted = True
+keepdecrypted = False
+keepprocessed = False
+removeencrypted = False
 
 [formIDs]
 t1_formid = 239360

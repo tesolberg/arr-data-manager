@@ -35,7 +35,6 @@ def scrub_and_transfer(submission):
     data.insert(3, "alder", age(fnr))
 
     # fjerner fnr
-    # data.at[0,"fnr"] = "---"
     data = data.drop("fnr", axis=1)
 
     # setter korrekt registersti ut i fra skjema ID
@@ -59,7 +58,7 @@ def scrub_and_transfer(submission):
         updatedReg.to_csv(regPath, sep="\t", index=False)
 
     # hvis produksjon -> slett submission-fil
-    if not config.getboolean("general", "devmode"):
+    if not config.getboolean("general", "keepprocessed"):
         os.remove(submission)
     # if not config.getboolean('general', 'devmode'):
 
