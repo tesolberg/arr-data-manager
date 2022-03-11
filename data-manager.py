@@ -32,7 +32,7 @@ def main():
     # genererer rapporter
     generate_reports(config, fileNames)
 
-    # Flytter nye besvarelser til "i-forlop"-mappen/prosesserte besvarelser
+    # Flytter nye besvarelser til prosesserte besvarelser-mappen
     move_files(fileNames, config)
 
     # Flytter alle prosesserte besvarelser over til kvalitetsregister
@@ -40,12 +40,6 @@ def main():
 
     print('\n*** PROSESS FULLFØRT ***')
 
-
-    # TODO Kvalitetsregisteret
-    # Ta alle nye besvarelser fra Anette
-    # Se etter kartlegging -> merge hvis den finner
-    # Anonymiser
-    # Legg inn som ny rad i registeret
 
 
 def decrypt_all_submissions(config):    
