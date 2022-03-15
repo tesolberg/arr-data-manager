@@ -8,12 +8,12 @@ nextCodePath = "./koblingsnokkel/neste-kode.txt"
 def get_id_code(fnr):
 
     if not isinstance(fnr, str):
-        print("Warning: Argument given to id_manager is: " + str(type(fnr)))
+        print("Advarsel: Argument given to id_manager is: " + str(type(fnr)))
         
     fnr = str(fnr)
     if(len(fnr) < 11):
-        print("Feil antall siffer i fnr: " + fnr)
-        return
+        print("Advarsel: Feil antall siffer i fnr: " + fnr + ". Legger til ledende '0'")
+        fnr = "0" + fnr
 
     # åpne fil og sjekk for eksisterende oppføring -> returner oppføring
     with open(linkKeyPath, newline="") as csvfile:
@@ -58,4 +58,4 @@ def id_to_fnr(id):
         print("Fant ingen oppføring med id-kode: " + id)
 
 
-print(get_id_code("02049854365"))
+# print(get_id_code("02059854365"))
