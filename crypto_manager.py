@@ -82,7 +82,7 @@ def decrypt_submissions_in_folder(origin, destination, privKeyPath, archivePath 
             newSubmissions = True
     
     if not newSubmissions:
-        print('Ingen nye besvarelser ble dekryptert\n')
+        print('Ingen nye besvarelser fra ' + origin + " ble dekryptert\n")
     else:
         print('')
 
