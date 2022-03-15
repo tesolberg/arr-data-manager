@@ -242,7 +242,7 @@ def write_work_related(data, codebook, document):
 
 
 def write_exercise_and_more(data, codebook, document):
-    document.add_heading("Mosjon, bmi og kosthold", 2)
+    document.add_heading("Mosjon, BMI og kosthold", 2)
     p = document.add_paragraph("")
     vekt = int(data["vekt"])
     hoyde = float(data["hoyde"]) / 100
@@ -257,32 +257,50 @@ def write_exercise_and_more(data, codebook, document):
 def write_scl(data, codebook, document):
     document.add_heading('Symptom checklist 10', 2)
 
-    # samle alle keys for hscl
+    # samle alle keys for scl
     keys = []
     for key in data:
         if key[0:3] == "scl":
             keys.append(key)
 
-    # generere overskrifter og avsnitt
-    document.add_heading("Respons: Veldig mye", 3)
-    p3 = document.add_paragraph("")
-    document.add_heading("Respons: Ganske mye", 3)
-    p2 = document.add_paragraph("")
-    document.add_heading("Respons: Litt plaget", 3)
-    p1 = document.add_paragraph("")
-    document.add_heading("Respons: Ikke plaget", 3)
-    p0 = document.add_paragraph("")
-    
-    # Fordele ledd på avsnitt etter respons
+
+    ikke = ""
+    litt = ""
+    ganske = ""
+    veldig = ""
+
+   # Fordele ledd på avsnitt etter respons
     for key in keys:
         if data[key] == "veldig-mye":
-            p3.add_run(codebook[key]["var_text"] + "\n")
+            if(len(veldig) > 0):
+                veldig = veldig + "\n"
+            veldig = veldig + (codebook[key]["var_text"])
         elif data[key] == "ganske-mye":
-            p2.add_run(codebook[key]["var_text"] + "\n")
+            if(len(ganske) > 0):
+                ganske = ganske + "\n"
+            ganske = ganske + (codebook[key]["var_text"])
         elif data[key] == "litt-plaget":
-            p1.add_run(codebook[key]["var_text"] + "\n")
+            if(len(litt) > 0):
+                litt = litt + "\n"
+            litt = litt + (codebook[key]["var_text"])
         else:
-            p0.add_run(codebook[key]["var_text"] + "\n")
+            if(len(ikke) > 0):
+                ikke = ikke + "\n"
+            ikke = ikke + (codebook[key]["var_text"])
+
+    if len(veldig) > 0:
+            document.add_heading("Respons: Veldig mye", 3)
+            document.add_paragraph(veldig)
+    if len(ganske) > 0:
+            document.add_heading("Respons: Ganske mye", 3)
+            document.add_paragraph(veldig)
+    if len(litt) > 0:
+            document.add_heading("Respons: Litt plager", 3)
+            document.add_paragraph(veldig)
+    if len(ikke) > 0:
+            document.add_heading("Respons: Ikke plaget", 3)
+            document.add_paragraph(veldig)
+    
 
 
 def write_isi(data, codebook, document):
