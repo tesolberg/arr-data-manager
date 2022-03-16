@@ -84,6 +84,8 @@ def generate_reports(config, fileNames):
                     # generer rapport til DIPS
                     rg.generate_report(data, "kodebok/codebook.json", config['paths']['reportexportpath'], respondentID)
                     # legg inn data i kvalitetsregister
+                elif data["formId"] == config["formIDs"]["legepol_formid"]:
+                    continue
                 else: # TODO: Legge til behandling av legepolregistreringsskjema
                     print("Feilmelding: FormId " + data["formId"] +" ikke støttet")
 
