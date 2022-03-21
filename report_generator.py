@@ -293,13 +293,13 @@ def write_scl(data, codebook, document):
             document.add_paragraph(veldig)
     if len(ganske) > 0:
             document.add_heading("Respons: Ganske mye", 3)
-            document.add_paragraph(veldig)
+            document.add_paragraph(ganske)
     if len(litt) > 0:
             document.add_heading("Respons: Litt plager", 3)
-            document.add_paragraph(veldig)
+            document.add_paragraph(litt)
     if len(ikke) > 0:
             document.add_heading("Respons: Ikke plaget", 3)
-            document.add_paragraph(veldig)
+            document.add_paragraph(ikke)
     
 
 
