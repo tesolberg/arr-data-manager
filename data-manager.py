@@ -8,10 +8,22 @@ import crypto_manager as cm
 import configparser
 import qualreg
 import shutil
-
+import logging
+from datetime import datetime
 
 def main():
     
+    # Logging
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+    formatter = logging.Formatter("%(levelname)s:%(name)s:%(message)s")
+    file_handler = logging.FileHandler("data-manager.log")
+    file_handler.setFormatter(formatter)
+    logger.addHandler(file_handler)
+
+    logger.info("Starting execution of Data Manager at " + datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
+    
+
     # leser inn config-filen
     config = configparser.ConfigParser()
     config.read('config.ini')

@@ -87,6 +87,8 @@ def scrub_and_transfer_all():
     if not newSubmissions:
         print("Ingen nye besvarelser ble overført til kvalitetsregisteret")
 
+    # TODO: Kopi av kvalitetsregistre til exportmappen gitt config
+
 
 def age(fnr):
 
