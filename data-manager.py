@@ -50,9 +50,24 @@ def main():
     # Flytter alle prosesserte besvarelser over til kvalitetsregister
     qualreg.scrub_and_transfer_all()
 
+    # Kopierer registerdata til eksportmappen
+    if config['general']['exportqualreg']:
+        export_qual_reg(config, logger)
+
     print('\n*** PROSESS FULLFØRT ***')
 
 
+def export_qual_reg(config, logger):
+    src_t1 = config['paths']['t1registrypath']
+    src_legepol = config['paths']['legepolregistrypath']
+    dst = config['paths']['reportexportpath']
+
+    shutil.copy(src_t1, dst)
+    shutil.copy(src_legepol, dst)
+
+    logger.info("Kvalitetsregistre kopiert til eksportmappen.")
+
+    return
 
 def decrypt_all_submissions(config):    
     # Dekrypterer T1
