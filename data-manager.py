@@ -13,16 +13,14 @@ from datetime import datetime
 
 def main():
     
-    # Logging
+    # setter opp logger
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
     formatter = logging.Formatter("%(levelname)s:%(name)s:%(message)s")
     file_handler = logging.FileHandler("data-manager.log")
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
-
     logger.info("Starting execution of Data Manager at " + datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
-    
 
     # leser inn config-filen
     config = configparser.ConfigParser()
@@ -51,7 +49,8 @@ def main():
     qualreg.scrub_and_transfer_all()
 
     # Kopierer registerdata til eksportmappen
-    if config['general']['exportqualreg']:
+    if config.getboolean("general",'exportqualreg'):
+        print(config["general"]["exportqualreg"])
         export_qual_reg(config, logger)
 
     print('\n*** PROSESS FULLFØRT ***')
