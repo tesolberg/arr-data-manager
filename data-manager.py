@@ -50,7 +50,6 @@ def main():
 
     # Kopierer registerdata til eksportmappen
     if config.getboolean("general",'exportqualreg'):
-        print(config["general"]["exportqualreg"])
         export_qual_reg(config, logger)
 
     print('\n*** PROSESS FULLFØRT ***')
