@@ -131,7 +131,7 @@ def write_summary(data, codebook, document):
 
     # SCL-10
     oppsummering.add_run("\nSCL-10 (fra 1,0 = laveste skåre, til 4,0 = høyeste skåre): " + str(scl_score(data)))
-    if (scl_score(data) > 1.7):
+    if (scl_score(data) > 1.85):
         oppsummering.add_run(" (indikerer psykiske plager)")
     else:
         oppsummering.add_run(" (indikerer fravær av psykiske plager)")
