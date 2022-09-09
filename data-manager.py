@@ -45,8 +45,11 @@ def main():
     # Flytter nye besvarelser til prosesserte besvarelser-mappen
     move_files(fileNames, config)
 
-    # Flytter alle prosesserte besvarelser over til kvalitetsregister
+    # Flytter alle prosesserte besvarelser over til psudonymisert kvalitetsregister
     qualreg.scrub_and_transfer_all()
+
+    # Flytter anonymiserte besvarelser fra psudonymisert register til anonymisert register
+    qualreg.transfer_all_anonymized_data()
 
     # Kopierer registerdata til eksportmappen
     if config.getboolean("general",'exportqualreg'):

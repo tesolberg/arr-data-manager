@@ -56,6 +56,7 @@ def id_to_fnr(id):
                 return row["fnr"]
         
         print("Fant ingen oppføring med id-kode: " + id)
+        return ""
 
 
 # print(get_id_code("02059854365"))

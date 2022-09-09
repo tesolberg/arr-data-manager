@@ -1,3 +1,6 @@
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 from os.path import isfile, join
 import pandas as pd
 import configparser
@@ -31,26 +34,27 @@ def scrub_and_transfer(submission):
     else:
         data.insert(2, "kjonn", "kvinne")
 
-    # TODO: Legge til alder
+
+    # Legger ti alder
     data.insert(3, "alder", age(fnr))
 
     # fjerner fnr
     data = data.drop("fnr", axis=1)
 
-    # setter korrekt registersti ut i fra skjema ID
+    # setter korrekt registersti ut i fra skjema ID (psudonumysiert registerfil)
     formID = str(data["formId"][0])
     regPath = ""
     if formID == config["formIDs"]["t1_formid"]:
-        regPath = config["paths"]["t1registrypath"]
+        regPath = config["paths"]["t1psudoregistrypath"]
     elif formID == config["formIDs"]["legepol_formid"]:
-        regPath = config["paths"]["legepolregistrypath"]
+        regPath = config["paths"]["legepolpsudoregistrypath"]
     else:
         print("FormID " + formID + " ikke støttet.")
         return
 
     # sjekket at register finnes. Hvis det ikke gjør det -> lag nytt register baset på besvarelse
     if(not os.path.isfile(regPath)):
-        print("Register ble ikke funnet. Oppretter nytt register basert på besvarelsen")
+        print("Registerfil ble ikke funnet. Oppretter ny registerfil basert på besvarelsen")
         data.to_csv(regPath, sep="\t", index=False)
     else:
         registry = pd.read_csv(regPath, sep="\t")
@@ -63,11 +67,11 @@ def scrub_and_transfer(submission):
     # if not config.getboolean('general', 'devmode'):
 
     print("Besvarelse overført med respondentID: " + respondentID)
-        
+
 
 def scrub_and_transfer_all():
     
-    print("\n*** OVERFØRER DATA TIL KVALITETSREGISTER ***")
+    print("\n*** OVERFØRER DATA TIL PSUDONYMISERT KVALITETSREGISTER ***")
 
     config = configparser.ConfigParser()
     config.read('config.ini')
@@ -87,7 +91,72 @@ def scrub_and_transfer_all():
     if not newSubmissions:
         print("Ingen nye besvarelser ble overført til kvalitetsregisteret")
 
-    # TODO: Kopi av kvalitetsregistre til exportmappen gitt config
+
+    # Gjennomgår alle registre og psudoregistre og overfører alle besvarelser med IDer som ikke lenger er i kodelisten
+def transfer_all_anonymized_data():
+    print("\n*** OVERFØRER DATA FRA PSUDONYMISERT KVALITETSREGISTER TIL ANONYMISERT KVALITETSREGISTER***")
+
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    
+    # Itererer over alle psudoregistre. Hvis psudoregisteret finnes overføres besvarelser som er anonymisert til registeret
+    if(os.path.isfile(config["paths"]["t1psudoregistrypath"])):
+        print("Psudoregister T1")
+        transfer_anonymized_data(config["paths"]["t1psudoregistrypath"], config["paths"]["t1registrypath"])
+    else: print("Fant ikke psudoregister T1")
+
+    if(os.path.isfile(config["paths"]["t2psudoregistrypath"])):
+        print("Psudoregister T2")
+        transfer_anonymized_data(config["paths"]["t2psudoregistrypath"], config["paths"]["t2registrypath"])
+    else: print("Fant ikke psudoregister T2")
+
+    if(os.path.isfile(config["paths"]["legepolpsudoregistrypath"])):
+        print("Psudoregister legepol")
+        transfer_anonymized_data(config["paths"]["legepolpsudoregistrypath"], config["paths"]["legepolregistrypath"])
+    else: print("Fant ikke psudoregister legepol")
+
+
+    # Overfører alle besvarelser fra psudoregister til register hvis besvarelsens ID ikke er i listen som blir gitt
+def transfer_anonymized_data(psudoRegisterPath, registerPath):    
+    # For test. Fjerner registerfil
+    # if(os.path.isfile(registerPath)):
+    #     os.remove(registerPath)
+    
+    # Last inn psudoregister som dataframe
+    psudoReg = pd.read_csv(psudoRegisterPath, sep="\t")
+    
+    # sjekket at register finnes. Hvis det ikke gjør det -> lag nytt register baset på psudoregister
+    if(not os.path.isfile(registerPath)):
+        print("Registerfil ble ikke funnet. Oppretter ny registerfil basert på psudoregister")
+        psudoReg.iloc[:0].to_csv(registerPath, sep="\t", index=False)
+
+    # Laster inn anonymisert register
+    registry = pd.read_csv(registerPath, sep="\t")
+    
+    foundSubmission = False
+
+    # Iterer baklengs over besvarelser
+    for i in range(len(psudoReg.index) -1,0, -1):
+        id = str(psudoReg.iloc[i]["respondentId"])
+        submission = psudoReg.loc[i]
+
+        # Hvis besvarelsens ID ikke finnes i kodelisten
+        if (len(id_manager.id_to_fnr(id)) == 0):
+            print("Overfører besvarelse med id-kode:{} fra psudoregister til anonymisert register".format(id))
+            # Overfør besvarelsen til register
+            registry = registry.append(submission, ignore_index=True)
+            # TODO: Forstå concat og bytte ut append
+    
+            # Fjerner overført besvarelse fra psudoregister
+            psudoReg.drop(i, inplace=True)
+
+            foundSubmission = True
+            
+    # Skriver modifiserte registre til fil
+    registry.to_csv(registerPath, sep="\t", index=False)
+    psudoReg.to_csv(psudoRegisterPath, sep="\t", index=False)
+
+    print("-- Fant ingen nye anonymiserte besvarelse")
 
 
 def age(fnr):
