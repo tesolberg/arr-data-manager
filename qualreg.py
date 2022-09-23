@@ -151,7 +151,7 @@ def transfer_anonymized_data(psudoRegisterPath, registerPath):
 
         # Hvis besvarelsens ID ikke finnes i kodelisten
         if (len(id_manager.id_to_fnr(id)) == 0):
-            print("Overfører besvarelse med id-kode:{} fra psudoregister til anonymisert register".format(id))
+            print("Overfører besvarelse med id-kode: {} fra psudoregister til anonymisert register".format(id))
             # Overfør besvarelsen til register
             registry = registry.append(submission, ignore_index=True)
             # TODO: Forstå concat og bytte ut append
@@ -165,7 +165,7 @@ def transfer_anonymized_data(psudoRegisterPath, registerPath):
     registry.to_csv(registerPath, sep="\t", index=False)
     psudoReg.to_csv(psudoRegisterPath, sep="\t", index=False)
 
-    print("-- Fant ingen nye anonymiserte besvarelse")
+    if(not foundSubmission): print("-- Fant ingen nye anonymiserte besvarelse")
 
 
 def age(fnr):

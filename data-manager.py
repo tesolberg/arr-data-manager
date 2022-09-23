@@ -89,6 +89,8 @@ def decrypt_all_submissions(config):
         config['paths']['encryptedarchivepath'],
         removeEncrypted= config.getboolean('general', 'removeencrypted'))
 
+    # TODO: T2
+
     # Dekrypterer legepol (sparer ikke på krypterte)
     cm.decrypt_submissions_in_folder(
         config['paths']['encrypted-legepol-path'], 
