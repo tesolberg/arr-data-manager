@@ -71,11 +71,19 @@ def export_qual_reg(config, logger):
     return
 
 def decrypt_all_submissions(config):    
-    # Dekrypterer T1
     print('*** DEKRYPTERER ***')
 
+    # Dekrypterer T1
     cm.decrypt_submissions_in_folder(
         config['paths']['encrypted-t1-path'], 
+        config['paths']['decryptedsubmissionspath'], 
+        config['paths']['privkeypath'],
+        config['paths']['encryptedarchivepath'],
+        removeEncrypted= config.getboolean('general', 'removeencrypted'))
+
+    # Dekrypterer T1_v2
+    cm.decrypt_submissions_in_folder(
+        config['paths']['encrypted-t1v2-path'], 
         config['paths']['decryptedsubmissionspath'], 
         config['paths']['privkeypath'],
         config['paths']['encryptedarchivepath'],

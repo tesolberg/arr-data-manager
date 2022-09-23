@@ -46,6 +46,10 @@ def scrub_and_transfer(submission):
     regPath = ""
     if formID == config["formIDs"]["t1_formid"]:
         regPath = config["paths"]["t1psudoregistrypath"]
+    elif formID == config["formIDs"]["t1v2_formid"]:
+        regPath = config["paths"]["t1v2psudoregistrypath"]
+    elif formID == config["formIDs"]["t2_formid"]:
+        regPath = config["paths"]["t2psudoregistrypath"]
     elif formID == config["formIDs"]["legepol_formid"]:
         regPath = config["paths"]["legepolpsudoregistrypath"]
     else:
@@ -104,6 +108,11 @@ def transfer_all_anonymized_data():
         print("Psudoregister T1")
         transfer_anonymized_data(config["paths"]["t1psudoregistrypath"], config["paths"]["t1registrypath"])
     else: print("Fant ikke psudoregister T1")
+
+    if(os.path.isfile(config["paths"]["t1v2psudoregistrypath"])):
+        print("Psudoregister T1v2")
+        transfer_anonymized_data(config["paths"]["t1v2psudoregistrypath"], config["paths"]["t1v2registrypath"])
+    else: print("Fant ikke psudoregister T1v2")
 
     if(os.path.isfile(config["paths"]["t2psudoregistrypath"])):
         print("Psudoregister T2")

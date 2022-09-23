@@ -63,6 +63,11 @@ def decrypt_file(privKeyPath, pathToEncrypted, pathToPlainText):
 
 
 def decrypt_submissions_in_folder(origin, destination, privKeyPath, archivePath = "", removeEncrypted = True):    
+    # sjekker om origin-mappen eksisterer
+    if(not os.path.isdir(origin)): 
+        print("Advarsel: Mappen {} eksisterer ikke".format(origin))
+        return  
+
     fileNames = [f for f in listdir(origin) if isfile(join(origin, f))]
 
     newSubmissions = False
