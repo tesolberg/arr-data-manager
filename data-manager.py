@@ -2,6 +2,7 @@ from os import listdir
 from os.path import isfile, join
 import csv
 import report_generator as rg
+import report_generator_deprecated as rg_old
 import id_manager
 import os
 import crypto_manager as cm
@@ -54,7 +55,7 @@ def main():
     # Flytter anonymiserte besvarelser fra psudonymisert register til anonymisert register
     qualreg.transfer_all_anonymized_data()
 
-    # Kopierer registerdata til eksportmappen
+    # Kopierer registerdata til eksportmappen   #TODO: Få denne til å eksportere anonymisert reg
     if config.getboolean("general",'exportqualreg'):
         export_qual_reg(config, logger)
 
@@ -130,14 +131,25 @@ def generate_reports(config, fileNames):
                 # gets respondentID
                 respondentID = id_manager.get_id_code(data["fnr"])
                 
-                # utfør prosess ut i fra type besvarelse
+                # T1 v1.1
                 if data["formId"] == config['formIDs']['t1_formid']:
-                    # generer rapport til DIPS
-                    rg.generate_report(data, config['paths']['kodebok-t1v11'], config['paths']['reportexportpath'], respondentID)
-                    # legg inn data i kvalitetsregister
+                    rg_old.generate_report_t1v11(data, config['paths']['kodebok-t1v11'], config['paths']['reportexportpath'], respondentID)
+
+                # T1 v2.0
+                if data["formId"] == config['formIDs']['t1v20_formid']:
+                    rg.generate_report_t1v20(data, config['paths']['kodebok-t1v20'], config['paths']['reportexportpath'], respondentID)
+
+                # T2 v1.0
+                if data["formId"] == config['formIDs']['t1_formid']:
+                    # rg.generate_report(data, config['paths']['kodebok-t1v11'], config['paths']['reportexportpath'], respondentID)
+                    print("T2-rapport ikke implementert")
+
+                # Legepol
                 elif data["formId"] == config["formIDs"]["legepol_formid"]:
                     continue
-                else: # TODO: Legge til behandling av legepolregistreringsskjema
+
+                # Ikke støttet skjema-ID
+                else:
                     print("Feilmelding: FormId " + data["formId"] +" ikke støttet")
 
 

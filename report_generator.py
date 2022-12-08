@@ -6,7 +6,7 @@ from docx.shared import RGBColor
 import csv
 
 # dict av enkeltbesvarelse -> void + rapport i docx-format
-def generate_report(data, codebook_path, outputPath, respondentID):
+def generate_report_t1v20(data, codebook_path, outputPath, respondentID):
     
     # loads codebook as dict
     with open(codebook_path, encoding="utf-8") as f:
@@ -14,7 +14,7 @@ def generate_report(data, codebook_path, outputPath, respondentID):
 
     # creates new document and adds heading
     document = Document()
-    document.add_heading('Pasientrapportert kartlegging - arbeidsrettet rehabilitering', 1)
+    document.add_heading('Pasientrapportert kartlegging ved oppstart i arbeidsrettet rehabilitering', 1)
     document.add_heading('Avdeling for fysikalsk medisin og forebygging, Sørlandet sykehus HF', 3)
 
     ### INNLEDNING ###    
@@ -23,30 +23,30 @@ def generate_report(data, codebook_path, outputPath, respondentID):
     ### OPPSUMMERING ###
     write_summary(data, codebook, document)
     
-    ### SMERTEKARTLEGGING ###
-    write_pain_variables(data, codebook, document)
+    # ### SMERTEKARTLEGGING ###
+    # write_pain_variables(data, codebook, document)
 
-    ### ARBEID OG YTELSER ###
-    write_work_related(data, codebook, document)
+    # ### ARBEID OG YTELSER ###
+    # write_work_related(data, codebook, document)
 
-    ### FYSISK AKTIVITET, HØYDE, VEKT, KOSTHOLD ###
-    write_exercise_and_more(data, codebook, document)
+    # ### FYSISK AKTIVITET, HØYDE, VEKT, KOSTHOLD ###
+    # write_exercise_and_more(data, codebook, document)
 
-    ### SCL-10 ###
-    write_scl(data, codebook, document)
+    # ### SCL-10 ###
+    # write_scl(data, codebook, document)
 
-    ### ISI ###
-    if (data["sovnproblemer"] == "nei"):
-        document.add_heading('Søvn', 2)
-        p = document.add_paragraph("")
-        p.add_run("Angir ikke søvnproblemer")
-    else:
-        write_isi(data, codebook, document)
+    # ### ISI ###
+    # if (data["sovnproblemer"] == "nei"):
+    #     document.add_heading('Søvn', 2)
+    #     p = document.add_paragraph("")
+    #     p.add_run("Angir ikke søvnproblemer")
+    # else:
+    #     write_isi(data, codebook, document)
 
 
     # saves document to file
     document.save(outputPath + str(respondentID) + ".docx")
-    print("Generated report for respondent " + str(respondentID) + " (" + data["fnr"][0:6] + " " + data["fnr"][6:] + ")")
+    print("Generert rapport for respondent " + str(respondentID) + " (" + data["fnr"][0:6] + " " + data["fnr"][6:] + ")")
 
     if(data["tilbakemeldinger"] != ""):
         print("Respondent har gitt tilbakemelding: " + data["tilbakemeldinger"])
@@ -93,16 +93,16 @@ def write_summary(data, codebook, document):
         oppsummering.add_run("\nIngen pågående erstatningssak")
 
     if data["sokt-ufor"] == "ja":
-        oppsummering.add_run("\nVurderer å søke ufør/pågående søknad")
+        oppsummering.add_run("\nHar søkt eller planlegger å søke uførpensjon")
     else:
         oppsummering.add_run("\nVurderer ikke å søke ufør")
 
     # Jobbstatus
-    yrke = codebook["yrke"]["responses"][data["yrke"]] + " - " + data["yrke-fritekst"]
+    #yrke = codebook["yrke"]["responses"][data["yrke"]] + " - " + data["yrke-fritekst"]
     if(data["arbeidsforhold"] == "ja"):
-        oppsummering.add_run("\nNåværende yrke: " + yrke)
+        oppsummering.add_run("\nNåværende yrke: " + data["yrke-fritekst"])
     else:
-        oppsummering.add_run("\nSiste hovedyrke (har ikke arbeidsforhold): " + yrke)
+        oppsummering.add_run("\nSiste hovedyrke (har ikke arbeidsforhold): " + data["yrke-fritekst"])
     
     jobbstatus = ""
     if data["sm-aap"] == "nei": jobbstatus = "ikke sykemeldt"
@@ -138,21 +138,18 @@ def write_summary(data, codebook, document):
 
 
     # ISI
-    if (data["sovnproblemer"] == "nei"):
-        oppsummering.add_run("\nAngir ikke søvnproblemer")
+    isi = isi_score(data)
+    expl = " (indikerer "
+    if(isi < 8):
+        expl = expl + "fravær av vesentlige søvnvansker)"
+    elif (isi <15):
+        expl = expl + "subklinisk insomni)"
+    elif (isi <22):
+        expl = expl + "moderat insomni)"
     else:
-        isi = isi_score(data)
-        expl = " (indikerer "
-        if(isi < 8):
-            expl = expl + "fravær av vesentlige søvnvansker)"
-        elif (isi <15):
-           expl = expl + "milde til moderate søvnvansker)"
-        elif (isi <22):
-           expl = expl + "moderate søvnvansker)"
-        else:
-           expl = expl + "alvorlige søvnvansker)"
-            
-        oppsummering.add_run("\nISI: " + str(isi) + expl)
+        expl = expl + "alvorlig insomni)"
+        
+    oppsummering.add_run("\nISI: " + str(isi) + expl)
 
 
 ######################
