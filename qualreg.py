@@ -46,10 +46,10 @@ def scrub_and_transfer(submission):
     regPath = ""
     if formID == config["formIDs"]["t1_formid"]:
         regPath = config["paths"]["t1psudoregistrypath"]
-    elif formID == config["formIDs"]["t1v2_formid"]:
-        regPath = config["paths"]["t1v2psudoregistrypath"]
-    elif formID == config["formIDs"]["t2_formid"]:
-        regPath = config["paths"]["t2psudoregistrypath"]
+    elif formID == config["formIDs"]["t1v20_formid"]:
+        regPath = config["paths"]["t1v20psudoregistrypath"]
+    elif formID == config["formIDs"]["t2v10_formid"]:
+        regPath = config["paths"]["t2v10psudoregistrypath"]
     elif formID == config["formIDs"]["legepol_formid"]:
         regPath = config["paths"]["legepolpsudoregistrypath"]
     else:
@@ -58,7 +58,7 @@ def scrub_and_transfer(submission):
 
     # sjekket at register finnes. Hvis det ikke gjør det -> lag nytt register baset på besvarelse
     if(not os.path.isfile(regPath)):
-        print("Registerfil ble ikke funnet. Oppretter ny registerfil basert på besvarelsen")
+        print("-- Psudoregister for {} ble ikke funnet. Oppretter ny registerfil basert på besvarelsen".format(formID))
         data.to_csv(regPath, sep="\t", index=False)
     else:
         registry = pd.read_csv(regPath, sep="\t")
@@ -93,7 +93,7 @@ def scrub_and_transfer_all():
             scrub_and_transfer(p + fileName)
 
     if not newSubmissions:
-        print("Ingen nye besvarelser ble overført til kvalitetsregisteret")
+        print("Ingen nye besvarelser ble overført til psudonymiserte register")
 
 
     # Gjennomgår alle registre og psudoregistre og overfører alle besvarelser med IDer som ikke lenger er i kodelisten
@@ -104,25 +104,25 @@ def transfer_all_anonymized_data():
     config.read('config.ini')
     
     # Itererer over alle psudoregistre. Hvis psudoregisteret finnes overføres besvarelser som er anonymisert til registeret
+    print("\nT1v1.1")
     if(os.path.isfile(config["paths"]["t1psudoregistrypath"])):
-        print("Psudoregister T1")
         transfer_anonymized_data(config["paths"]["t1psudoregistrypath"], config["paths"]["t1registrypath"])
-    else: print("Fant ikke psudoregister T1")
+    else: print("-- Fant ikke psudoregister T1")
 
-    if(os.path.isfile(config["paths"]["t1v2psudoregistrypath"])):
-        print("Psudoregister T1v2")
-        transfer_anonymized_data(config["paths"]["t1v2psudoregistrypath"], config["paths"]["t1v2registrypath"])
-    else: print("Fant ikke psudoregister T1v2")
+    print("\nT1v2.0")
+    if(os.path.isfile(config["paths"]["t1v20psudoregistrypath"])):
+        transfer_anonymized_data(config["paths"]["t1v20psudoregistrypath"], config["paths"]["t1v20registrypath"])
+    else: print("-- Fant ikke psudoregister T1v2")
 
-    if(os.path.isfile(config["paths"]["t2psudoregistrypath"])):
-        print("Psudoregister T2")
-        transfer_anonymized_data(config["paths"]["t2psudoregistrypath"], config["paths"]["t2registrypath"])
-    else: print("Fant ikke psudoregister T2")
+    print("\nT2v1.0")
+    if(os.path.isfile(config["paths"]["t2v10psudoregistrypath"])):
+        transfer_anonymized_data(config["paths"]["t2v10psudoregistrypath"], config["paths"]["t2v10registrypath"])
+    else: print("-- Fant ikke psudoregister T2")
 
+    print("\nLegepol")
     if(os.path.isfile(config["paths"]["legepolpsudoregistrypath"])):
-        print("Psudoregister legepol")
         transfer_anonymized_data(config["paths"]["legepolpsudoregistrypath"], config["paths"]["legepolregistrypath"])
-    else: print("Fant ikke psudoregister legepol")
+    else: print("-- Fant ikke psudoregister legepol")
 
 
     # Overfører alle besvarelser fra psudoregister til register hvis besvarelsens ID ikke er i listen som blir gitt
@@ -136,7 +136,7 @@ def transfer_anonymized_data(psudoRegisterPath, registerPath):
     
     # sjekket at register finnes. Hvis det ikke gjør det -> lag nytt register baset på psudoregister
     if(not os.path.isfile(registerPath)):
-        print("Registerfil ble ikke funnet. Oppretter ny registerfil basert på psudoregister")
+        print("-- Registerfil ble ikke funnet. Oppretter ny registerfil basert på psudoregister")
         psudoReg.iloc[:0].to_csv(registerPath, sep="\t", index=False)
 
     # Laster inn anonymisert register
@@ -145,13 +145,13 @@ def transfer_anonymized_data(psudoRegisterPath, registerPath):
     foundSubmission = False
 
     # Iterer baklengs over besvarelser
-    for i in range(len(psudoReg.index) -1,0, -1):
+    for i in range(len(psudoReg.index) -1,-1, -1):
         id = str(psudoReg.iloc[i]["respondentId"])
         submission = psudoReg.loc[i]
 
         # Hvis besvarelsens ID ikke finnes i kodelisten
         if (len(id_manager.id_to_fnr(id)) == 0):
-            print("Overfører besvarelse med id-kode: {} fra psudoregister til anonymisert register".format(id))
+            print("-- Overfører besvarelse med id-kode: {} fra psudoregister til anonymisert register".format(id))
             # Overfør besvarelsen til register
             registry = registry.append(submission, ignore_index=True)
             # TODO: Forstå concat og bytte ut append

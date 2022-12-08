@@ -33,8 +33,11 @@ def main():
         print('\nKjører i produksjonsmodus\n')
 
     # dekrypterer alle besvarelser og legger dem i nye-besvarelser-mappen
-    decrypt_all_submissions(config)
-            
+    if config.getboolean("general","decryptnewsubmissions"):
+        decrypt_all_submissions(config)
+    else:
+        print("Hopper over dekryptering\n")
+
     # henter alle filnavn i nye-besvarelse-mappen
     p = config['paths']['decryptedsubmissionspath']
     fileNames = [f for f in listdir(p) if isfile(join(p, f))]
@@ -74,6 +77,7 @@ def decrypt_all_submissions(config):
     print('*** DEKRYPTERER ***')
 
     # Dekrypterer T1
+    print("T1 v1.1")
     cm.decrypt_submissions_in_folder(
         config['paths']['encrypted-t1-path'], 
         config['paths']['decryptedsubmissionspath'], 
@@ -82,16 +86,25 @@ def decrypt_all_submissions(config):
         removeEncrypted= config.getboolean('general', 'removeencrypted'))
 
     # Dekrypterer T1_v2
+    print("T1 v2.0")
     cm.decrypt_submissions_in_folder(
-        config['paths']['encrypted-t1v2-path'], 
+        config['paths']['encrypted-t1v20-path'], 
         config['paths']['decryptedsubmissionspath'], 
         config['paths']['privkeypath'],
         config['paths']['encryptedarchivepath'],
         removeEncrypted= config.getboolean('general', 'removeencrypted'))
 
-    # TODO: T2
+    # Dekrypterer T2_v10
+    print("T2 v1.0")
+    cm.decrypt_submissions_in_folder(
+        config['paths']['encrypted-t2v10-path'], 
+        config['paths']['decryptedsubmissionspath'], 
+        config['paths']['privkeypath'],
+        config['paths']['encryptedarchivepath'],
+        removeEncrypted= config.getboolean('general', 'removeencrypted'))
 
     # Dekrypterer legepol (sparer ikke på krypterte)
+    print("Legepol")
     cm.decrypt_submissions_in_folder(
         config['paths']['encrypted-legepol-path'], 
         config['paths']['decryptedsubmissionspath'], 
@@ -120,7 +133,7 @@ def generate_reports(config, fileNames):
                 # utfør prosess ut i fra type besvarelse
                 if data["formId"] == config['formIDs']['t1_formid']:
                     # generer rapport til DIPS
-                    rg.generate_report(data, "kodebok/codebook.json", config['paths']['reportexportpath'], respondentID)
+                    rg.generate_report(data, config['paths']['kodebok-t1v11'], config['paths']['reportexportpath'], respondentID)
                     # legg inn data i kvalitetsregister
                 elif data["formId"] == config["formIDs"]["legepol_formid"]:
                     continue

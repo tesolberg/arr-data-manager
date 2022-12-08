@@ -55,7 +55,7 @@ def id_to_fnr(id):
             if row["kode"] == id:
                 return row["fnr"]
         
-        print("Fant ingen oppføring med id-kode: " + id)
+        # print("Fant ingen oppføring med id-kode: " + id)
         return ""
 
 
