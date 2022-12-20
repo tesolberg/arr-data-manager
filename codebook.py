@@ -152,7 +152,7 @@ def main():
             print("Feil: Invalid argument gitt til codebook.py: " + sys.argv[1] + ". Mente du 'kun-kodebok'?")
             return
     else:
-        GenerateCodebook("kodebok/codebook-t2v10.sps", "kodebok/variable_snippets_report_t2v10.sps")
+        GenerateCodebook("kodebok/SPSS-format/codebook-t2v10.sps", "kodebok/Variabelsnippets for rapportgenerator/variable_snippets_report_t2v10.json")
 
 
 if __name__ == "__main__":

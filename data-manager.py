@@ -141,8 +141,7 @@ def generate_reports(config, fileNames):
 
                 # T2 v1.0
                 elif data["formId"] == config['formIDs']['t2v10_formid']:
-                    # rg.generate_report(data, config['paths']['kodebok-t1v11'], config['paths']['reportexportpath'], respondentID)
-                    print("T2-rapport ikke implementert")
+                    rg.generate_report_t2v10(data, config['paths']['kodebok-t2v10'], config['paths']['reportexportpath'], respondentID)
 
                 # Legepol
                 elif data["formId"] == config["formIDs"]["legepol_formid"]:

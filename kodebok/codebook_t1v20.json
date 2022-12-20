@@ -103,16 +103,16 @@
     },
     "var_text": "Problemer med å tenke og huske"
   },
-  "fibro-trett": {
-    "var_text_report": "Tretthet",
-    "responses": {
-      "ingen": "0",
-      "lett": "1",
-      "moderat": "2",
-      "alvorlig": "3"
+    "fibro-trett": {
+        "var_text_report": "Våkner opp trett/ikke uthvilt",
+        "responses": {
+            "ingen": "0",
+            "lett": "1",
+            "moderat": "2",
+            "alvorlig": "3"
+        },
+        "var_text": "Våkner opp trett (ikke uthvilt)"
     },
-    "var_text": "Våkner opp trett (ikke uthvilt)"
-  },
   "fibro-mage": {
     "var_text_report": "",
     "responses": {

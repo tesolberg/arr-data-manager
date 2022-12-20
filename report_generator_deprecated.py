@@ -46,7 +46,7 @@ def generate_report_t1v11(data, codebook_path, outputPath, respondentID):
 
     # saves document to file
     document.save(outputPath + str(respondentID) + ".docx")
-    print("Generert rapport for respondent " + str(respondentID) + " (" + data["fnr"][0:6] + " " + data["fnr"][6:] + ")")
+    print("T1_v1.1-rapport generert for " + str(respondentID) + " (" + data["fnr"][0:6] + " " + data["fnr"][6:] + ")")
 
     if(data["tilbakemeldinger"] != ""):
         print("Respondent har gitt tilbakemelding: " + data["tilbakemeldinger"])

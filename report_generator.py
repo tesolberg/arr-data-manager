@@ -19,22 +19,23 @@ def generate_report_t1v20(data, codebook_path, outputPath, respondentID):
     document.add_heading('Avdeling for fysikalsk medisin og forebygging, Sørlandet sykehus HF', 3)
 
     ### INNLEDNING ###    
-    write_intro(data, codebook, document, respondentID)
+    write_intro_t1(data, codebook, document, respondentID)
 
     ### OPPSUMMERING ###
-    write_summary(data, codebook, document)
+    write_summary_t1v20(data, codebook, document)
     
-    ### SMERTEKARTLEGGING ###
+    ### SMERTE ###
     write_pain_variables(data, codebook, document)
+    write_earlier_treatment(data, codebook, document)
 
     ### ARBEID OG YTELSER ###
-    write_work_related(data, codebook, document)
+    write_work_related_t1v20(data, codebook, document)
 
     ### Livskvalitet
     write_quality_of_life(data, codebook, document)
     
     ### FYSISK AKTIVITET, HØYDE, VEKT, KOSTHOLD ###
-    # write_exercise_and_more(data, codebook, document)
+    write_exercise_and_more(data, codebook, document)
 
     ### SCL-10 ###
     write_scl(data, codebook, document)
@@ -51,12 +52,55 @@ def generate_report_t1v20(data, codebook_path, outputPath, respondentID):
         print("Respondent har gitt tilbakemelding: " + data["tilbakemeldinger"])
 
 
+
+def generate_report_t2v10(data, codebook_path, outputPath, respondentID):
+        # loads codebook as dict
+    with open(codebook_path, encoding="utf-8") as f:
+        codebook = json.load(f)
+
+    # creates new document and adds heading
+    document = Document()
+    document.add_heading('Pasientrapportert kartlegging ved avslutning i arbeidsrettet rehabilitering', 1)
+    document.add_heading('Avdeling for fysikalsk medisin og forebygging, Sørlandet sykehus HF', 3)
+
+    ### INNLEDNING ###    
+    write_intro_t2(data, codebook, document, respondentID)
+
+    ### OPPSUMMERING ###
+    write_summary_t2v10(data, codebook, document)
+    
+    ### SMERTE ###
+    write_pain_variables(data, codebook, document)
+    
+    ### ARBEID OG YTELSER ###
+    write_work_related_t2v10(data, codebook, document)
+
+    ### Livskvalitet
+    write_quality_of_life(data, codebook, document)
+    
+    ### FYSISK AKTIVITET, HØYDE, VEKT, KOSTHOLD ###
+    write_exercise_and_more(data, codebook, document)
+
+    ### SCL-10 ###
+    write_scl(data, codebook, document)
+
+    ### ISI ###
+    write_isi(data, codebook, document)
+
+    # saves document to file
+    document.save(outputPath + str(respondentID) + ".docx")
+    print("T2_v1.0-rapport generert for " + str(respondentID) + " (" + data["fnr"][0:6] + " " + data["fnr"][6:] + ")")
+
+    if(data["tilbakemeldinger"] != ""):
+        print("Respondent har gitt tilbakemelding: " + data["tilbakemeldinger"])
+
+
 ####################
 ### INTRODUKSJON ###
 ####################
 #region Intro
 
-def write_intro(data, codebook, document, respondentID):
+def write_intro_t1(data, codebook, document, respondentID):
     # Fnr
     p = document.add_paragraph("Respondent-ID: " + str(respondentID))
     
@@ -77,6 +121,15 @@ def write_intro(data, codebook, document, respondentID):
     demografi.add_run("\nBarn: " + data["barn"])
     demografi.add_run("\nPersoner i husholdningen (i tillegg til pas): " + data["antall-i-husholdning"])
 
+def write_intro_t2(data, codebook, document, respondentID):
+    # Fnr
+    p = document.add_paragraph("Respondent-ID: " + str(respondentID))
+    
+    # Dato for utfylling
+    p.add_run("\n")
+    p.add_run("Dato utfylt: " + data["Opprettet"])   
+ 
+
 #endregion
 
 ####################
@@ -84,7 +137,7 @@ def write_intro(data, codebook, document, respondentID):
 ####################
 #region Oppsummering
 
-def write_summary(data, codebook, document):
+def write_summary_t1v20(data, codebook, document):
     # Diverse
     document.add_heading('Oppsummering', 2)
     oppsummering = document.add_paragraph("Viktigste problem: " + data["viktigste-problem"])
@@ -157,6 +210,74 @@ def write_summary(data, codebook, document):
     else:
         oppsummering.add_run(str(isi) + " (indikerer alvorlig insomni)").font.color.rgb = RGBColor(204, 0, 0)
 
+
+        
+def write_summary_t2v10(data, codebook, document):
+    # Diverse
+    document.add_heading('Oppsummering', 2)
+    oppsummering = document.add_paragraph("")
+    oppsummering.add_run("Pasientens tanker om årsak til plagene: " + data["aarsak"])
+       
+
+    # Uførsøknad
+    if data["sokt-ufor"] == "ja":
+        oppsummering.add_run("\nHar søkt eller planlegger å søke uførpensjon")
+    else:
+        oppsummering.add_run("\nVurderer ikke å søke ufør")
+
+
+    # Jobbstatus
+    if(data["arbeidsforhold"] == "ja"):
+        oppsummering.add_run("\nHar arbeidsforhold ")
+    else:
+        oppsummering.add_run("\nHar ikke arbeidsforhold ")
+    jobbstatus = ""
+    if data["sm-aap"] == "nei": jobbstatus = "ikke sykemeldt"
+    elif data["sm-aap"] == "delvis-sm": jobbstatus = "delvis sykemeldt"
+    elif data["sm-aap"] == "fullt-sm": jobbstatus = "fullt sykemeldt"
+    elif data["sm-aap"] == "aap": jobbstatus = "AAP"
+    oppsummering.add_run(" (" + jobbstatus + ")")
+    
+
+    # WPI og SSS
+    oppsummering.add_run("\nWPI (0-19): " + str((wpi_score(data))))
+    oppsummering.add_run("\nSSS (0-12): " + str((sss_score(data, codebook))))
+    oppsummering.add_run("\nSum SSS + WPI (0-31): " + str((sss_score(data, codebook) + wpi_score((data)))))
+
+
+    # Antall smerteregioner
+    oppsummering.add_run("\nAntall smerteregioner: " + str(number_of_pain_regions(data)))
+    
+
+    # Fibro = (WPI >=7 & SSS >=5 || WPI >=4 & SSS >=9) & >=4 kroppsregioner & >=3 mnd
+    if(oppfyller_fibrokriterier(data, codebook)):
+        oppsummering.add_run("\nPositivt svar på samlede kriterier for utbredte smerter")
+    else:
+        oppsummering.add_run("\nNegativt svar på samlede kriterier for utbredte smerter")
+
+
+    # SCL-10
+    oppsummering.add_run("\nSCL-10 (fra 1,0 = laveste skåre, til 4,0 = høyeste skåre): " + str(scl_score(data)))
+    if (scl_score(data) > 1.85):
+        oppsummering.add_run(" (indikerer psykiske plager)")
+    else:
+        oppsummering.add_run(" (indikerer fravær av psykiske plager)")
+
+
+    # ISI
+    oppsummering.add_run("\nISI: ")
+    isi = isi_score(data)
+    isi_normalized = isi / 28
+    if(isi < 8):
+        oppsummering.add_run(str(isi) + " (indikerer fravær av insomni)").font.color.rgb = RGBColor(51, 102, 0)
+    elif (isi <15):
+        oppsummering.add_run(str(isi) + " (indikerer subklinisk insomni)").font.color.rgb = RGBColor(153, 102, 51)
+    elif (isi <22):
+        oppsummering.add_run(str(isi) + " (indikerer moderat insomni)").font.color.rgb = RGBColor(204, 102, 0)
+    else:
+        oppsummering.add_run(str(isi) + " (indikerer alvorlig insomni)").font.color.rgb = RGBColor(204, 0, 0)
+
+
 #endregion
 
 ######################
@@ -165,7 +286,6 @@ def write_summary(data, codebook, document):
 #region Smerte
 
 def write_pain_variables(data, codebook, document):
-    gray = RGBColor(0xbb, 0xbb, 0xbb)
     document.add_heading('Smerter', 2)
 
     # Best, verst, gjennomsnitt
@@ -213,11 +333,14 @@ def write_pain_variables(data, codebook, document):
     p = document.add_paragraph("")
     p.add_run("Pasientens tanker om årsak til plagene: " + data["aarsak"])
 
+
+def write_earlier_treatment(data, codebook, document):
     document.add_heading('Tidligere behandling', 4)
     p = document.add_paragraph("")
     write_var_text_report_and_multi_response("tidligere-behandling_1", data, codebook, p, colon=False, separator=", ", leading_newline=False)
     if len(data["annen-tidligere-beh"]) > 0:
         write_var_snippet_and_var_code("annen-tidligere-beh", data, codebook, p)
+
 #endregion
 
 ##############
@@ -225,7 +348,7 @@ def write_pain_variables(data, codebook, document):
 ##############
 #region Arbeid
 
-def write_work_related(data, codebook, document):
+def write_work_related_t1v20(data, codebook, document):
 
     document.add_heading('Arbeidshistorikk og utdanning', 2)
     p = document.add_paragraph("")
@@ -269,6 +392,38 @@ def write_work_related(data, codebook, document):
     write_var_snippet_and_var_code("arbeidsevne-aktuell-jobb", data, codebook, p)
     write_var_snippet_and_var_code("endringer-jobbsit-rtw", data, codebook, p)
    
+
+
+def write_work_related_t2v10(data, codebook, document):
+
+    document.add_heading('Arbeid', 2)
+    p = document.add_paragraph("")
+
+    # Stillingsforhold
+    write_var_snippet_and_response("arbeidsforhold", data, codebook, p, newLine=False)
+    write_var_snippet_and_var_code("trivsel-jobb", data, codebook, p)    
+    write_var_snippet_and_var_code("stillingsprosent", data, codebook, p)
+    
+    # Sykemelding og AAP
+    write_var_snippet_and_response("sm-aap", data, codebook, p, False)
+    write_var_snippet_and_var_code("prosent-sykemeldt", data, codebook, p)
+    write_var_snippet_and_var_code("fare-sykemelding", data, codebook, p)
+    write_var_snippet_and_var_code("fare-mer-sykemeldt", data, codebook, p)
+    write_var_snippet_and_response("samarbeid-nav", data, codebook, p)
+    
+    write_var_snippet_and_response("okonomi", data, codebook, p)
+    write_var_snippet_and_response("sokt-ufor", data, codebook, p)
+    
+    # Vurdering av jobbmestring
+    write_var_snippet_and_response("estimat-rtw", data, codebook, p)
+    write_var_snippet_and_response("onsket-jobb", data, codebook, p)
+    write_var_snippet_and_response("arbeidsevne-fysiske-krav", data, codebook, p)
+    write_var_snippet_and_response("arbeidsevne-mentale-krav", data, codebook, p)
+    write_var_snippet_and_response("arbeidsevne-sosiale-krav", data, codebook, p)
+    write_var_snippet_and_var_code("arbeidsevne-ny-jobb", data, codebook, p)
+    write_var_snippet_and_var_code("arbeidsevne-aktuell-jobb", data, codebook, p)
+   
+
 #endregion
 
 
@@ -297,7 +452,8 @@ def write_exercise_and_more(data, codebook, document):
     write_var_snippet_and_response("mosjon", data, codebook, p, True)
     write_var_snippet_and_response("kosthold", data, codebook, p)
     write_var_snippet_and_response("maaltidsrytme", data, codebook, p)
-    write_var_text_report_and_multi_response("vurderer-endre_1", data, codebook, p)
+    if "vurderer-endre_1" in data.keys():
+        write_var_text_report_and_multi_response("vurderer-endre_1", data, codebook, p)
 
 
     # SCL
