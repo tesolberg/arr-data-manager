@@ -1,4 +1,5 @@
 import json
+from pickle import FALSE
 from docx import Document
 from docx.shared import RGBColor
 
@@ -23,34 +24,37 @@ def generate_report_t1v20(data, codebook_path, outputPath, respondentID):
     ### OPPSUMMERING ###
     write_summary(data, codebook, document)
     
-    # ### SMERTEKARTLEGGING ###
-    # write_pain_variables(data, codebook, document)
+    ### SMERTEKARTLEGGING ###
+    write_pain_variables(data, codebook, document)
 
-    # ### ARBEID OG YTELSER ###
-    # write_work_related(data, codebook, document)
+    ### ARBEID OG YTELSER ###
+    write_work_related(data, codebook, document)
 
-    # ### FYSISK AKTIVITET, HØYDE, VEKT, KOSTHOLD ###
+    ### Livskvalitet
+    write_quality_of_life(data, codebook, document)
+    
+    ### FYSISK AKTIVITET, HØYDE, VEKT, KOSTHOLD ###
     # write_exercise_and_more(data, codebook, document)
 
-    # ### SCL-10 ###
-    # write_scl(data, codebook, document)
+    ### SCL-10 ###
+    write_scl(data, codebook, document)
 
-    # ### ISI ###
-    # if (data["sovnproblemer"] == "nei"):
-    #     document.add_heading('Søvn', 2)
-    #     p = document.add_paragraph("")
-    #     p.add_run("Angir ikke søvnproblemer")
-    # else:
-    #     write_isi(data, codebook, document)
+    ### ISI ###
+    write_isi(data, codebook, document)
 
 
     # saves document to file
     document.save(outputPath + str(respondentID) + ".docx")
-    print("Generert rapport for respondent " + str(respondentID) + " (" + data["fnr"][0:6] + " " + data["fnr"][6:] + ")")
+    print("T1_v2.0-rapport generert for " + str(respondentID) + " (" + data["fnr"][0:6] + " " + data["fnr"][6:] + ")")
 
     if(data["tilbakemeldinger"] != ""):
         print("Respondent har gitt tilbakemelding: " + data["tilbakemeldinger"])
 
+
+####################
+### INTRODUKSJON ###
+####################
+#region Intro
 
 def write_intro(data, codebook, document, respondentID):
     # Fnr
@@ -73,10 +77,13 @@ def write_intro(data, codebook, document, respondentID):
     demografi.add_run("\nBarn: " + data["barn"])
     demografi.add_run("\nPersoner i husholdningen (i tillegg til pas): " + data["antall-i-husholdning"])
 
+#endregion
 
 ####################
 ### OPPSUMMERING ###
 ####################
+#region Oppsummering
+
 def write_summary(data, codebook, document):
     # Diverse
     document.add_heading('Oppsummering', 2)
@@ -138,30 +145,32 @@ def write_summary(data, codebook, document):
 
 
     # ISI
+    oppsummering.add_run("\nISI: ")
     isi = isi_score(data)
-    expl = " (indikerer "
+    isi_normalized = isi / 28
     if(isi < 8):
-        expl = expl + "fravær av vesentlige søvnvansker)"
+        oppsummering.add_run(str(isi) + " (indikerer fravær av insomni)").font.color.rgb = RGBColor(51, 102, 0)
     elif (isi <15):
-        expl = expl + "subklinisk insomni)"
+        oppsummering.add_run(str(isi) + " (indikerer subklinisk insomni)").font.color.rgb = RGBColor(153, 102, 51)
     elif (isi <22):
-        expl = expl + "moderat insomni)"
+        oppsummering.add_run(str(isi) + " (indikerer moderat insomni)").font.color.rgb = RGBColor(204, 102, 0)
     else:
-        expl = expl + "alvorlig insomni)"
-        
-    oppsummering.add_run("\nISI: " + str(isi) + expl)
+        oppsummering.add_run(str(isi) + " (indikerer alvorlig insomni)").font.color.rgb = RGBColor(204, 0, 0)
 
+#endregion
 
 ######################
 ### PAIN VARIABELS ###
 ######################
+#region Smerte
+
 def write_pain_variables(data, codebook, document):
     gray = RGBColor(0xbb, 0xbb, 0xbb)
     document.add_heading('Smerter', 2)
 
     # Best, verst, gjennomsnitt
-    p = document.add_paragraph("Smerter siste uken (verste, beste, gjennomsnitt): " + data["plager-verste"] \
-        + "/" + data["plager-beste"] + "/" + data["plager-gjsn"])
+    p = document.add_paragraph("Smerter siste uken (beste, gjennomsnitt, verste): " + data["plager-beste"] \
+        + "/" + data["plager-gjsn"] + "/" + data["plager-verste"])
     
     # Varighet smerter
     if(data["plager-mer-enn-et-aar"] == "ja"):
@@ -177,20 +186,29 @@ def write_pain_variables(data, codebook, document):
     write_var_text_and_response("fibro-mage", data, codebook, p)
     write_var_text_and_response("fibro-depresjon", data, codebook, p)
     write_var_text_and_response("fibro-hodepine", data, codebook, p)
-    write_var_text_report_and_multi_response("fibro-smerteomraader_1", data, codebook, p)
+    write_var_text_report_and_multi_response_bullet("fibro-smerteomraader_1", data, codebook, document)
 
+    # Tanker om smerter
     document.add_heading('Tanker om smertene', 4)
+    document.add_paragraph("0 = 'helt uenig'. 10 = 'helt enig'")
+    p = document.add_paragraph("", style = "List Bullet")
+    p.add_run(codebook["skadelig"]["var_text"] + " (" + data["skadelig"] + ")").font.color.rgb = get_color_gradient(int(data["skadelig"]) / 10)
+    p = document.add_paragraph("", style = "List Bullet")
+    p.add_run(codebook["farlig"]["var_text"] + " (" + data["farlig"] + ")").font.color.rgb = get_color_gradient(int(data["farlig"]) / 10)
+    p = document.add_paragraph("", style = "List Bullet")
+    p.add_run(codebook["kroppen-skadet"]["var_text"] + " (" + data["kroppen-skadet"] + ")").font.color.rgb = get_color_gradient(int(data["kroppen-skadet"]) / 10)
+    p = document.add_paragraph("", style = "List Bullet")
+    p.add_run(codebook["unngaa-vondt"]["var_text"] + " (" + data["unngaa-vondt"] + ")").font.color.rgb = get_color_gradient(int(data["unngaa-vondt"]) / 10)
+    p = document.add_paragraph("", style = "List Bullet")
+    p.add_run(codebook["tro-paa-bedring"]["var_text"] + " (" + data["tro-paa-bedring"] + ")").font.color.rgb = get_color_gradient(1 - (int(data["tro-paa-bedring"]) / 10))
+
+    # Tanker om smerter
+    document.add_heading('Tanker og følelser når du opplever smerte', 6)
     p = document.add_paragraph("")
-    run = p.add_run("Svart = 'stemmer'. Grå = 'stemmer ikke'")
-    run.font.italic = True
-    keys = []
-    for key in data:
-        if key[0:6] == "plager":
-            keys.append(key)
-    for key in keys[6:]:
-        run = p.add_run("\n" + codebook[key]["var_text"])
-        if(data[key] == "stemmer-ikke"):
-            run.font.color.rgb = gray
+    write_var_text_and_response("fryktelig", data, codebook, p, newLine= False)
+    write_var_text_and_response("forverring", data, codebook, p)
+    write_var_text_and_response("ikke-ut-av-hodet", data, codebook, p)
+    write_var_text_and_response("hjelpeloshet", data, codebook, p)
 
     p = document.add_paragraph("")
     p.add_run("Pasientens tanker om årsak til plagene: " + data["aarsak"])
@@ -200,44 +218,75 @@ def write_pain_variables(data, codebook, document):
     write_var_text_report_and_multi_response("tidligere-behandling_1", data, codebook, p, colon=False, separator=", ", leading_newline=False)
     if len(data["annen-tidligere-beh"]) > 0:
         write_var_snippet_and_var_code("annen-tidligere-beh", data, codebook, p)
+#endregion
 
+##############
+### ARBEID ###
+##############
+#region Arbeid
 
 def write_work_related(data, codebook, document):
 
     document.add_heading('Arbeidshistorikk og utdanning', 2)
     p = document.add_paragraph("")
 
+    # Utdanning og stillingsforhold
     write_var_snippet_and_response("utdannelse", data, codebook, p, True, False)
     write_var_snippet_and_response("tid-i-arbeidslivet", data, codebook, p)
-    write_var_snippet_and_response("yrke", data, codebook, p)
-    write_var_snippet_and_var_code("yrke-fritekst", data, codebook, p)    
     write_var_snippet_and_response("arbeidsforhold", data, codebook, p)
-    write_var_snippet_and_response("stillingsprosent", data, codebook, p)
-    write_var_snippet_and_response("i-jobb-na", data, codebook, p, False)
-
+    write_var_snippet_and_var_code("trivsel-jobb", data, codebook, p)    
+    write_var_snippet_and_var_code("yrke-fritekst", data, codebook, p)    
+    write_var_snippet_and_var_code("stillingsprosent", data, codebook, p)
     write_var_text_report_and_multi_response("sektor_1", data, codebook, p)
 
+    # Sykemelding og AAP
     write_var_snippet_and_response("sm-aap", data, codebook, p, False)
-
+    write_var_snippet_and_var_code("prosent-sykemeldt", data, codebook, p)
+    write_var_snippet_and_var_code("fare-sykemelding", data, codebook, p)
+    write_var_snippet_and_var_code("fare-mer-sykemeldt", data, codebook, p)
     write_var_snippet_and_response("oppfolgingsplan", data, codebook, p)
+    write_var_snippet_and_var_code("avtalt-i-oppfolgingsplan", data, codebook, p)
     write_var_snippet_and_response("aktivitetsplan", data, codebook, p)
+    write_var_snippet_and_var_code("avtalt-i-aktivitetsplan", data, codebook, p)
     write_var_snippet_and_var_code("aarsak-sm-app", data, codebook, p, True, True)
+    write_var_snippet_and_response("samarbeid-nav", data, codebook, p)
     write_var_snippet_and_response("tidl-tiltak", data, codebook, p)
     write_var_snippet_and_response("rapport-avklaring", data, codebook, p)
-
     write_var_text_report_and_multi_response("ytelser_1", data, codebook, p)
-
     write_var_snippet_and_response("varighet-sm-siste-ar", data, codebook, p)
+
     write_var_snippet_and_response("okonomi", data, codebook, p)
     write_var_snippet_and_response("sokt-ufor", data, codebook, p)
     write_var_snippet_and_response("erstatningssak", data, codebook, p)
-    write_var_snippet_and_response("arbeidsevne-generelt", data, codebook, p)
-    write_var_snippet_and_response("arbeidsevne-fysiske-krav", data, codebook, p)
-    write_var_snippet_and_response("arbeidsevne-mentale-krav", data, codebook, p)
+ 
+    # Vurdering av jobbmestring
     write_var_snippet_and_response("estimat-rtw", data, codebook, p)
     write_var_snippet_and_response("onsket-jobb", data, codebook, p)
+    write_var_snippet_and_response("arbeidsevne-fysiske-krav", data, codebook, p)
+    write_var_snippet_and_response("arbeidsevne-mentale-krav", data, codebook, p)
+    write_var_snippet_and_response("arbeidsevne-sosiale-krav", data, codebook, p)
+    write_var_snippet_and_var_code("arbeidsevne-ny-jobb", data, codebook, p)
+    write_var_snippet_and_var_code("arbeidsevne-aktuell-jobb", data, codebook, p)
+    write_var_snippet_and_var_code("endringer-jobbsit-rtw", data, codebook, p)
+   
+#endregion
 
 
+####################
+### LIVSKVALITET ###
+####################
+def write_quality_of_life(data, codebook, document):
+    document.add_heading('Livskvalitet', 2)
+    p = document.add_paragraph("");
+    write_var_snippet_and_var_code("livskvalitet", data, codebook, p, newLine=False)
+
+
+###############################################
+### FYSISK AKTIVITET, PSYKISK HELSE OG SØVN ###
+###############################################
+#region Fysisk aktivitet, psykisk helse og søvn
+
+    # FYSISK AKTIVITET OG KOSTHOLD
 def write_exercise_and_more(data, codebook, document):
     document.add_heading("Mosjon, BMI og kosthold", 2)
     p = document.add_paragraph("")
@@ -251,6 +300,7 @@ def write_exercise_and_more(data, codebook, document):
     write_var_text_report_and_multi_response("vurderer-endre_1", data, codebook, p)
 
 
+    # SCL
 def write_scl(data, codebook, document):
     document.add_heading('Symptom checklist 10', 2)
 
@@ -313,17 +363,43 @@ def write_isi(data, codebook, document):
                 write_var_text_and_response(key, data, codebook, p)
 
 
+#endregion
+
+
+###############################
+### HJELPERE FOR ENKELTLEDD ###
+###############################
+
+
+def write_var_text_and_raw_response(var, data, codebook, paragraph, colon=True, newLine = True):
+    # skip if value is missing
+    if(data[var] == ""):
+        return
+
+    s = "\n" if newLine else ""
+    s += codebook[var]["var_text"]
+    
+    if(colon):
+        s += ": "
+    else:
+        s += " "
+    
+    s += data[var]
+    paragraph.add_run(s)
+
+
 def write_response(var, data, codebook, document):
     s = codebook[var]["responses"][data[var]]
     document.add_paragraph(s + ".")
 
 
-def write_var_snippet_and_var_code(var, data, codebook, paragraph, colon=True, capitalization = True):
+def write_var_snippet_and_var_code(var, data, codebook, paragraph, colon=True, capitalization = True, newLine = True):
     # skip if value is missing
     if(data[var] == ""):
         return
 
-    s = ""
+    s = "\n" if newLine else ""
+
     s += codebook[var]["var_text_report"]
     
     if(colon):
@@ -333,7 +409,7 @@ def write_var_snippet_and_var_code(var, data, codebook, paragraph, colon=True, c
     
     s += data[var].capitalize()
 
-    paragraph.add_run("\n" + s)
+    paragraph.add_run(s)
 
 def write_var_snippet_and_response(var, data, codebook, paragraph, colon=True, newLine = True):
     # skip if value is missing
@@ -372,8 +448,24 @@ def write_var_text_and_response(var, data, codebook, paragraph, colon=True, newL
     paragraph.add_run(s)
 
 
+def write_var_text_report_and_multi_response_bullet(var, data, codebook, document, colon=True):   
+    s = codebook[var]["var_text_report"]
+    if(colon):
+        s += ": "
+    elif len(codebook[var]["var_text_report"]) > 0:
+        s += " "
+    document.add_heading(s, 5)
 
-def write_var_text_report_and_multi_response(var, data, codebook, p, colon=True, leading_newline = True, separator = "; "):
+    num_of_responses = len(codebook[var]["responses"])
+    base_var = var[:-2]
+    for i in range(1, num_of_responses + 1):
+        respons_var = base_var + "_" + str(i)
+        if(data[respons_var] != ""):
+            document.add_paragraph(codebook[respons_var]["responses"][data[respons_var]], style='List Bullet')
+
+
+
+def write_var_text_report_and_multi_response(var, data, codebook, p, colon=True, leading_newline = True, separator = "; "):   
     s = "\n" if leading_newline else ""
     s += codebook[var]["var_text_report"]
     if(colon):
@@ -396,6 +488,13 @@ def write_var_text_report_and_multi_response(var, data, codebook, p, colon=True,
 
     if(len(response) > 0):
         p.add_run(s)
+
+
+
+###################
+### COMPUTERING ###
+###################
+#region Computering
 
 def scl_score(data):
     points = 0
@@ -467,11 +566,39 @@ def number_of_pain_regions(data):
     
     return counter
 
+    
+
+# val må være fra 0 - 1. 0 gir grønn og 1 gir rød
+def get_color_gradient(val):
+     if val <= .1:
+         return RGBColor(0, 128, 0)
+     elif val <= .2:
+         return RGBColor(64, 128, 0)
+     elif val <= .3:
+         return RGBColor(128, 128, 0)
+     elif val <= .4:
+         return RGBColor(128, 128, 0)
+     elif val <= .5:
+         return RGBColor(128, 96, 0)
+     elif val <= .6:
+         return RGBColor(128, 96, 0)
+     elif val <= .7:
+         return RGBColor(128, 64, 0)
+     elif val <= .8:
+         return RGBColor(128, 64, 0)
+     elif val <= .9:
+         return RGBColor(128, 0, 0)
+     else:
+         return RGBColor(128, 0, 0)
+    
+
 
 def oppfyller_fibrokriterier(data, codebook):
     wpi_and_sss = (wpi_score(data) >= 7 and sss_score(data, codebook) >= 5) or (wpi_score(data) >= 4 and sss_score(data, codebook) >= 9)
     mer_enn_1_aar = data["plager-mer-enn-et-aar"] == "ja" or int(data["plager-mnd"]) >= 3 
     return wpi_and_sss and mer_enn_1_aar and (number_of_pain_regions(data) >= 4)
+
+#endregion
 
 
 def main():

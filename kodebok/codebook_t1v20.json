@@ -995,7 +995,7 @@
     "var_text": "Trives du på jobben?"
   },
   "yrke-fritekst": {
-    "var_text_report": "Yrke, fritekst",
+    "var_text_report": "Yrke",
     "responses": {},
     "var_text": "Vennligst beskriv jobben du har i dag eller den siste jobben du hadde (for eksempel &#34;hjelpepleier på sykehjem&#34; eller &#34;tømrer i eget firma&#34;)."
   },
@@ -1055,20 +1055,20 @@
     "var_text": "Er du sykemeldt eller mottar du arbeidsavklaringspenger?"
   },
   "prosent-sykemeldt": {
-    "var_text_report": "",
+    "var_text_report": "Prosent sykemeldt",
     "responses": {},
     "var_text": "Hvor mange prosent av din stilling er du sykemeldt?"
   },
   "fare-sykemelding": {
-    "var_text_report": "",
+    "var_text_report": "Fare for sykemelding (0 = ingen fare, 10 = stor fare)",
     "responses": {},
     "var_text": "Står du i fare for å bli sykemeldt?"
   },
-  "fare-mer-sykemeldt": {
-    "var_text_report": "",
-    "responses": {},
-    "var_text": "Står du i fare for å bli mer sykemeldt enn du er i dag?"
-  },
+    "fare-mer-sykemeldt": {
+        "var_text_report": "Fare for økt sykemelding (0 = ingen fare, 10 = stor fare)",
+        "responses": {},
+        "var_text": "Står du i fare for å bli mer sykemeldt enn du er i dag?"
+    },
   "oppfolgingsplan": {
     "var_text_report": "Oppfølgingsplan",
     "responses": {
@@ -1335,23 +1335,23 @@
     },
     "var_text": "Hvordan vurderer du din egen arbeidsevne sett opp mot sosiale krav i jobben (for eksempel delta i felleslunsj eller på sosiale samlinger)?"
   },
-  "arbeidsevne-ny-jobb": {
-    "var_text_report": "Arbeidsevne i eventuell ny jobb",
-    "responses": {},
-    "var_text": "Hvordan vurderer du din helhetlige arbeidsevne i en eventuell ny jobb?"
-  },
-  "arbeidsevne-aktuell-jobb": {
-    "var_text_report": "Arbeidsevne i nåværende/sist jobb",
-    "responses": {},
-    "var_text": "Hvordan vurderer du din  helhetlige arbeidsevne i jobben du har/jobben du hadde sist?"
-  },
+    "arbeidsevne-ny-jobb": {
+        "var_text_report": "Arbeidsevne i eventuell ny jobb (0 = ingen arbeidsevne, 10 = svært god arbeidsevne)",
+        "responses": {},
+        "var_text": "Hvordan vurderer du din helhetlige arbeidsevne i en eventuell ny jobb?"
+    },
+    "arbeidsevne-aktuell-jobb": {
+        "var_text_report": "Arbeidsevne i nåværende/sist jobb (0 = ingen arbeidsevne, 10 = svært god arbeidsevne)",
+        "responses": {},
+        "var_text": "Hvordan vurderer du din  helhetlige arbeidsevne i jobben du har/jobben du hadde sist?"
+    },
   "endringer-jobbsit-rtw": {
     "var_text_report": "Antagelser om nødvendige endringer for retur",
     "responses": {},
     "var_text": "Hvis du ser bort i fra endring i smertesituasjonen, hvilke endringer i arbeidssituasjonen skal til for at du med dine plager gradvis kan gå tilbake i jobb?"
   },
   "livskvalitet": {
-    "var_text_report": "",
+    "var_text_report": "Livskvalitet (0 = dårlig, 10 = god)",
     "responses": {},
     "var_text": "Hvordan opplever du din livskvalitet?"
   },

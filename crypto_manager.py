@@ -95,7 +95,7 @@ def decrypt_submissions_in_folder(origin, destination, privKeyPath, archivePath 
 # TEST
 # encrypt_file("test-files/pgp-keys/public-key-test.txt", "test-files/kryptert-legepol/17578501.csv", "test-files/kryptert-legepol/17578501.csv.asc")
 # encrypt_file("test-files/pgp-keys/public-key-test.txt", "test-files/kryptert-legepol/19578507.csv", "test-files/kryptert-legepol/19578507.csv.asc")
-encrypt_file("test-files/pgp-keys/pubkey-test.txt", "test-files/backup av testbesvarelser/t2v10_24502075.txt", "test-files/kryptert-t2v10/t2v10_24502075.csv.asc")
+# encrypt_file("test-files/pgp-keys/pubkey-test.txt", "test-files/backup av testbesvarelser/t2v10_24502075.txt", "test-files/kryptert-t2v10/t2v10_24502075.csv.asc")
 
 # decrypt_file("test/privkey-test.txt", "test/encryptet-data.txt", "test/decrypted-data.txt")
 # decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt", "test/encrypted-archive/")

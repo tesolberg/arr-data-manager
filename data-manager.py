@@ -136,11 +136,11 @@ def generate_reports(config, fileNames):
                     rg_old.generate_report_t1v11(data, config['paths']['kodebok-t1v11'], config['paths']['reportexportpath'], respondentID)
 
                 # T1 v2.0
-                if data["formId"] == config['formIDs']['t1v20_formid']:
+                elif data["formId"] == config['formIDs']['t1v20_formid']:
                     rg.generate_report_t1v20(data, config['paths']['kodebok-t1v20'], config['paths']['reportexportpath'], respondentID)
 
                 # T2 v1.0
-                if data["formId"] == config['formIDs']['t1_formid']:
+                elif data["formId"] == config['formIDs']['t2v10_formid']:
                     # rg.generate_report(data, config['paths']['kodebok-t1v11'], config['paths']['reportexportpath'], respondentID)
                     print("T2-rapport ikke implementert")
 
