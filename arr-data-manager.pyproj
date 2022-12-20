@@ -44,8 +44,10 @@
     <Compile Include="report_generator_deprecated.py" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include=".vscode\" />
     <Folder Include=".vscode\.ropeproject" />
     <Folder Include="koblingsnokkel" />
+    <Folder Include="test-files\" />
     <Folder Include="test-files\backup av testbesvarelser" />
     <Folder Include="test-files\pgp-keys" />
   </ItemGroup>
