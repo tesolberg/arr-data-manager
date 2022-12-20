@@ -351,6 +351,7 @@ def write_earlier_treatment(data, codebook, document):
 ##############
 #region Arbeid
 
+# Arbeid T1
 def write_work_related_t1v20(data, codebook, document):
 
     document.add_heading('Arbeidshistorikk og utdanning', 2)
@@ -396,7 +397,7 @@ def write_work_related_t1v20(data, codebook, document):
     write_var_snippet_and_var_code("endringer-jobbsit-rtw", data, codebook, p)
    
 
-
+# Arbeid T2
 def write_work_related_t2v10(data, codebook, document):
 
     document.add_heading('Arbeid', 2)
