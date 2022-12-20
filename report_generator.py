@@ -6,7 +6,7 @@ from docx.shared import RGBColor
 # for testing
 import csv
 
-# dict av enkeltbesvarelse -> void + rapport i docx-format
+# Rapport T1 v2.0
 def generate_report_t1v20(data, codebook_path, outputPath, respondentID):
     
     # loads codebook as dict
@@ -45,14 +45,15 @@ def generate_report_t1v20(data, codebook_path, outputPath, respondentID):
 
 
     # saves document to file
-    document.save(outputPath + str(respondentID) + ".docx")
-    print("T1_v2.0-rapport generert for " + str(respondentID) + " (" + data["fnr"][0:6] + " " + data["fnr"][6:] + ")")
-
+    comment = ""
     if(data["tilbakemeldinger"] != ""):
-        print("Respondent har gitt tilbakemelding: " + data["tilbakemeldinger"])
+        comment = "Respondent har gitt tilbakemelding: " + data["tilbakemeldinger"]
+    
+    document.save(outputPath + str(respondentID) + ".docx")
+    print("T1_v2.0-rapport generert for " + str(respondentID) + " (" + data["fnr"][0:6] + " " + data["fnr"][6:] + ") " + comment)
 
 
-
+# Rapport T2 v1.0
 def generate_report_t2v10(data, codebook_path, outputPath, respondentID):
         # loads codebook as dict
     with open(codebook_path, encoding="utf-8") as f:
@@ -88,11 +89,13 @@ def generate_report_t2v10(data, codebook_path, outputPath, respondentID):
     write_isi(data, codebook, document)
 
     # saves document to file
-    document.save(outputPath + str(respondentID) + ".docx")
-    print("T2_v1.0-rapport generert for " + str(respondentID) + " (" + data["fnr"][0:6] + " " + data["fnr"][6:] + ")")
-
+    comment = ""
     if(data["tilbakemeldinger"] != ""):
-        print("Respondent har gitt tilbakemelding: " + data["tilbakemeldinger"])
+        comment = "Respondent har gitt tilbakemelding: " + data["tilbakemeldinger"]
+    
+    document.save(outputPath + str(respondentID) + ".docx")
+    print("T2_v1.0-rapport generert for " + str(respondentID) + " (" + data["fnr"][0:6] + " " + data["fnr"][6:] + ") " + comment)
+
 
 
 ####################
