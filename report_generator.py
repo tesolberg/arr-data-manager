@@ -259,7 +259,7 @@ def write_summary_t2v10(t2_data, codebook_t2, codebook_t1, document, t1_data=Non
     if t1_data is None:
         oppsummering.add_run("Pasientens tanker om årsak til plagene: " + t2_data["aarsak"])
     else:
-        oppsummering.add_run("Pasientens tanker om årsak til plagene: " + str(t2_data["aarsak"]) + " --> " + str(t1_data["aarsak"]))
+        oppsummering.add_run("Pasientens tanker om årsak til plagene: " + str(t1_data["aarsak"]) + " --> " + str(t2_data["aarsak"]))
 
 
     # Uførsøknad
