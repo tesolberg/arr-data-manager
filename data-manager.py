@@ -141,7 +141,8 @@ def generate_reports(config, fileNames):
 
                 # T2 v1.0
                 elif data["formId"] == config['formIDs']['t2v10_formid']:
-                    rg.generate_report_t2v10(data, config['paths']['kodebok-t2v10'], config['paths']['reportexportpath'], respondentID)
+                    rg.generate_report_t2v10(data, config['paths']['t1v20psudoregistrypath'], config['paths']['kodebok-t2v10'],config['paths']['kodebok-t1v20'], config['paths']['reportexportpath'], respondentID)
+                    # Fjern ID fra kodeliste
 
                 # Legepol
                 elif data["formId"] == config["formIDs"]["legepol_formid"]:

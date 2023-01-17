@@ -1,5 +1,6 @@
 import json
-from pickle import FALSE
+from pickle import FALSE, NONE
+from typing import Type
 from docx import Document
 from docx.shared import RGBColor
 
@@ -53,11 +54,43 @@ def generate_report_t1v20(data, codebook_path, outputPath, respondentID):
     print("T1_v2.0-rapport generert for " + str(respondentID) + " (" + data["fnr"][0:6] + " " + data["fnr"][6:] + ") " + comment)
 
 
+
+## Identifisere om det finnes en T1 med matchende ID. Laste den inn som dict.
+## Lage sammenlikninger 
+## - Tanker om årsak
+## - Arbeidsforhold
+# - Sykemeldingsstatus, samarbeid NAV, Økonomiske bekymringer, estimert rtw, arbeidsevne, livskvalitet, bmi, mosjon
+# - WPI, SSS, Numerisk smerteskala
+# - Tanker om smertene. Kan vises i parantes (7 --> 3). SAmme for tanker og følelser når smerter
+# - SCL-10
+# - ISI
+# Overføre til docx
+
 # Rapport T2 v1.0
-def generate_report_t2v10(data, codebook_path, outputPath, respondentID):
-        # loads codebook as dict
-    with open(codebook_path, encoding="utf-8") as f:
-        codebook = json.load(f)
+def generate_report_t2v10(t2data, t1_data_path, codebook_t2_path, codebook_t1_path, outputPath, respondentID):
+    # loads codebook as dict
+    with open(codebook_t2_path, encoding="utf-8") as f:
+        codebook_t2 = json.load(f)
+
+    with open(codebook_t1_path, encoding="utf-8") as f:
+        codebook_t1 = json.load(f)
+
+
+    # Henter eventuell T1-besvarelse
+    t1_sub = None
+    count = 0
+    with open(t1_data_path, newline="", encoding="utf-8-sig") as csvfile:    
+        reader = csv.DictReader(csvfile, dialect="excel-tab")
+        for line in reader:
+            if (line["respondentId"] == respondentID):
+                t1_sub = line             
+                count += 1
+
+    if count == 0:
+        print("-- Fant ingen T1-oppføring for " + respondentID)
+    elif count > 1:
+        print("-- Fant mer enn en T1-oppføring for " + respondentID + ". Bruker siste oppføring.")
+        
 
     # creates new document and adds heading
     document = Document()
@@ -65,36 +98,36 @@ def generate_report_t2v10(data, codebook_path, outputPath, respondentID):
     document.add_heading('Avdeling for fysikalsk medisin og forebygging, Sørlandet sykehus HF', 3)
 
     ### INNLEDNING ###    
-    write_intro_t2(data, codebook, document, respondentID)
+    write_intro_t2(t2data, codebook_t2, document, respondentID, t1_sub)
 
     ### OPPSUMMERING ###
-    write_summary_t2v10(data, codebook, document)
+    write_summary_t2v10(t2data, codebook_t2, codebook_t1, document, t1_sub)
     
     ### SMERTE ###
-    write_pain_variables(data, codebook, document)
+    write_pain_variables(t2data, codebook_t2, document)
     
     ### ARBEID OG YTELSER ###
-    write_work_related_t2v10(data, codebook, document)
+    write_work_related_t2v10(t2data, codebook_t2, document)
 
     ### Livskvalitet
-    write_quality_of_life(data, codebook, document)
+    write_quality_of_life(t2data, codebook_t2, document)
     
     ### FYSISK AKTIVITET, HØYDE, VEKT, KOSTHOLD ###
-    write_exercise_and_more(data, codebook, document)
+    write_exercise_and_more(t2data, codebook_t2, document)
 
     ### SCL-10 ###
-    write_scl(data, codebook, document)
+    write_scl(t2data, codebook_t2, document)
 
     ### ISI ###
-    write_isi(data, codebook, document)
+    write_isi(t2data, codebook_t2, document)
 
     # saves document to file
     comment = ""
-    if(data["tilbakemeldinger"] != ""):
-        comment = "Respondent har gitt tilbakemelding: " + data["tilbakemeldinger"]
+    if(t2data["tilbakemeldinger"] != ""):
+        comment = "Respondent har gitt tilbakemelding: " + t2data["tilbakemeldinger"]
     
     document.save(outputPath + str(respondentID) + ".docx")
-    print("T2_v1.0-rapport generert for " + str(respondentID) + " (" + data["fnr"][0:6] + " " + data["fnr"][6:] + ") " + comment)
+    print("T2_v1.0-rapport generert for " + str(respondentID) + " (" + t2data["fnr"][0:6] + " " + t2data["fnr"][6:] + ") " + comment)
 
 
 
@@ -124,7 +157,7 @@ def write_intro_t1(data, codebook, document, respondentID):
     demografi.add_run("\nBarn: " + data["barn"])
     demografi.add_run("\nPersoner i husholdningen (i tillegg til pas): " + data["antall-i-husholdning"])
 
-def write_intro_t2(data, codebook, document, respondentID):
+def write_intro_t2(data, codebook, document, respondentID, t1data=None):
     # Fnr
     p = document.add_paragraph("Respondent-ID: " + str(respondentID))
     
@@ -132,6 +165,10 @@ def write_intro_t2(data, codebook, document, respondentID):
     p.add_run("\n")
     p.add_run("Dato utfylt: " + data["Opprettet"])   
  
+    if t1data is not None:
+        document.add_paragraph("\
+Respondenten har fylt ut kartlegging ved oppstart ({}). Der data fra oppstartskartleggingen presenteres vises den før '-->', \
+mens respondentens svar ved avslutning angis etter '-->'.".format(t1data["Opprettet"]))
 
 #endregion
 
@@ -215,61 +252,87 @@ def write_summary_t1v20(data, codebook, document):
 
 
         
-def write_summary_t2v10(data, codebook, document):
+def write_summary_t2v10(t2_data, codebook_t2, codebook_t1, document, t1_data=None):
     # Diverse
     document.add_heading('Oppsummering', 2)
     oppsummering = document.add_paragraph("")
-    oppsummering.add_run("Pasientens tanker om årsak til plagene: " + data["aarsak"])
-       
+    if t1_data is None:
+        oppsummering.add_run("Pasientens tanker om årsak til plagene: " + t2_data["aarsak"])
+    else:
+        oppsummering.add_run("Pasientens tanker om årsak til plagene: " + str(t2_data["aarsak"]) + " --> " + str(t1_data["aarsak"]))
+
 
     # Uførsøknad
-    if data["sokt-ufor"] == "ja":
+    if t2_data["sokt-ufor"] == "ja":
         oppsummering.add_run("\nHar søkt eller planlegger å søke uførpensjon")
     else:
         oppsummering.add_run("\nVurderer ikke å søke ufør")
 
 
     # Jobbstatus
-    if(data["arbeidsforhold"] == "ja"):
-        oppsummering.add_run("\nHar arbeidsforhold ")
+    if t1_data is not None:
+        if(t1_data["arbeidsforhold"] == "ja"):
+            oppsummering.add_run("\nHadde arbeidsforhold ")
+        else:
+            oppsummering.add_run("\nHadde ikke arbeidsforhold ")
+        jobbstatus = ""
+        if t1_data["sm-aap"] == "nei": jobbstatus = "var ikke sykemeldt"
+        elif t1_data["sm-aap"] == "delvis-sm": jobbstatus = "var delvis sykemeldt"
+        elif t1_data["sm-aap"] == "fullt-sm": jobbstatus = "var fullt sykemeldt"
+        elif t1_data["sm-aap"] == "aap": jobbstatus = "hadde AAP"
+        oppsummering.add_run(" (" + jobbstatus + ") --> ")
+    else: oppsummering.add_run("\n")
+
+    if(t2_data["arbeidsforhold"] == "ja"):
+        oppsummering.add_run("Har arbeidsforhold ")
     else:
-        oppsummering.add_run("\nHar ikke arbeidsforhold ")
+        oppsummering.add_run("Har ikke arbeidsforhold ")
     jobbstatus = ""
-    if data["sm-aap"] == "nei": jobbstatus = "ikke sykemeldt"
-    elif data["sm-aap"] == "delvis-sm": jobbstatus = "delvis sykemeldt"
-    elif data["sm-aap"] == "fullt-sm": jobbstatus = "fullt sykemeldt"
-    elif data["sm-aap"] == "aap": jobbstatus = "AAP"
+    if t2_data["sm-aap"] == "nei": jobbstatus = "ikke sykemeldt"
+    elif t2_data["sm-aap"] == "delvis-sm": jobbstatus = "delvis sykemeldt"
+    elif t2_data["sm-aap"] == "fullt-sm": jobbstatus = "fullt sykemeldt"
+    elif t2_data["sm-aap"] == "aap": jobbstatus = "AAP"
     oppsummering.add_run(" (" + jobbstatus + ")")
-    
 
     # WPI og SSS
-    oppsummering.add_run("\nWPI (0-19): " + str((wpi_score(data))))
-    oppsummering.add_run("\nSSS (0-12): " + str((sss_score(data, codebook))))
-    oppsummering.add_run("\nSum SSS + WPI (0-31): " + str((sss_score(data, codebook) + wpi_score((data)))))
+    if t1_data is None:
+        oppsummering.add_run("\nWPI (0-19): " + str((wpi_score(t2_data))))
+        oppsummering.add_run("\nSSS (0-12): " + str((sss_score(t2_data, codebook_t2))))
+        oppsummering.add_run("\nSum SSS + WPI (0-31): " + str((sss_score(t2_data, codebook_t2) + wpi_score((t2_data)))))
+    else:
+        oppsummering.add_run("\nWPI (0-19): " + str((wpi_score(t1_data))) + " --> " + str((wpi_score(t2_data))))
+        oppsummering.add_run("\nSSS (0-12): " + str((sss_score(t1_data, codebook_t1))) + " --> " + str((sss_score(t2_data, codebook_t2))))
+        oppsummering.add_run("\nSum SSS + WPI (0-31): " + str((sss_score(t1_data, codebook_t1) + wpi_score(t1_data))) + " --> " + str((sss_score(t2_data, codebook_t2) + wpi_score((t2_data)))))
 
 
     # Antall smerteregioner
-    oppsummering.add_run("\nAntall smerteregioner: " + str(number_of_pain_regions(data)))
+    oppsummering.add_run("\nAntall smerteregioner: " + str(number_of_pain_regions(t2_data)))
     
 
     # Fibro = (WPI >=7 & SSS >=5 || WPI >=4 & SSS >=9) & >=4 kroppsregioner & >=3 mnd
-    if(oppfyller_fibrokriterier(data, codebook)):
+    if(oppfyller_fibrokriterier(t2_data, codebook_t2)):
         oppsummering.add_run("\nPositivt svar på samlede kriterier for utbredte smerter")
     else:
         oppsummering.add_run("\nNegativt svar på samlede kriterier for utbredte smerter")
 
 
     # SCL-10
-    oppsummering.add_run("\nSCL-10 (fra 1,0 = laveste skåre, til 4,0 = høyeste skåre): " + str(scl_score(data)))
-    if (scl_score(data) > 1.85):
-        oppsummering.add_run(" (indikerer psykiske plager)")
+    oppsummering.add_run("\nSCL-10 (fra 1,0 = laveste skåre, til 4,0 = høyeste skåre): ")
+    if t1_data is not None:
+        if (scl_score(t1_data) > 1.85):
+            oppsummering.add_run(str(scl_score(t1_data)) + " (indikerer psykiske plager) --> ")
+        else:
+            oppsummering.add_run(str(scl_score(t1_data)) + " (indikerer fravær av psykiske plager) --> ")
+
+    if (scl_score(t2_data) > 1.85):
+        oppsummering.add_run(str(scl_score(t2_data)) + " (indikerer psykiske plager)")
     else:
-        oppsummering.add_run(" (indikerer fravær av psykiske plager)")
+        oppsummering.add_run(str(scl_score(t2_data)) + " (indikerer fravær av psykiske plager)")
 
 
     # ISI
     oppsummering.add_run("\nISI: ")
-    isi = isi_score(data)
+    isi = isi_score(t2_data)
     isi_normalized = isi / 28
     if(isi < 8):
         oppsummering.add_run(str(isi) + " (indikerer fravær av insomni)").font.color.rgb = RGBColor(51, 102, 0)
