@@ -44,7 +44,8 @@ def main():
     fileNames = [f for f in listdir(p) if isfile(join(p, f))]
 
     # genererer rapporter
-    generate_reports(config, fileNames)
+    if config.getboolean("general","generatereports"):
+        generate_reports(config, fileNames)
 
     # Flytter nye besvarelser til prosesserte besvarelser-mappen
     move_files(fileNames, config)

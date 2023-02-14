@@ -47,10 +47,10 @@ def generate_report_t1v20(data, codebook_path, outputPath, respondentID):
 
     # saves document to file
     comment = ""
-    if(data["tilbakemeldinger"] != ""):
+    if("tilbakemeldinger" in data and data["tilbakemeldinger"] != ""):
         comment = "Respondent har gitt tilbakemelding: " + data["tilbakemeldinger"]
     
-    document.save(outputPath + str(respondentID) + ".docx")
+    document.save(outputPath + str(respondentID) + "-t1.docx")
     print("T1_v2.0-rapport generert for " + str(respondentID) + " (" + data["fnr"][0:6] + " " + data["fnr"][6:] + ") " + comment)
 
 
@@ -123,10 +123,10 @@ def generate_report_t2v10(t2data, t1_data_path, codebook_t2_path, codebook_t1_pa
 
     # saves document to file
     comment = ""
-    if(t2data["tilbakemeldinger"] != ""):
+    if("tilbakemeldinger" in t2data and t2data["tilbakemeldinger"] != ""):
         comment = "Respondent har gitt tilbakemelding: " + t2data["tilbakemeldinger"]
     
-    document.save(outputPath + str(respondentID) + ".docx")
+    document.save(outputPath + str(respondentID) + "-t2.docx")
     print("T2_v1.0-rapport generert for " + str(respondentID) + " (" + t2data["fnr"][0:6] + " " + t2data["fnr"][6:] + ") " + comment)
 
 
@@ -149,8 +149,8 @@ def write_intro_t1(data, codebook, document, respondentID):
     # Morsmål og lese-/skrivevansker
     if (data["morsmaal"] == "annet"):
         demografi.add_run("Morsmål: " + data["morsmaal-tekst"].capitalize())
-        write_var_snippet_and_response("sprakvansker", data, codebook, demografi)
-        demografi.add_run("\n")
+    write_var_snippet_and_response("sprakvansker", data, codebook, demografi)
+    demografi.add_run("\n")
 
     # Sivilstatus, barn, husholdning
     write_var_snippet_and_response("sivilstatus", data, codebook, demografi, True, False)
@@ -177,13 +177,17 @@ mens respondentens svar ved avslutning angis etter '-->'.".format(t1data["Oppret
 ####################
 #region Oppsummering
 
+# T1
 def write_summary_t1v20(data, codebook, document):
     # Diverse
     document.add_heading('Oppsummering', 2)
     oppsummering = document.add_paragraph("Viktigste problem: " + data["viktigste-problem"])
     oppsummering.add_run("\nPasientens tanker om årsak til plagene: " + data["aarsak"])
     oppsummering.add_run("\nOppfølging pasienten tror vil være mest nyttig: " + data["type-hjelp"])
-    oppsummering.add_run("\nEndringer i jobbsituasjon pasienten har tro på: " + data["endringer-jobbsit-rtw"])
+    if "aarsak-sm-app" in data:
+        oppsummering.add_run("\nÅrsak til sykemelding: " + data["aarsak-sm-app"])
+    if "endringer-jobbsit-rtw" in data:
+        oppsummering.add_run("\nEndringer i jobbsituasjon pasienten har tro på: " + data["endringer-jobbsit-rtw"])
        
 
     # Erstatningssak og uførsøknad
@@ -251,7 +255,7 @@ def write_summary_t1v20(data, codebook, document):
         oppsummering.add_run(str(isi) + " (indikerer alvorlig insomni)").font.color.rgb = RGBColor(204, 0, 0)
 
 
-        
+# T2    
 def write_summary_t2v10(t2_data, codebook_t2, codebook_t1, document, t1_data=None):
     # Diverse
     document.add_heading('Oppsummering', 2)
@@ -332,8 +336,20 @@ def write_summary_t2v10(t2_data, codebook_t2, codebook_t1, document, t1_data=Non
 
     # ISI
     oppsummering.add_run("\nISI: ")
+    if t1_data is not None:
+        isi = isi_score(t1_data)
+        if(isi < 8):
+            oppsummering.add_run(str(isi) + " (indikerer fravær av insomni)").font.color.rgb = RGBColor(51, 102, 0)
+        elif (isi <15):
+            oppsummering.add_run(str(isi) + " (indikerer subklinisk insomni)").font.color.rgb = RGBColor(153, 102, 51)
+        elif (isi <22):
+            oppsummering.add_run(str(isi) + " (indikerer moderat insomni)").font.color.rgb = RGBColor(204, 102, 0)
+        else:
+            oppsummering.add_run(str(isi) + " (indikerer alvorlig insomni)").font.color.rgb = RGBColor(204, 0, 0)
+        oppsummering.add_run(" --> ")
+
+
     isi = isi_score(t2_data)
-    isi_normalized = isi / 28
     if(isi < 8):
         oppsummering.add_run(str(isi) + " (indikerer fravær av insomni)").font.color.rgb = RGBColor(51, 102, 0)
     elif (isi <15):
@@ -404,7 +420,7 @@ def write_earlier_treatment(data, codebook, document):
     document.add_heading('Tidligere behandling', 4)
     p = document.add_paragraph("")
     write_var_text_report_and_multi_response("tidligere-behandling_1", data, codebook, p, colon=False, separator=", ", leading_newline=False)
-    if len(data["annen-tidligere-beh"]) > 0:
+    if "annen-tidligere-beh" in data and len(data["annen-tidligere-beh"]) > 0:
         write_var_snippet_and_var_code("annen-tidligere-beh", data, codebook, p)
 
 #endregion
@@ -424,13 +440,13 @@ def write_work_related_t1v20(data, codebook, document):
     write_var_snippet_and_response("utdannelse", data, codebook, p, True, False)
     write_var_snippet_and_response("tid-i-arbeidslivet", data, codebook, p)
     write_var_snippet_and_response("arbeidsforhold", data, codebook, p)
-    write_var_snippet_and_var_code("trivsel-jobb", data, codebook, p)    
+    write_var_snippet_and_response("trivsel-jobb", data, codebook, p)    
     write_var_snippet_and_var_code("yrke-fritekst", data, codebook, p)    
     write_var_snippet_and_var_code("stillingsprosent", data, codebook, p)
     write_var_text_report_and_multi_response("sektor_1", data, codebook, p)
 
     # Sykemelding og AAP
-    write_var_snippet_and_response("sm-aap", data, codebook, p, False)
+    write_var_snippet_and_response("sm-aap", data, codebook, p)
     write_var_snippet_and_var_code("prosent-sykemeldt", data, codebook, p)
     write_var_snippet_and_var_code("fare-sykemelding", data, codebook, p)
     write_var_snippet_and_var_code("fare-mer-sykemeldt", data, codebook, p)
@@ -618,7 +634,7 @@ def write_response(var, data, codebook, document):
 
 def write_var_snippet_and_var_code(var, data, codebook, paragraph, colon=True, capitalization = True, newLine = True):
     # skip if value is missing
-    if(data[var] == ""):
+    if(var not in data or data[var] == ""):
         return
 
     s = "\n" if newLine else ""
@@ -636,7 +652,7 @@ def write_var_snippet_and_var_code(var, data, codebook, paragraph, colon=True, c
 
 def write_var_snippet_and_response(var, data, codebook, paragraph, colon=True, newLine = True):
     # skip if value is missing
-    if(data[var] == ""):
+    if(var not in data or data[var] == ""):
         return
 
     s = "\n" if newLine else ""
@@ -654,7 +670,7 @@ def write_var_snippet_and_response(var, data, codebook, paragraph, colon=True, n
 
 def write_var_text_and_response(var, data, codebook, paragraph, colon=True, newLine = True):
     # skip if value is missing
-    if(data[var] == ""):
+    if(var not in data or data[var] == ""):
         return
 
     s = "\n" if newLine else ""
@@ -672,6 +688,9 @@ def write_var_text_and_response(var, data, codebook, paragraph, colon=True, newL
 
 
 def write_var_text_report_and_multi_response_bullet(var, data, codebook, document, colon=True):   
+    if var not in data:
+        return
+
     s = codebook[var]["var_text_report"]
     if(colon):
         s += ": "
@@ -689,6 +708,9 @@ def write_var_text_report_and_multi_response_bullet(var, data, codebook, documen
 
 
 def write_var_text_report_and_multi_response(var, data, codebook, p, colon=True, leading_newline = True, separator = "; "):   
+    if var not in data:
+        return
+
     s = "\n" if leading_newline else ""
     s += codebook[var]["var_text_report"]
     if(colon):
