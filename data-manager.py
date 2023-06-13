@@ -11,6 +11,8 @@ import qualreg
 import shutil
 import logging
 from datetime import datetime
+import subprocess, platform
+import sys
 
 def main():
     
@@ -61,6 +63,17 @@ def main():
         export_qual_reg(config, logger)
 
     print('\n*** PROSESS FULLFØRT ***')
+
+    if config.getboolean('general', 'devmode'):
+        if (len(sys.argv[1]) > 0):
+            print("\nOpening report " + sys.argv[1] + ".docx")
+            filepath = config['paths']['reportexportpath'] + sys.argv[1] + ".docx"
+            if platform.system() == 'Darwin':       # macOS
+                subprocess.call(('open', filepath))
+            elif platform.system() == 'Windows':    # Windows
+                os.startfile(filepath)
+            else:                                   # linux variants
+                subprocess.call(('xdg-open', filepath))
 
 
 def export_qual_reg(config, logger):

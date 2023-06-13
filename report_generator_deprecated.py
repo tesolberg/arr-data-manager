@@ -85,7 +85,8 @@ def write_summary(data, codebook, document):
     oppsummering = document.add_paragraph("Viktigste problem: " + data["viktigste-problem"])
     oppsummering.add_run("\nPasientens tanker om årsak til plagene: " + data["aarsak"])
     oppsummering.add_run("\nOppfølging pasienten tror vil være mest nyttig: " + data["type-hjelp"])
-    oppsummering.add_run("\nEndringer i jobbsituasjon pasienten har tro på: " + data["endringer-jobbsit-rtw"])
+    if "endringer-jobbsit-rtw" in data:
+        oppsummering.add_run("\nEndringer i jobbsituasjon pasienten har tro på: " + data["endringer-jobbsit-rtw"])
        
 
     # Erstatningssak og uførsøknad
@@ -203,7 +204,7 @@ def write_pain_variables(data, codebook, document):
     document.add_heading('Tidligere behandling', 4)
     p = document.add_paragraph("")
     write_var_text_report_and_multi_response("tidligere-behandling_1", data, codebook, p, colon=False, separator=", ", leading_newline=False)
-    if len(data["annen-tidligere-beh"]) > 0:
+    if "annen-tidligere-beh" in data and len(data["annen-tidligere-beh"]) > 0:
         write_var_snippet_and_var_code("annen-tidligere-beh", data, codebook, p)
 
 
@@ -325,7 +326,7 @@ def write_response(var, data, codebook, document):
 
 def write_var_snippet_and_var_code(var, data, codebook, paragraph, colon=True, capitalization = True):
     # skip if value is missing
-    if(data[var] == ""):
+    if(var not in data or data[var] == ""):
         return
 
     s = ""
@@ -342,7 +343,7 @@ def write_var_snippet_and_var_code(var, data, codebook, paragraph, colon=True, c
 
 def write_var_snippet_and_response(var, data, codebook, paragraph, colon=True, newLine = True):
     # skip if value is missing
-    if(data[var] == ""):
+    if(var not in data or data[var] == ""):
         return
 
     s = "\n" if newLine else ""
@@ -360,7 +361,7 @@ def write_var_snippet_and_response(var, data, codebook, paragraph, colon=True, n
 
 def write_var_text_and_response(var, data, codebook, paragraph, colon=True, newLine = True):
     # skip if value is missing
-    if(data[var] == ""):
+    if(var not in data or data[var] == ""):
         return
 
     s = "\n" if newLine else ""
@@ -379,6 +380,9 @@ def write_var_text_and_response(var, data, codebook, paragraph, colon=True, newL
 
 
 def write_var_text_report_and_multi_response(var, data, codebook, p, colon=True, leading_newline = True, separator = "; "):
+    if var not in data:
+        return
+
     s = "\n" if leading_newline else ""
     s += codebook[var]["var_text_report"]
     if(colon):

@@ -1,5 +1,6 @@
 import json
 from pickle import FALSE, NONE
+from struct import pack
 from typing import Type
 from docx import Document
 from docx.shared import RGBColor
@@ -104,7 +105,7 @@ def generate_report_t2v10(t2data, t1_data_path, codebook_t2_path, codebook_t1_pa
     write_summary_t2v10(t2data, codebook_t2, codebook_t1, document, t1_sub)
     
     ### SMERTE ###
-    write_pain_variables(t2data, codebook_t2, document)
+    write_pain_variables(t2data, codebook_t2, document, t1_sub)
     
     ### ARBEID OG YTELSER ###
     write_work_related_t2v10(t2data, codebook_t2, document)
@@ -148,8 +149,8 @@ def write_intro_t1(data, codebook, document, respondentID):
     demografi = document.add_paragraph("")
     # Morsmål og lese-/skrivevansker
     if (data["morsmaal"] == "annet"):
-        demografi.add_run("Morsmål: " + data["morsmaal-tekst"].capitalize())
-    write_var_snippet_and_response("sprakvansker", data, codebook, demografi)
+        demografi.add_run("Morsmål: " + data["morsmaal-tekst"].capitalize() + "\n")
+    write_var_snippet_and_response("sprakvansker", data, codebook, demografi, newLine=False)
     demografi.add_run("\n")
 
     # Sivilstatus, barn, husholdning
@@ -167,8 +168,8 @@ def write_intro_t2(data, codebook, document, respondentID, t1data=None):
  
     if t1data is not None:
         document.add_paragraph("\
-Respondenten har fylt ut kartlegging ved oppstart ({}). Der data fra oppstartskartleggingen presenteres vises den før '-->', \
-mens respondentens svar ved avslutning angis etter '-->'.".format(t1data["Opprettet"]))
+Respondenten har fylt ut kartlegging ved oppstart ({}). Der data fra oppstartskartleggingen presenteres vises det i følgende format: \
+    \n[svar ved oppstart] --> [svar ved avslutning]".format(t1data["Opprettet"]))
 
 #endregion
 
@@ -367,13 +368,17 @@ def write_summary_t2v10(t2_data, codebook_t2, codebook_t1, document, t1_data=Non
 ######################
 #region Smerte
 
-def write_pain_variables(data, codebook, document):
+def write_pain_variables(data, codebook, document, t1_sub = None):
     document.add_heading('Smerter', 2)
 
     # Best, verst, gjennomsnitt
     p = document.add_paragraph("Smerter siste uken (beste, gjennomsnitt, verste): " + data["plager-beste"] \
         + "/" + data["plager-gjsn"] + "/" + data["plager-verste"])
     
+    if t1_sub is not None:
+        # legg til samme variabler men fra t1_sub
+        p.add_run(" --> " + t1_sub["plager-beste"] + "/" + t1_sub["plager-gjsn"] + "/" + t1_sub["plager-verste"])
+
     # Varighet smerter
     if(data["plager-mer-enn-et-aar"] == "ja"):
         p.add_run("\nVarighet: " + data["plager-aar"] + " år")
@@ -392,17 +397,12 @@ def write_pain_variables(data, codebook, document):
 
     # Tanker om smerter
     document.add_heading('Tanker om smertene', 4)
-    document.add_paragraph("0 = 'helt uenig'. 10 = 'helt enig'")
-    p = document.add_paragraph("", style = "List Bullet")
-    p.add_run(codebook["skadelig"]["var_text"] + " (" + data["skadelig"] + ")").font.color.rgb = get_color_gradient(int(data["skadelig"]) / 10)
-    p = document.add_paragraph("", style = "List Bullet")
-    p.add_run(codebook["farlig"]["var_text"] + " (" + data["farlig"] + ")").font.color.rgb = get_color_gradient(int(data["farlig"]) / 10)
-    p = document.add_paragraph("", style = "List Bullet")
-    p.add_run(codebook["kroppen-skadet"]["var_text"] + " (" + data["kroppen-skadet"] + ")").font.color.rgb = get_color_gradient(int(data["kroppen-skadet"]) / 10)
-    p = document.add_paragraph("", style = "List Bullet")
-    p.add_run(codebook["unngaa-vondt"]["var_text"] + " (" + data["unngaa-vondt"] + ")").font.color.rgb = get_color_gradient(int(data["unngaa-vondt"]) / 10)
-    p = document.add_paragraph("", style = "List Bullet")
-    p.add_run(codebook["tro-paa-bedring"]["var_text"] + " (" + data["tro-paa-bedring"] + ")").font.color.rgb = get_color_gradient(1 - (int(data["tro-paa-bedring"]) / 10))
+    p = document.add_paragraph("0 = 'helt uenig'. 10 = 'helt enig'")
+    p.add_run("\n" + codebook["skadelig"]["var_text"] + " (" + data["skadelig"] + ")").font.color.rgb = get_color_gradient(int(data["skadelig"]) / 10)
+    p.add_run("\n" + codebook["farlig"]["var_text"] + " (" + data["farlig"] + ")").font.color.rgb = get_color_gradient(int(data["farlig"]) / 10)
+    p.add_run("\n" + codebook["kroppen-skadet"]["var_text"] + " (" + data["kroppen-skadet"] + ")").font.color.rgb = get_color_gradient(int(data["kroppen-skadet"]) / 10)
+    p.add_run("\n" + codebook["unngaa-vondt"]["var_text"] + " (" + data["unngaa-vondt"] + ")").font.color.rgb = get_color_gradient(int(data["unngaa-vondt"]) / 10)
+    p.add_run("\n" + codebook["tro-paa-bedring"]["var_text"] + " (" + data["tro-paa-bedring"] + ")").font.color.rgb = get_color_gradient(1 - (int(data["tro-paa-bedring"]) / 10))
 
     # Tanker om smerter
     document.add_heading('Tanker og følelser når du opplever smerte', 6)
@@ -700,10 +700,16 @@ def write_var_text_report_and_multi_response_bullet(var, data, codebook, documen
 
     num_of_responses = len(codebook[var]["responses"])
     base_var = var[:-2]
+    p = document.add_paragraph("")
+    firstline = True
     for i in range(1, num_of_responses + 1):
         respons_var = base_var + "_" + str(i)
         if(data[respons_var] != ""):
-            document.add_paragraph(codebook[respons_var]["responses"][data[respons_var]], style='List Bullet')
+            if (not firstline):
+                p.add_run("\n")
+            firstline = False
+
+            p.add_run(codebook[respons_var]["responses"][data[respons_var]])
 
 
 
