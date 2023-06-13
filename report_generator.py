@@ -4,6 +4,7 @@ from struct import pack
 from typing import Type
 from docx import Document
 from docx.shared import RGBColor
+from docx.shared import Pt
 
 # for testing
 import csv
@@ -45,12 +46,20 @@ def generate_report_t1v20(data, codebook_path, outputPath, respondentID):
     ### ISI ###
     write_isi(data, codebook, document)
 
-
-    # saves document to file
+    ### TILBAKEMELDINGER ###
     comment = ""
     if("tilbakemeldinger" in data and data["tilbakemeldinger"] != ""):
         comment = "Respondent har gitt tilbakemelding: " + data["tilbakemeldinger"]
     
+    
+    for paragraph in document.paragraphs:
+        for run in paragraph.runs:
+            # Set font name to Calibri
+            run.font.name = "Arial"
+            run.font.italic = True
+
+
+    # saves document to file
     document.save(outputPath + str(respondentID) + "-t1.docx")
     print("T1_v2.0-rapport generert for " + str(respondentID) + " (" + data["fnr"][0:6] + " " + data["fnr"][6:] + ") " + comment)
 
@@ -95,6 +104,11 @@ def generate_report_t2v10(t2data, t1_data_path, codebook_t2_path, codebook_t1_pa
 
     # creates new document and adds heading
     document = Document()
+
+    # sets font to Calibri
+    document.styles['Normal'].font.name = 'Calibri'
+    document.styles['Normal'].font.size = Pt(12)
+
     document.add_heading('Pasientrapportert kartlegging ved avslutning i arbeidsrettet rehabilitering', 1)
     document.add_heading('Avdeling for fysikalsk medisin og forebygging, Sørlandet sykehus HF', 3)
 
@@ -123,12 +137,13 @@ def generate_report_t2v10(t2data, t1_data_path, codebook_t2_path, codebook_t1_pa
     write_isi(t2data, codebook_t2, document)
 
     # saves document to file
+    document.save(outputPath + str(respondentID) + "-t2.docx")
+    
     comment = ""
     if("tilbakemeldinger" in t2data and t2data["tilbakemeldinger"] != ""):
         comment = "Respondent har gitt tilbakemelding: " + t2data["tilbakemeldinger"]
-    
-    document.save(outputPath + str(respondentID) + "-t2.docx")
     print("T2_v1.0-rapport generert for " + str(respondentID) + " (" + t2data["fnr"][0:6] + " " + t2data["fnr"][6:] + ") " + comment)
+
 
 
 
