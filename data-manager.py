@@ -23,7 +23,7 @@ def main():
     file_handler = logging.FileHandler("data-manager.log")
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
-    logger.info("Starting execution of Data Manager at " + datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
+    logger.info("Starting execution of Data Manager at " + datetime.now().strftime("%d/%m/%Y %H:%M:%S") + ". User: " + os.getlogin())
 
     # leser inn config-filen
     config = configparser.ConfigParser()
@@ -65,7 +65,7 @@ def main():
     print('\n*** PROSESS FULLFØRT ***')
 
     if config.getboolean('general', 'devmode'):
-        if (len(sys.argv[1]) > 0):
+        if (len(sys.argv) > 1 and len(sys.argv[1]) > 0):
             print("\nOpening report " + sys.argv[1] + ".docx")
             filepath = config['paths']['reportexportpath'] + sys.argv[1] + ".docx"
             if platform.system() == 'Darwin':       # macOS

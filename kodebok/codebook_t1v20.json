@@ -1263,7 +1263,7 @@
     "var_text": "Er du bekymret for økonomien din?"
   },
   "sokt-ufor": {
-    "var_text_report": "Søkt ufør",
+    "var_text_report": "Søkt eller planlegger å søke om ufør",
     "responses": {
       "ja": "Ja",
       "nei": "Nei"
