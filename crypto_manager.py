@@ -7,15 +7,10 @@ from os import rename, remove
 
 
 def create_key(privKeyPath, pubKeyPath):
-    # we can start by generating a primary key. For this example, we'll use RSA, but it could be DSA or ECDSA as well
     key = pgpy.PGPKey.new(PubKeyAlgorithm.RSAEncryptOrSign, 4096)
 
-    # we now have some key material, but our new key doesn't have a user ID yet, and therefore is not yet usable!
     uid = pgpy.PGPUID.new('Abraham Lincoln', comment='Honest Abe', email='abraham.lincoln@whitehouse.gov')
 
-    # now we must add the new user id to the key. We'll need to specify all of our preferences at this point
-    # because PGPy doesn't have any built-in key preference defaults at this time
-    # this example is similar to GnuPG 2.1.x defaults, with no expiration or preferred keyserver
     key.add_uid(uid, usage={KeyFlags.Sign, KeyFlags.EncryptCommunications, KeyFlags.EncryptStorage},
                 hashes=[HashAlgorithm.SHA256, HashAlgorithm.SHA384, HashAlgorithm.SHA512, HashAlgorithm.SHA224],
                 ciphers=[SymmetricKeyAlgorithm.AES256, SymmetricKeyAlgorithm.AES192, SymmetricKeyAlgorithm.AES128],
@@ -91,12 +86,3 @@ def decrypt_submissions_in_folder(origin, destination, privKeyPath, archivePath 
     else:
         print('')
 
-
-# TEST
-# encrypt_file("test-files/pgp-keys/public-key-test.txt", "test-files/kryptert-legepol/17578501.csv", "test-files/kryptert-legepol/17578501.csv.asc")
-# encrypt_file("test-files/pgp-keys/public-key-test.txt", "test-files/kryptert-legepol/19578507.csv", "test-files/kryptert-legepol/19578507.csv.asc")
-# encrypt_file("test-files/pgp-keys/pubkey-test.txt", "test-files/backup av testbesvarelser/t2v10_24502075.txt", "test-files/kryptert-t2v10/t2v10_24502075.csv.asc")
-
-# decrypt_file("test/privkey-test.txt", "test/encryptet-data.txt", "test/decrypted-data.txt")
-# decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt", "test/encrypted-archive/")
-# decrypt_all_new_submissions("test/encrypted-data/", "test/decrypted-data/", "test/privkey-test.txt")
