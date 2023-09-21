@@ -18,8 +18,8 @@ koblingsnokkel/
 # Other
 public-key/
 test-files/
-*.pyroj
-*.pyroj.user
+*.pyproj
+*.pyproj.user
 .python-version
 *.sln
 
